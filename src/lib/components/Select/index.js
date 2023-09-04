@@ -15,7 +15,7 @@ function EmptyList() {
 	);
 }
 
-export default function Select({
+function Select({
 	className = '',
 	name = '',
 	value = '',
@@ -91,7 +91,7 @@ export default function Select({
 						/>
 					)}
 
-				{!isEmpty(visibleOptions)
+				{isEmpty(visibleOptions)
 					? <EmptyList /> : (
 						<>
 							{visibleOptions.map((option, index) => {
@@ -116,3 +116,5 @@ export default function Select({
 		</div>
 	);
 }
+
+export { Select };
