@@ -30,4 +30,4 @@ function Switch({ children }) {
 Switch.Case = Case;
 Switch.Default = Default;
 
-export default Switch;
+export { Switch };
