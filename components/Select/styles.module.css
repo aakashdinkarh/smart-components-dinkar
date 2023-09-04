@@ -1,0 +1,110 @@
+.select_input_container,
+.select_input_container * {
+	box-sizing: border-box;
+}
+
+.select_input_container {
+	position: relative;
+}
+
+.select_input_container::after {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	cursor: pointer;
+	content: "";
+	border: 6px solid #000000eb;
+	border-color: #000000eb transparent transparent;
+	transition: transform 0.4s;
+	transform: rotateY(30deg) translate(-50%, -25%);
+	transform-origin: left top;
+}
+
+.select_input_container.open::after {
+	transform: rotateY(30deg) rotateX(180deg) translate(-50%, -25%);
+}
+
+.dummy_input {
+	width: 100%;
+	min-height: 32px;
+	padding: 4px;
+	padding-right: 30px;
+	cursor: pointer;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.dummy_input:focus {
+	outline: 1px solid #0cf;
+}
+
+.dummy_input.not_empty::placeholder {
+	color: #000;
+}
+
+.list_options {
+	position: absolute;
+	top: 101%;
+	left: 0;
+	display: none;
+	width: 100%;
+	padding: 4px;
+	margin: 0;
+	list-style-type: none;
+	cursor: pointer;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.list_option {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 4px;
+}
+
+li.list_option:not(:last-of-type) {
+	border-bottom: 1px solid #ddd;
+}
+
+li.list_option:hover,
+li.list_option.focused {
+	background-color: #d9fdff;
+}
+
+.clear_icon {
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	padding: 4px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	border-radius: 4px;
+	transform: translateY(-55%);
+}
+
+.clear_icon:hover {
+	background-color: #d9fdff;
+}
+
+.selected_option {
+	display: flex;
+	align-items: center;
+	padding-left: 4px;
+	margin-bottom: 6px;
+	cursor: default;
+	background-color: #6cd5db;
+	border-radius: 4px;
+}
+
+.selected_option:not(:last-of-type) {
+	margin-right: 10px;
+}
+
+.selected_option .clear_icon {
+	position: static;
+	margin-left: 10px;
+	background-color: #a0faff;
+	border-radius: 0 4px 4px 0;
+	transform: none;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "smart-components-dinkar",
+  "version": "1.0.0",
+  "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "smart-components",
+    "dinkar",
+    "smart-components-dinkar",
+    "smart-dinkar"
+  ],
+  "author": "Aakash Dinkar",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
