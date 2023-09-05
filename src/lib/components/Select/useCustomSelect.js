@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 
 import { getVisibleOptions, isContain } from './helpers';
 
@@ -158,7 +158,6 @@ export function useCustomSelect({
 		const listElem = listRef.current;
 		const containerElem = containerRef.current;
 
-		inputElem.addEventListener('input', onInput);
 		inputElem.addEventListener('focus', onFocus);
 		document.addEventListener('click', onOutsideClick);
 		listElem.addEventListener('click', onListClick);
@@ -166,19 +165,19 @@ export function useCustomSelect({
 		containerElem.addEventListener('keydown', onKeyDown);
 
 		return () => {
-			inputElem.removeEventListener('input', onInput);
 			inputElem.removeEventListener('focus', onFocus);
 			document.removeEventListener('click', onOutsideClick);
 			listElem.removeEventListener('click', onListClick);
 			listElem.removeEventListener('mouseover', onListHover);
 			containerElem.removeEventListener('keydown', onKeyDown);
 		};
-	}, [onInput, onFocus, onOutsideClick, onListClick, onListHover, onKeyDown]);
+	}, [onFocus, onOutsideClick, onListClick, onListHover, onKeyDown]);
 
 	return {
 		inputRef,
 		listRef,
 		containerRef,
 		clearField,
+		onInput,
 	};
 }
