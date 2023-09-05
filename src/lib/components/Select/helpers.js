@@ -13,7 +13,7 @@ export function getDefaultValue({ value = '', options = [], multiple = false }) 
 			return options.filter((option) => value && option.value === value).map((option) => option.value);
 		}
 	}
-	return options.find((option) => value && option.value === value)?.value;
+	return options.find((option) => value && option.value === value)?.value ?? '';
 }
 
 export function getDisplayValue({ selectedValue = '', options = [], multiple = false }) {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
 import { isEmpty } from '../../utils/isEmpty';
@@ -47,6 +47,7 @@ function Select({
 		listRef,
 		containerRef,
 		clearField,
+		onInput,
 	} = useCustomSelect({
 		selectedValue,
 		setSelectedValue,
@@ -75,7 +76,7 @@ function Select({
 			{!isEmpty(selectedValue) && isClearable
 				&& <button onClick={clearField} className={styles.clear_icon}>x</button>}
 
-			<input name={name} type="hidden" value={selectedValue} disabled={disabled} />
+			<input name={name} type="hidden" value={selectedValue} onChange={onInput} disabled={disabled} />
 
 			<ul ref={listRef} className={styles.list_options}>
 

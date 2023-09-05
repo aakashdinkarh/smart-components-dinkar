@@ -9,7 +9,7 @@ These components are built with a focus on modularity, flexibility, and ease of 
 One of the component from the library is SegmentedTabs. Below is how it should be used in your project.
 
 ```js
-import { SegmentedTabs } from 'smart-components-react';
+import { SegmentedTabs } from 'smart-components-dinkar';
 
 function Counter() {
   return (
