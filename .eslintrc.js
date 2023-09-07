@@ -1,27 +1,27 @@
-const base = require('./eslint-config/base');
+const overrides = require('./configs/overrides');
 
 module.exports = {
-	extends : "eslint:recommended",
-	parserOptions: {
-		ecmaVersion: 2020,
+	extends: [
+		"plugin:react/recommended",
+		"plugin:import/warnings",
+		"plugin:import/errors"
+	],
+	parser         : '@typescript-eslint/parser',
+	ignorePatterns : ['dist/**/*', '!.stylelintrc.js'],
+	parserOptions  : { project: './tsconfig.json', tsconfigRootDir: __dirname },
+	rules          : {
+		...overrides.base,
+		...overrides.react,
+		...overrides.typescript,
 	},
-	rules: {
-		...base,
-	},
-	env: {
-		es6 : true,
+	plugins : ['@typescript-eslint', 'import'],
+	env     : {
+		es6     : true,
 		browser : true,
 	},
 	globals: {
-		Atomics: 'readonly',
-		SharedArrayBuffer: 'readonly',
+		Atomics           : 'readonly',
+		SharedArrayBuffer : 'readonly',
 	},
-	plugins: [
-		'react'
-	],
-	settings: {
-		react: {
-			version: 'detect', // Automatically detect React version
-		},
-	},
+	root: true,
 };

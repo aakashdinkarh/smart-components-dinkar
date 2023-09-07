@@ -1,0 +1,104 @@
+.toast {
+    background-color: #acdadf;
+    border-radius: 4px;
+    padding: 8px;
+    width: fit-content;
+    box-shadow: 0 0 6px #878787;
+    overflow: hidden;
+    position: relative;
+}
+
+.toast.success {
+    background-color: #e1ffa2;
+}
+.toast.error {
+    background-color: #ffbebe;
+}
+.toast.warn {
+    background-color: #ffff6c;
+}
+
+.timer_strip {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    background: #000;
+    height: 4px;
+    width: 100%;
+    animation: widthTimer 5s linear;
+}
+@keyframes widthTimer {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+.close_icon {
+    background-color: transparent;
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.toast.top, .toast.top_left, .toast.top_right {
+    margin-bottom: 10px;
+}
+.toast.bottom, .toast.bottom_left, .toast.bottom_right {
+    margin-top: 10px;
+}
+
+/* Animate incoming and outgoing toast -- start */
+.toast.top, .toast.bottom {
+    animation: heightAnimate 1s forwards;
+}
+.toast.bottom_right, .toast.top_right {
+    animation: slideFromRight 1s forwards;
+}
+.toast.bottom_left, .toast.top_left {
+    animation: slideFromLeft 1s forwards;
+}
+@keyframes slideFromRight {
+    from { transform: translateX(150%); }
+    to { transform: translateX(0%); }
+}
+@keyframes slideFromLeft {
+    from { transform: translateX(-150%); }
+    to { transform: translateX(0%); }
+}
+@keyframes heightAnimate {
+    from { max-height: 0; }
+    to { max-height: 90vh; }
+}
+/* Animate incoming and outgoing toast -- end */
+
+/* Positioning the toast container -- start */
+.toast_container {
+    position: fixed;
+}
+.toast_container.top {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.toast_container.bottom {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.toast_container.top_left {
+    top: 10px;
+    left: 10px;
+}
+.toast_container.top_right {
+    top: 10px;
+    right: 10px;
+}
+.toast_container.bottom_left {
+    bottom: 10px;
+    left: 10px;
+}
+.toast_container.bottom_right {
+    bottom: 10px;
+    right: 10px;
+}
+/* Positioning the toast container -- end */

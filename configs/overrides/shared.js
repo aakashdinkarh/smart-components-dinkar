@@ -1,4 +1,4 @@
-module.exports = {
+const sharedRules = {
 	indent: ['error', 'tab', {
 		SwitchCase          : 1,
 		VariableDeclarator  : 1,
@@ -39,4 +39,7 @@ module.exports = {
 		],
 		ignoreComments: false,
 	}],
-}
+	'no-use-before-define': ['error', { functions: true, classes: true, variables: true }],
+};
+
+module.exports = sharedRules;

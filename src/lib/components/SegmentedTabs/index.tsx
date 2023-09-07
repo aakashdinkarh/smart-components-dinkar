@@ -1,26 +1,44 @@
-import React from 'react';
+import React, {  isValidElement, Children } from 'react';
 
 import styles from './styles.module.css';
 
-function Tab({ children }) {
+interface SegmentedTabsProps {
+	defaultActiveTab: string;
+	onTabChange: (newTab: string) => void;
+	children: any;
+}
+
+interface TabProps {
+	name: string;
+	title?: string;
+	children?: any;
+}
+
+function Tab({ children }: TabProps) {
 	return children;
 }
 
-function SegmentedTabs({ defaultActiveTab = '', onTabChange = () => {}, children = null }) {
-	const validChildren = React.Children.toArray(children).filter((child) => child.type === Tab);
+function SegmentedTabs({
+	defaultActiveTab = '',
+	onTabChange = () => { },
+	children = null
+}: Partial<SegmentedTabsProps>) {
+	const validChildren = Children.toArray(children)
+		.filter((child: any) => isValidElement(child) && child.type === Tab);
 
-	const tabs = validChildren.map((child) => ({ name: child.props.name, title: child.props.title }));
+	const tabs: { name: string, title?: string }[] = validChildren
+		.map((child: any) => ({ name: child.props.name || '', title: child.props.title || '' }));
 
-	const [activeTab, setActiveTab] = React.useState(defaultActiveTab || tabs[0].name);
+	const [activeTab, setActiveTab] = React.useState<string>(defaultActiveTab || tabs[0].name);
 
-	const tabsRef = React.useRef({});
+	const tabsRef: { [index: string]: any } = React.useRef({});
 
 	React.useEffect(() => {
 		const currentButton = tabsRef.current?.[activeTab];
 
 		if (currentButton) {
-			const translateX = currentButton.offsetLeft;
-			const { width, height } = currentButton.getBoundingClientRect();
+			const translateX: number = currentButton.offsetLeft;
+			const { width, height }: { width: number, height: number } = currentButton.getBoundingClientRect();
 
 			tabsRef.current.slider.style.transform = `translate(${translateX}px, -50%)`;
 			tabsRef.current.slider.style.width = `${width}px`;
@@ -32,7 +50,7 @@ function SegmentedTabs({ defaultActiveTab = '', onTabChange = () => {}, children
 		}
 	}, [activeTab, tabs]);
 
-	function handleTabChange(newTab) {
+	function handleTabChange(newTab: string) {
 		setActiveTab(newTab);
 
 		if (typeof onTabChange === 'function') { onTabChange(newTab); }
@@ -56,7 +74,7 @@ function SegmentedTabs({ defaultActiveTab = '', onTabChange = () => {}, children
 			</div>
 
 			<div className="tab_content">
-				{validChildren.filter((child) => child.props.name === activeTab)}
+				{validChildren.filter((child: any) => child.props.name === activeTab)}
 			</div>
 		</div>
 	);
