@@ -2,20 +2,38 @@ import { getClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
+interface OptionsProps {
+	closeAfter: number;
+	placement: string;
+	toastContainer: {
+		toastContainerClass?: string;
+	};
+	timerStrip: {
+		showTimerStrip?: boolean;
+		timerStripClass?: string;
+	};
+	toastDiv: {
+		toastDivClass?: string;
+	};
+	closeButton: {
+		showCloseIcon?: boolean;
+		closeButtonClass?: string;
+	};
+}
 
 const uniqueId = 'e47a13d6-4bd5-11ee-be56-0242ac120002';
 
-function toast(message = '', options = {}) {
+function toast(message : string = '', options ?: Partial<OptionsProps>) {
 	const {
 		closeAfter = 5,
 		placement = 'top',
 		toastContainer: { toastContainerClass = '' } = {},
 		timerStrip: { showTimerStrip = true, timerStripClass = '' } = {},
-		toastDiv: { toastDivClass } = {},
+		toastDiv: { toastDivClass = '' } = {},
 		closeButton: { showCloseIcon = true, closeButtonClass = '' } = {},
-	} = options;
+	} = options || {};
 
-	let toastContainer = document.querySelector(`#${uniqueId}`);
+	let toastContainer : HTMLElement | null  = document.querySelector(`#${uniqueId}`);
 
 	if (!toastContainer) {
 		toastContainer = document.createElement('div');
@@ -23,17 +41,17 @@ function toast(message = '', options = {}) {
 		toastContainer.id = uniqueId;
 	}
 
-	const timerStrip = showTimerStrip 
+	const timerStrip : string = showTimerStrip 
 		? ` <span class="${
 			getClass(styles.timer_strip, timerStripClass)
 		}" style="animation-duration: ${closeAfter}s" ></span>` 
 		: '';
 
-	const closeButton = showCloseIcon 
+	const closeButton : string = showCloseIcon 
 		? ` <button class="${getClass(styles.close_icon, closeButtonClass)}">x</button>` 
 		: '';
 
-	const toastDiv = document.createElement('div');
+	const toastDiv : HTMLDivElement = document.createElement('div');
 	toastDiv.className = getClass(styles.toast, styles[placement], toastDivClass);
 	toastDiv.innerHTML = `${message}${timerStrip}${closeButton}`;
 
@@ -50,7 +68,7 @@ function toast(message = '', options = {}) {
 		clearTimeout(timeoutId);
 		toastDiv.remove();
 
-		const container = document.querySelector(`#${uniqueId}`);
+		const container : HTMLElement | null = document.querySelector(`#${uniqueId}`);
 		if (container && container.children.length === 0) {
 			container.remove();
 		}
@@ -67,31 +85,31 @@ function toast(message = '', options = {}) {
 	}
 }
 
-function success(message, options = {}) {
+function success(message : string = '', options ?: Partial<OptionsProps>) {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options.toastDiv || {}),
+			...(options?.toastDiv || {}),
 			toastDivClass: styles.success,
 		}
 	})
 }
 
-function error(message, options = {}) {
+function error(message : string = '', options ?: Partial<OptionsProps>) {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options.toastDiv || {}),
+			...(options?.toastDiv || {}),
 			toastDivClass: styles.error,
 		}
 	})
 }
 
-function warn(message, options = {}) {
+function warn(message : string = '', options ?: Partial<OptionsProps>) {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options.toastDiv || {}),
+			...(options?.toastDiv || {}),
 			toastDivClass: styles.warn,
 		}
 	})

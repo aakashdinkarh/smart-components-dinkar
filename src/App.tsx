@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SegmentedTabs } from './lib';
+import { SegmentedTabs } from './exports';
 
 export default function App(): any {
 	return (

@@ -28,6 +28,7 @@ const base = {
 	'import/no-extraneous-dependencies' : 'off',
 	'import/prefer-default-export'      : 'off',
 	'react/jsx-indent-props'            : [2, 4],
+	' import/no-unresolved'             : 'off',
 	'import/order'                      : [
 		'error',
 		{
@@ -47,6 +48,9 @@ const typescript = {
 	'@typescript-eslint/indent'               : sharedRules.indent,
 	'no-use-before-define'                    : 'off',
 	'@typescript-eslint/no-use-before-define' : sharedRules['no-use-before-define'],
+	'@typescript-eslint/no-empty-function'    : 'off',
+	'@typescript-eslint/no-var-requires'      : 'off',
+	'@typescript-eslint/no-explicit-any'      : 'off'
 };
 
 const react = {

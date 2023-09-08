@@ -1,16 +1,22 @@
-const path = require('path');
-
-const webpack = require('webpack');
-
 const config = {
-	entry  : './src/lib/index.ts',
-	output : {
-		path          : path.resolve(__dirname, 'dist'),
-		filename      : 'index.js',
-		library       : 'Select',
-		libraryTarget : 'umd',
-		publicPath    : '/dist'
+	entry : './src/exports.ts',
+	input : {
+		index           : 'src/exports.ts',
+		InputController : 'src/components/SegmentedTabs/index.tsx',
 	},
+	output: [
+		{
+			dir       : 'dist/es',
+			format    : 'esm',
+			sourcemap : true,
+		},
+		{
+			dir       : 'dist/cjs',
+			format    : 'cjs',
+			exports   : 'named',
+			sourcemap : true,
+		},
+	],
 	module: {
 		rules: [
 			{
@@ -32,6 +38,13 @@ const config = {
 				]
 			},
 		]
+	},
+	tsconfig         : "tsconfig.json",
+	tsconfigOverride : { 
+		compilerOptions: { 
+			declaration    : true, 
+			declarationDir : "dist/types" 
+		} 
 	},
 	externals: {
 		react: {

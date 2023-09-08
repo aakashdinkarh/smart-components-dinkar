@@ -20,7 +20,7 @@ function Tab({ children }: TabProps) {
 
 function SegmentedTabs({
 	defaultActiveTab = '',
-	onTabChange = () => { },
+	onTabChange = () => {},
 	children = null
 }: Partial<SegmentedTabsProps>) {
 	const validChildren = Children.toArray(children)
