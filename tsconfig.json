@@ -1,37 +1,54 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
-        "typeRoots": ["node_modules/@types"],
-        "jsx": "react",
-        "module": "ES2020",
-        "moduleResolution": "Node16",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true,
+        "baseUrl": "./src",
+        "outDir": "./dist/",
+        "sourceMap": true,
         "strict": true,
+        "noImplicitReturns": true,
+        "allowSyntheticDefaultImports": true,
         "noImplicitAny": true,
+        "module": "es6",
+        "moduleResolution": "node",
+        "target": "es5",
         "allowJs": true,
-        "checkJs": false,
-        "skipLibCheck": true,
-        "noEmit": false,
-        "incremental": true,
-        "isolatedModules": true,
+        "jsx": "react",
         "declaration": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": ["src/*"],
-        }
+        "declarationDir" : "./dist/types",
+        // "target": "ES2020",
+        // "typeRoots": ["node_modules/@types"],
+        // "jsx": "react",
+        // "module": "ES2020",
+        // "moduleResolution": "Node16",
+        // "allowSyntheticDefaultImports": true,
+        // "esModuleInterop": true,
+        // "forceConsistentCasingInFileNames": true,
+        // "resolveJsonModule": true,
+        // "strict": true,
+        // "noImplicitAny": true,
+        // "allowJs": true,
+        // "checkJs": false,
+        // "skipLibCheck": true,
+        // "noEmit": false,
+        // /sample.stylelintrc.js: true,
+        // "isolatedModules": true,
+        // "declaration": true,
+        // "baseUrl": "./",
+        // "declarationDir" : "./dist/types",
+        // "paths": {
+        //     "*": ["src/*"],
+        // }
     },
-    "include": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        ".eslintrc.js",
-        ".stylelintrc.js"
-    ],
-    "exclude": [
-        "node_modules",
-        "./dist/**/*"
-    ]
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules"]
+    // "include": [
+    //     "src/components/**/*.ts",
+    //     "src/components/**/*.tsx",
+    //     "src/components/**/*.js",
+    //     // "sample.eslintrc.js",
+    //     ".stylelintrc.js"
+    // ],
+    // "exclude": [
+    //     "node_modules",
+    //     "./dist/**/*"
+    // ]
 }

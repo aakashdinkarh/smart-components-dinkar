@@ -1,76 +1,53 @@
+const webpack = require('webpack');
+const path = require('path');
+
 const config = {
-	entry : './src/exports.ts',
-	input : {
-		index           : 'src/exports.ts',
-		InputController : 'src/components/SegmentedTabs/index.tsx',
-	},
-	output: [
-		{
-			dir       : 'dist/es',
-			format    : 'esm',
-			sourcemap : true,
-		},
-		{
-			dir       : 'dist/cjs',
-			format    : 'cjs',
-			exports   : 'named',
-			sourcemap : true,
-		},
-	],
-	module: {
-		rules: [
-			{
-				test    : /\.(js|ts|jsx)$/,
-				use     : 'swc-loader',
-				exclude : /node_modules/
-			},
-			{
-				test : /\.css$/,
-				use  : [
-					'style-loader',
-					{
-						loader  : 'css-loader',
-						options : {
-							importLoaders : 1,
-							modules       : true
-						}
-					}
-				]
-			},
-		]
-	},
-	tsconfig         : "tsconfig.json",
-	tsconfigOverride : { 
-		compilerOptions: { 
-			declaration    : true, 
-			declarationDir : "dist/types" 
-		} 
-	},
-	externals: {
-		react: {
-			commonjs  : "react",
-			commonjs2 : "react",
-			amd       : "React",
-			root      : "React"
-		},
-		"react-dom": {
-			commonjs  : "react-dom",
-			commonjs2 : "react-dom",
-			amd       : "ReactDOM",
-			root      : "ReactDOM"
-		}
-	},
-	resolve: {
-		extensions: [
-			'.tsx',
-			'.ts',
-			'.js'
-		],
-		alias: {
-			'react'     : path.resolve(__dirname, './node_modules/react'),
-			'react-dom' : path.resolve(__dirname, './node_modules/react-dom'),
-		}
-	},
+  entry: './src/exports.ts',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    library: 'DinkarLibrary', // Library name (can be imported by this name)
+    libraryTarget: 'umd', // Universal Module Definition (UMD)
+    umdNamedDefine: true, // Use a named define when exporting as UMD
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.ts(x)?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: [
+      '.tsx',
+      '.ts',
+      '.js'
+    ]
+  },
+  externals: {
+    react: 'react', // Exclude React from the bundle (useful if it's a peer dependency)
+    'react-dom': 'react-dom', // Exclude React DOM from the bundle (useful if it's a peer dependency)
+  },
 };
 
 module.exports = config;
