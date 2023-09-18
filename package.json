@@ -11,7 +11,7 @@
     "smart-components-dinkar",
     "smart-dinkar"
   ],
-  "author": "Aakash Dinkar aakashdinkar@gmail.com",
+  "author": "Aakash Dinkar aakashdinkarh@gmail.com",
   "license": "ISC",
   "scripts": {
     "clean": "node scripts/clean-dist.js",
