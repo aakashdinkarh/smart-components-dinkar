@@ -1,15 +1,31 @@
+import React from 'react';
+
 import { getVisibleOptions } from './helpers';
 import styles from './styles.module.css';
+
+interface Option {
+	label?: string,
+	value: string,
+}
+
+interface SelectedOptionProps {
+	selectedValue: string[];
+	options: Option[];
+	setSelectedValue: (...args: any[]) => void;
+	setVisibleOptions: (...args: any[]) => void;
+	onRemove: (...args: any[]) => void;
+	multiple: boolean;
+}
 
 export function SelectedOptions({
 	selectedValue = [],
 	options = [],
-	setSelectedValue = () => { },
-	setVisibleOptions = () => { },
-	onRemove = () => { },
+	setSelectedValue = () => {},
+	setVisibleOptions = () => {},
+	onRemove = () => {},
 	multiple = true,
-}) {
-	function removeOption(removeValue) {
+}: Partial<SelectedOptionProps>) : React.JSX.Element {
+	function removeOption(removeValue: string) {
 		const newSelectedValue = selectedValue.filter((option) => option !== removeValue);
 
 		const removedOption = options.filter((option) => option.value === removeValue);

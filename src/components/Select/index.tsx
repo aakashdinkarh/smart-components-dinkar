@@ -1,13 +1,41 @@
 import React, { useState } from 'react';
 
-import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
 import { isEmpty } from '../../utils/isEmpty';
 
+import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
 import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
 
-function EmptyList() {
+interface Option {
+	label?: string,
+	value: string,
+}
+
+interface SelectProps {
+	className: string;
+	name: string;
+	value: string;
+	placeholder: string;
+	options: [];
+	multiple: boolean;
+	isClearable: boolean;
+	onChange: () => void;
+	onSearch: () => void;
+	onRemove: () => void;
+	onClear: () => void;
+	disabled: boolean;
+}
+
+interface useCustomSelectProps {
+	inputRef: React.RefObject<HTMLInputElement>;
+	listRef : React.RefObject<HTMLUListElement>;
+	containerRef : React.RefObject<HTMLDivElement>;
+	clearField : (...args : any[]) => void;
+	onInput : (...args : any[]) => void;
+};
+
+function EmptyList() : JSX.Element {
 	return (
 		<div className={styles.list_option} data-is-child>
 			No options found
@@ -20,12 +48,7 @@ function Select({
 	name = '',
 	value = '',
 	placeholder = 'Select',
-	options = [
-		{ value: 'option1', label: 'Option 1' },
-		{ value: 'option2', label: 'Option 2' },
-		{ value: 'option3', label: 'Option 3' },
-		{ value: 'option4', label: 'Option 4' },
-	],
+	options = [],
 	multiple = false,
 	isClearable = true,
 	onChange = () => { },
@@ -33,14 +56,18 @@ function Select({
 	onRemove = () => { },
 	onClear = () => { },
 	disabled = false,
-}) {
-	const [selectedValue, setSelectedValue] = useState(getDefaultValue({ value, options, multiple }));
+} : Partial<SelectProps>) {
+	const [selectedValue, setSelectedValue] = useState<string | string[]>(
+		getDefaultValue({ value, options, multiple })
+	);
 
-	const [visibleOptions, setVisibleOptions] = useState(getVisibleOptions({ selectedValue, options, multiple }));
+	const [visibleOptions, setVisibleOptions] = useState<Option[]>(
+		getVisibleOptions({ selectedValue, options, multiple })
+	);
 
-	const [currentFocus, setCurrentFocus] = useState(-1);
+	const [currentFocus, setCurrentFocus] = useState<number>(-1);
 
-	const displayValue = getDisplayValue({ selectedValue, options, multiple });
+	const displayValue : string | undefined = getDisplayValue({ selectedValue, options, multiple });
 
 	const {
 		inputRef,
@@ -48,7 +75,7 @@ function Select({
 		containerRef,
 		clearField,
 		onInput,
-	} = useCustomSelect({
+	} : useCustomSelectProps = useCustomSelect({
 		selectedValue,
 		setSelectedValue,
 		visibleOptions,
@@ -80,7 +107,7 @@ function Select({
 
 			<ul ref={listRef} className={styles.list_options}>
 
-				{multiple && !isEmpty(selectedValue)
+				{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue)
 					&& (
 						<SelectedOptions
 							selectedValue={selectedValue}

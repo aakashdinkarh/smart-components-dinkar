@@ -1,44 +1,39 @@
 {
   "name": "smart-components-dinkar",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "main": "dist/bundle.js",
+  "module": "dist/bundle.js",
+  "types": "dist/types/exports.d.ts",
   "keywords": [
     "smart-components",
     "dinkar",
     "smart-components-dinkar",
     "smart-dinkar"
   ],
-  "author": "Aakash Dinkar",
+  "author": "Aakash Dinkar aakashdinkarh@gmail.com",
   "license": "ISC",
   "scripts": {
-    "clean": "rm dist/bundle.js",
+    "clean": "node scripts/clean-dist.js",
     "build-dev": "webpack --mode development",
     "build-prod": "webpack --mode production",
-    "prepublish": "run-script-os",
-    "prepublish:darwin:linux": "rm -rf ./dist && npm run build",
-    "prepublish:win32": "rmdir /s dist && npm run build",
-    "build": "webpack --mode development"
+    "eslint": "eslint \"**/*.{js,jsx,ts,tsx}\""
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.15",
-    "@babel/preset-env": "^7.22.15",
+    "@babel/core": "^7.22.20",
+    "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "run-script-os": "^1.1.6",
     "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   }

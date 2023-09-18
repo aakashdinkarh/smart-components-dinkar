@@ -2,3 +2,10 @@ webpack.config.js
 .eslintrc
 .gitignore
 .babelrc
+tsconfig.json
+scripts/
+src/
+!dist/
+configs/
+sample.eslintrc.js
+sample.stylelintrc.js

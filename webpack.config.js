@@ -2,13 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  entry: './src/lib/index.js',
+  entry: './src/exports.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    library: 'Select',
-    libraryTarget: 'umd',
-    publicPath: '/dist'
+    filename: 'bundle.js',
+    library: 'DinkarLibrary', // Library name (can be imported by this name)
+    libraryTarget: 'umd', // Universal Module Definition (UMD)
+    umdNamedDefine: true, // Use a named define when exporting as UMD
   },
   module: {
     rules: [
@@ -29,28 +29,24 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /\.ts(x)?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/
       }
     ]
   },
-  externals: {
-    react: {
-      commonjs: "react",
-      commonjs2: "react",
-      amd: "React",
-      root: "React"
-    },
-    "react-dom": {
-      commonjs: "react-dom",
-      commonjs2: "react-dom",
-      amd: "ReactDOM",
-      root: "ReactDOM"
-    }
-  },
   resolve: {
-    alias: {
-      'react': path.resolve(__dirname, './node_modules/react'),
-      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
-    }
+    extensions: [
+      '.tsx',
+      '.ts',
+      '.js'
+    ]
+  },
+  externals: {
+    react: 'react', // Exclude React from the bundle (useful if it's a peer dependency)
+    'react-dom': 'react-dom', // Exclude React DOM from the bundle (useful if it's a peer dependency)
   },
 };
 
