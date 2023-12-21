@@ -15,7 +15,6 @@ module.exports = {
 	extends        : [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:react/recommended'
 	],
 	overrides: [
 		{
@@ -42,5 +41,5 @@ module.exports = {
 			version: 'detect',
 		},
 	},
-	plugins: ['@typescript-eslint', 'react', 'import'],
+	plugins: ['@typescript-eslint', 'import'],
 };
