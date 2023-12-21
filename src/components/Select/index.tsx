@@ -81,6 +81,7 @@ function Select ({
 				name="select_dummy_XCV098Z"
 				ref={inputRef}
 				placeholder={displayValue ?? placeholder}
+				readOnly
 				className={`${styles.dummy_input} ${!isEmpty(selectedValue) ? styles.not_empty : ''} dummy_input`}
 				disabled={disabled}
 			/>
