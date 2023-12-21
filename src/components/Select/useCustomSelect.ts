@@ -2,43 +2,7 @@ import * as React from 'react';
 const { useState, useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, isContain } from './helpers';
-
-interface Option {
-	label?: string,
-	value: string,
-}
-
-interface SyntheticClickEvent {
-	target: {
-		nodeName: string;
-		dataset: {
-			optionValue: string;
-		}
-	}
-}
-
-interface useCustomSelectProps {
-	selectedValue: string | string[],
-	setSelectedValue: (...args: any[]) => void;
-	visibleOptions: Option[];
-	setVisibleOptions: (...args: any[]) => void;
-	currentFocus: number;
-	setCurrentFocus: (...args: any[]) => void;
-	onChange: (...args: any[]) => void;
-	onSearch: (...args: any[]) => void;
-	onClear: (...args: any[]) => void;
-	multiple: boolean;
-	options: Option[];
-}
-
-interface useCustomReturnType {
-	isSelectOpen: boolean;
-	inputRef: React.RefObject<HTMLInputElement>;
-	listRef: React.RefObject<HTMLUListElement>;
-	containerRef: React.RefObject<HTMLDivElement>;
-	clearField: (...args: any[]) => void;
-	onInput: (...args: any[]) => void;
-}
+import { useCustomSelectArgs, useCustomReturnType, SyntheticClickEvent } from './interfaces';
 
 export function useCustomSelect ({
 	selectedValue = '',
@@ -52,7 +16,7 @@ export function useCustomSelect ({
 	onClear = () => {},
 	multiple = false,
 	options = [],
-}: Partial<useCustomSelectProps>): useCustomReturnType {
+}: Partial<useCustomSelectArgs>): useCustomReturnType {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);

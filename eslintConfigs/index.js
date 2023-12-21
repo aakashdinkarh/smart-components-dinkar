@@ -27,7 +27,6 @@ const base = {
 	// import
 	'import/no-extraneous-dependencies' : 'off',
 	'import/prefer-default-export'      : 'off',
-	'react/jsx-indent-props'            : [2, 4],
 	'import/no-unresolved'              : 'off',
 	'import/order'                      : [
 		'error',

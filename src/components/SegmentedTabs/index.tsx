@@ -6,7 +6,7 @@ const { isValidElement, Children, useState, useRef, useEffect } = React;
 
 interface SegmentedTabsProps {
 	defaultActiveTab: string;
-	onTabChange: (newTab: string) => void;
+	onTabChange: (newTab?: string) => void;
 	children: any;
 }
 
@@ -24,7 +24,7 @@ function SegmentedTabs ({
 	defaultActiveTab = '',
 	onTabChange = () => {},
 	children = null
-}: Partial<SegmentedTabsProps>): JSX.Element {
+}: Partial<SegmentedTabsProps>): React.JSX.Element {
 	const validChildren = Children.toArray(children)
 		.filter((child: any) => isValidElement(child) && child.type === Tab);
 

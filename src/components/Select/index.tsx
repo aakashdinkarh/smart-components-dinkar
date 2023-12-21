@@ -11,8 +11,7 @@ import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
 
-
-function EmptyList (): JSX.Element {
+function EmptyList (): React.JSX.Element {
 	return (
 		<div className={styles.list_option} data-is-child>
 			No options found
@@ -33,7 +32,7 @@ function Select ({
 	onRemove = () => { },
 	onClear = () => { },
 	disabled = false,
-}: Partial<SelectProps>): JSX.Element {
+}: Partial<SelectProps>): React.JSX.Element {
 	const [selectedValue, setSelectedValue] = useState<string | string[]>(
 		getDefaultValue({ value, options, multiple })
 	);
@@ -94,40 +93,40 @@ function Select ({
 			<ul ref={listRef} className={getCombinedClass(styles.list_options, { [styles.open]: isSelectOpen } )}>
 				{isSelectOpen && (
 					<>
-					{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue) &&
-						(
-							<SelectedOptions
-								selectedValue={selectedValue}
-								options={options}
-								setSelectedValue={setSelectedValue}
-								setVisibleOptions={setVisibleOptions}
-								onRemove={onRemove}
-								multiple={multiple}
-							/>
-						)}
+						{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue) &&
+							(
+								<SelectedOptions
+									selectedValue={selectedValue}
+									options={options}
+									setSelectedValue={setSelectedValue}
+									setVisibleOptions={setVisibleOptions}
+									onRemove={onRemove}
+									multiple={multiple}
+								/>
+							)}
 	
-					{isEmpty(visibleOptions)
-						? <EmptyList />
-						: (
-							<>
-								{visibleOptions.map((option, index) => {
-									let itemClass = `${styles.list_option} `;
-									itemClass += currentFocus === index ? styles.focused : '';
-	
-									return (
-										<li
-											key={option.value}
-											className={itemClass}
-											data-option-value={option.value}
-											data-option-index={index}
-											data-is-child
-										>
-											{option.label}
-										</li>
-									);
-								})}
-							</>
-						)}
+						{isEmpty(visibleOptions)
+							? <EmptyList />
+							: (
+								<>
+									{visibleOptions.map((option, index) => {
+										let itemClass = `${styles.list_option} `;
+										itemClass += currentFocus === index ? styles.focused : '';
+		
+										return (
+											<li
+												key={option.value}
+												className={itemClass}
+												data-option-value={option.value}
+												data-option-index={index}
+												data-is-child
+											>
+												{option.label}
+											</li>
+										);
+									})}
+								</>
+							)}
 					</>
 				)}
 			</ul>

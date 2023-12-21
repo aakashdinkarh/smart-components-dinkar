@@ -1,14 +1,15 @@
 const overrides = require('./eslintConfigs');
 
 module.exports = {
-	env: {
+	root : true,
+	env  : {
 		browser : true,
 		es2021  : true
 	},
 	rules: {
 		...overrides.base,
 		...overrides.react,
-		...overrides.typescript
+		...overrides.typescript,
 	},
 	ignorePatterns : ['dist/**/*', 'node_modules/*'],
 	extends        : [
@@ -30,13 +31,16 @@ module.exports = {
 	],
 	parser        : '@typescript-eslint/parser', // Specify the parser for TypeScript files
 	parserOptions : {
-		ecmaVersion : 'latest',
-		sourceType  : 'module'
+		ecmaVersion  : 'latest',
+		sourceType   : 'module',
+		ecmaFeatures : {
+			"jsx": true
+		}
 	},
 	settings: {
 		react: {
 			version: 'detect',
 		},
 	},
-	plugins: ['@typescript-eslint', 'import'],
+	plugins: ['@typescript-eslint', 'react', 'import'],
 };

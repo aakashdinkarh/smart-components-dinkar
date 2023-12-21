@@ -12,12 +12,17 @@
         "jsx": "react",
         "declaration": true,
         "declarationDir" : "./dist/types",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
     },
     "include": [
         "./src/**/*"
     ],
     "exclude": [
         "./src/app/*",
-        "./src/index.tsx"
-    ]
+        "./src/index.tsx",
+        "node_modules",
+    ],
 }

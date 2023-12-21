@@ -1,7 +1,12 @@
 import * as React from 'react';
 
 interface CaseProps {
-	children?: any
+	children?: any;
+	condition: boolean;
+}
+
+interface SwitchProps {
+	children: CaseProps;
 }
 
 function Case ({ children }: CaseProps): any {
@@ -11,7 +16,7 @@ function Default ({ children }: CaseProps): any {
 	return children;
 }
 
-function Switch ({ children }: CaseProps): null | React.ReactElement {
+function Switch ({ children }: SwitchProps): null | React.ReactElement {
 	let matchChild: null | React.ReactElement = null;
 	let defaultCase: null | React.ReactElement = null;
 

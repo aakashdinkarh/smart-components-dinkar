@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export interface Option {
 	label?: string,
 	value: string,
@@ -45,4 +47,36 @@ export interface SelectedOptionProps {
 	setVisibleOptions: IFunction;
 	onRemove: IFunction;
 	multiple: boolean;
+}
+
+export interface SyntheticClickEvent {
+	target: {
+		nodeName: string;
+		dataset: {
+			optionValue: string;
+		}
+	}
+}
+
+export interface useCustomSelectArgs {
+	selectedValue: string | string[],
+	setSelectedValue: IFunction;
+	visibleOptions: Option[];
+	setVisibleOptions: IFunction;
+	currentFocus: number;
+	setCurrentFocus: IFunction;
+	onChange: IFunction;
+	onSearch: IFunction;
+	onClear: IFunction;
+	multiple: boolean;
+	options: Option[];
+}
+
+export interface useCustomReturnType {
+	isSelectOpen: boolean;
+	inputRef: React.RefObject<HTMLInputElement>;
+	listRef: React.RefObject<HTMLUListElement>;
+	containerRef: React.RefObject<HTMLDivElement>;
+	clearField: IFunction;
+	onInput: IFunction;
 }
