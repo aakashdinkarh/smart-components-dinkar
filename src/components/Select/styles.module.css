@@ -46,15 +46,16 @@
 	position: absolute;
 	top: 101%;
 	left: 0;
-	display: none;
-	width: 100%;
-	padding: 4px;
 	margin: 0;
 	list-style-type: none;
 	cursor: pointer;
-	border: 1px solid #ddd;
 	border-radius: 4px;
 	background-color: #fff;
+}
+.list_options.open {
+	width: 100%;
+	padding: 4px;
+	border: 1px solid #ddd;
 }
 
 .list_option {

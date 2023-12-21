@@ -1,21 +1,9 @@
 import * as React from 'react';
 
 import { getVisibleOptions } from './helpers';
+import { SelectedOptionProps } from './interfaces'
 import styles from './styles.module.css';
 
-interface Option {
-	label?: string,
-	value: string,
-}
-
-interface SelectedOptionProps {
-	selectedValue: string[];
-	options: Option[];
-	setSelectedValue: (...args: any[]) => void;
-	setVisibleOptions: (...args: any[]) => void;
-	onRemove: (...args: any[]) => void;
-	multiple: boolean;
-}
 
 export function SelectedOptions ({
 	selectedValue = [],

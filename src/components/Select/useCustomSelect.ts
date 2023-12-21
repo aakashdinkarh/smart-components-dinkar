@@ -1,5 +1,5 @@
 import * as React from 'react';
-const { useEffect, useCallback, useRef } = React;
+const { useState, useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, isContain } from './helpers';
 
@@ -32,6 +32,7 @@ interface useCustomSelectProps {
 }
 
 interface useCustomReturnType {
+	isSelectOpen: boolean;
 	inputRef: React.RefObject<HTMLInputElement>;
 	listRef: React.RefObject<HTMLUListElement>;
 	containerRef: React.RefObject<HTMLDivElement>;
@@ -55,6 +56,7 @@ export function useCustomSelect ({
 	const inputRef = useRef<HTMLInputElement>(null);
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
 
 	const clearField = useCallback(() => {
 		const newSelectedValue = multiple ? [] : '';
@@ -68,9 +70,8 @@ export function useCustomSelect ({
 	}, [multiple, onClear, options, setSelectedValue, setVisibleOptions]);
 
 	const onFocus = useCallback(() => {
-		if (listRef.current != null && containerRef.current != null) {
-			listRef.current.style.display = 'block';
-			containerRef.current.classList.add('open');
+		if (containerRef.current != null) {
+			setIsSelectOpen(true);
 		}
 	}, []);
 
@@ -94,9 +95,8 @@ export function useCustomSelect ({
 	}, [selectedValue, options, multiple, setVisibleOptions, setCurrentFocus, onSearch]);
 
 	const resetOptions = useCallback(() => {
-		if (listRef.current != null && containerRef.current != null) {
-			listRef.current.style.display = 'none';
-			containerRef.current.classList.remove('open');
+		if (containerRef.current != null) {
+			setIsSelectOpen(false);
 		}
 
 		(inputRef.current as HTMLInputElement).value = '';
@@ -105,16 +105,16 @@ export function useCustomSelect ({
 
 	const onOutsideClick = useCallback((e: MouseEvent | KeyboardEvent) => {
 		const { target } = e;
-
+		
 		if ((containerRef.current as HTMLDivElement).contains(target as HTMLElement) ||
 			(multiple && (target as HTMLElement).dataset.isChild === 'true')) {
 			return;
 		}
 
-		if ((inputRef.current as HTMLInputElement).value !== '' || listRef.current.style.display !== 'none') {
+		if ((inputRef.current as HTMLInputElement).value !== '' || isSelectOpen) {
 			resetOptions();
 		}
-	}, [resetOptions, multiple]);
+	}, [resetOptions, multiple, isSelectOpen]);
 
 	const onListClick = useCallback((e: MouseEvent | KeyboardEvent | SyntheticClickEvent) => {
 		if ((e.target as HTMLElement).nodeName !== 'LI') {
@@ -154,9 +154,8 @@ export function useCustomSelect ({
 
 	const onKeyDown = useCallback((e: KeyboardEvent) => {
 		if (e.key === 'ArrowDown') {
-			if (listRef.current != null && listRef.current.style.display !== 'block') {
-				listRef.current.style.display = 'block';
-				(containerRef.current as HTMLElement).classList.add('open');
+			if (!isSelectOpen) {
+				setIsSelectOpen(true);
 			}
 			setCurrentFocus((prev: number) => {
 				if (prev >= visibleOptions.length - 1) {
@@ -165,9 +164,8 @@ export function useCustomSelect ({
 				return prev + 1;
 			});
 		} else if (e.key === 'ArrowUp') {
-			if (listRef.current != null && listRef.current.style.display !== 'block') {
-				listRef.current.style.display = 'block';
-				(containerRef.current as HTMLElement).classList.add('open');
+			if (!isSelectOpen) {
+				setIsSelectOpen(true);
 			}
 			setCurrentFocus((prev: number) => {
 				if (prev <= 0) {
@@ -189,7 +187,7 @@ export function useCustomSelect ({
 		} else if (e.key === 'Escape') {
 			resetOptions();
 		}
-	}, [setCurrentFocus, visibleOptions, currentFocus, onListClick, resetOptions]);
+	}, [setCurrentFocus, visibleOptions, currentFocus, onListClick, resetOptions, isSelectOpen]);
 
 	useEffect(() => {
 		const inputElem = (inputRef.current as HTMLElement);
@@ -212,6 +210,7 @@ export function useCustomSelect ({
 	}, [onFocus, onOutsideClick, onListClick, onListHover, onKeyDown]);
 
 	return {
+		isSelectOpen,
 		inputRef,
 		listRef,
 		containerRef,

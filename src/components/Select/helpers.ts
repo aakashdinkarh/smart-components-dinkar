@@ -1,16 +1,6 @@
 import { isEmpty } from '../../utils/isEmpty';
 
-interface Option {
-	label?: string,
-	value: string,
-}
-
-interface helperFunctionsProps {
-	value: string,
-	options: Option[],
-	multiple: boolean,
-	selectedValue: string | string[],
-}
+import { helperFunctionsProps, Option } from './interfaces';
 
 export function isContain (val1: string, val2: string): boolean {
 	return val1.toLowerCase().includes(val2.toLowerCase());
@@ -40,7 +30,7 @@ export function getDisplayValue ({
 	if (multiple && Array.isArray(selectedValue)) {
 		let displayValue: string | undefined = options.find((option) => option.value === selectedValue[0])?.label;
 
-		displayValue = displayValue != null ? `${displayValue} (${selectedValue.length})` : '';
+		displayValue = displayValue != null ? `${displayValue} (${selectedValue.length})` : undefined;
 
 		return displayValue;
 	}

@@ -2,40 +2,15 @@ import * as React from 'react';
 
 const { useState } = React;
 
+import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
+import { SelectProps, Option, useCustomSelectProps } from './interfaces';
 import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
 
-interface Option {
-	label?: string,
-	value: string,
-}
-
-interface SelectProps {
-	className: string;
-	name: string;
-	value: string;
-	placeholder: string;
-	options: [];
-	multiple: boolean;
-	isClearable: boolean;
-	onChange: () => void;
-	onSearch: () => void;
-	onRemove: () => void;
-	onClear: () => void;
-	disabled: boolean;
-}
-
-interface useCustomSelectProps {
-	inputRef: React.RefObject<HTMLInputElement>;
-	listRef: React.RefObject<HTMLUListElement>;
-	containerRef: React.RefObject<HTMLDivElement>;
-	clearField: (...args: any[]) => void;
-	onInput: (...args: any[]) => void;
-}
 
 function EmptyList (): JSX.Element {
 	return (
@@ -70,8 +45,9 @@ function Select ({
 	const [currentFocus, setCurrentFocus] = useState<number>(-1);
 
 	const displayValue: string | undefined = getDisplayValue({ selectedValue, options, multiple });
-
+	
 	const {
+		isSelectOpen,
 		inputRef,
 		listRef,
 		containerRef,
@@ -92,7 +68,14 @@ function Select ({
 	});
 
 	return (
-		<div ref={containerRef} className={`${styles.select_input_container} ${className ?? ''}`}>
+		<div
+			ref={containerRef} 
+			className={getCombinedClass(
+				styles.select_input_container,
+				className,
+				{ [styles.open]: isSelectOpen }
+			)}
+		>
 			<input
 				type="text"
 				name="select_dummy_XCV098Z"
@@ -107,42 +90,45 @@ function Select ({
 
 			<input name={name} type="hidden" value={selectedValue} onChange={onInput} disabled={disabled} />
 
-			<ul ref={listRef} className={styles.list_options}>
-
-				{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue) &&
-					(
-						<SelectedOptions
-							selectedValue={selectedValue}
-							options={options}
-							setSelectedValue={setSelectedValue}
-							setVisibleOptions={setVisibleOptions}
-							onRemove={onRemove}
-							multiple={multiple}
-						/>
-					)}
-
-				{isEmpty(visibleOptions)
-					? <EmptyList />
-					: (
-						<>
-							{visibleOptions.map((option, index) => {
-								let itemClass = `${styles.list_option} `;
-								itemClass += currentFocus === index ? styles.focused : '';
-
-								return (
-									<li
-										key={option.value}
-										className={itemClass}
-										data-option-value={option.value}
-										data-option-index={index}
-										data-is-child
-									>
-										{option.label}
-									</li>
-								);
-							})}
-						</>
-					)}
+			<ul ref={listRef} className={getCombinedClass(styles.list_options, { [styles.open]: isSelectOpen } )}>
+				{isSelectOpen && (
+					<>
+					{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue) &&
+						(
+							<SelectedOptions
+								selectedValue={selectedValue}
+								options={options}
+								setSelectedValue={setSelectedValue}
+								setVisibleOptions={setVisibleOptions}
+								onRemove={onRemove}
+								multiple={multiple}
+							/>
+						)}
+	
+					{isEmpty(visibleOptions)
+						? <EmptyList />
+						: (
+							<>
+								{visibleOptions.map((option, index) => {
+									let itemClass = `${styles.list_option} `;
+									itemClass += currentFocus === index ? styles.focused : '';
+	
+									return (
+										<li
+											key={option.value}
+											className={itemClass}
+											data-option-value={option.value}
+											data-option-index={index}
+											data-is-child
+										>
+											{option.label}
+										</li>
+									);
+								})}
+							</>
+						)}
+					</>
+				)}
 			</ul>
 		</div>
 	);
