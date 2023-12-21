@@ -1,29 +1,29 @@
-import React from 'react';
+import * as React from 'react';
 
 interface CaseProps {
 	children?: any
 }
 
-function Case({ children } : CaseProps) {
+function Case ({ children }: CaseProps): any {
 	return children;
 }
-function Default({ children }: CaseProps) {
+function Default ({ children }: CaseProps): any {
 	return children;
 }
 
-function Switch({ children }: CaseProps) : null | React.ReactElement {
-	let matchChild : null | React.ReactElement = null;
-	let defaultCase : null | React.ReactElement = null;
+function Switch ({ children }: CaseProps): null | React.ReactElement {
+	let matchChild: null | React.ReactElement = null;
+	let defaultCase: null | React.ReactElement = null;
 
-	React.Children.forEach(children, (child : any) => {
-		if (!matchChild && child.type === Case) {
-			const { condition } : { condition: boolean } = child.props;
+	React.Children.forEach(children, (child: any) => {
+		if (matchChild == null && child.type === Case) {
+			const { condition }: { condition: boolean } = child.props;
 			const conditionResult = Boolean(condition);
 
 			if (conditionResult) {
 				matchChild = child;
 			}
-		} else if (!defaultCase && child.type === Default) {
+		} else if (defaultCase == null && child.type === Default) {
 			defaultCase = child;
 		}
 	});

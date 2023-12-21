@@ -1,3 +1,3 @@
-export function getClass(...classes : string[]) : string {
+export function getCombinedClass (...classes: string[]): string {
 	return classes.filter(Boolean).join(' ');
 }

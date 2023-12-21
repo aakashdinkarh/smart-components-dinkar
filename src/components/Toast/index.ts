@@ -1,4 +1,4 @@
-import { getClass } from '../../utils/getCombinedClass';
+import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
@@ -23,7 +23,7 @@ interface OptionsProps {
 
 const uniqueId = 'e47a13d6-4bd5-11ee-be56-0242ac120002';
 
-function toast(message : string = '', options ?: Partial<OptionsProps>) {
+function toast (message: string = '', options?: Partial<OptionsProps>): void {
 	const {
 		closeAfter = 5,
 		placement = 'top',
@@ -31,35 +31,35 @@ function toast(message : string = '', options ?: Partial<OptionsProps>) {
 		timerStrip: { showTimerStrip = true, timerStripClass = '' } = {},
 		toastDiv: { toastDivClass = '' } = {},
 		closeButton: { showCloseIcon = true, closeButtonClass = '' } = {},
-	} = options || {};
+	} = options ?? {};
 
-	let toastContainer : HTMLElement | null  = document.querySelector(`#${uniqueId}`);
+	let toastContainer: HTMLElement | null = document.querySelector(`#${uniqueId}`);
 
-	if (!toastContainer) {
+	if (toastContainer == null) {
 		toastContainer = document.createElement('div');
-		toastContainer.className = getClass(styles.toast_container, styles[placement], toastContainerClass);
+		toastContainer.className = getCombinedClass(styles.toast_container, styles[placement], toastContainerClass);
 		toastContainer.id = uniqueId;
 	}
 
-	const timerStrip : string = showTimerStrip 
+	const timerStrip: string = showTimerStrip
 		? ` <span class="${
-			getClass(styles.timer_strip, timerStripClass)
-		}" style="animation-duration: ${closeAfter}s" ></span>` 
+			getCombinedClass(styles.timer_strip, timerStripClass)
+		}" style="animation-duration: ${closeAfter}s" ></span>`
 		: '';
 
-	const closeButton : string = showCloseIcon 
-		? ` <button class="${getClass(styles.close_icon, closeButtonClass)}">x</button>` 
+	const closeButton: string = showCloseIcon
+		? ` <button class="${getCombinedClass(styles.close_icon, closeButtonClass)}">x</button>`
 		: '';
 
-	const toastDiv : HTMLDivElement = document.createElement('div');
-	toastDiv.className = getClass(styles.toast, styles[placement], toastDivClass);
+	const toastDiv: HTMLDivElement = document.createElement('div');
+	toastDiv.className = getCombinedClass(styles.toast, styles[placement], toastDivClass);
 	toastDiv.innerHTML = `${message}${timerStrip}${closeButton}`;
 
 	const timeoutId = setTimeout(() => {
 		toastDiv.remove();
 
 		const container = document.querySelector(`#${uniqueId}`);
-		if (container && container.children.length === 0) {
+		if (container != null && container.children.length === 0) {
 			container.remove();
 		}
 	}, closeAfter * 1000);
@@ -68,8 +68,8 @@ function toast(message : string = '', options ?: Partial<OptionsProps>) {
 		clearTimeout(timeoutId);
 		toastDiv.remove();
 
-		const container : HTMLElement | null = document.querySelector(`#${uniqueId}`);
-		if (container && container.children.length === 0) {
+		const container: HTMLElement | null = document.querySelector(`#${uniqueId}`);
+		if (container != null && container.children.length === 0) {
 			container.remove();
 		}
 	})
@@ -85,31 +85,31 @@ function toast(message : string = '', options ?: Partial<OptionsProps>) {
 	}
 }
 
-function success(message : string = '', options ?: Partial<OptionsProps>) {
+function success (message: string = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options?.toastDiv || {}),
+			...(options.toastDiv ?? {}),
 			toastDivClass: styles.success,
 		}
 	})
 }
 
-function error(message : string = '', options ?: Partial<OptionsProps>) {
+function error (message: string = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options?.toastDiv || {}),
+			...(options.toastDiv ?? {}),
 			toastDivClass: styles.error,
 		}
 	})
 }
 
-function warn(message : string = '', options ?: Partial<OptionsProps>) {
+function warn (message: string = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {
-			...(options?.toastDiv || {}),
+			...(options.toastDiv ?? {}),
 			toastDivClass: styles.warn,
 		}
 	})

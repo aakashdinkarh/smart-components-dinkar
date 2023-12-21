@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import * as React from 'react';
+const { useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, isContain } from './helpers';
 
@@ -10,7 +11,7 @@ interface Option {
 interface SyntheticClickEvent {
 	target: {
 		nodeName: string;
-		dataset : {
+		dataset: {
 			optionValue: string;
 		}
 	}
@@ -32,13 +33,13 @@ interface useCustomSelectProps {
 
 interface useCustomReturnType {
 	inputRef: React.RefObject<HTMLInputElement>;
-	listRef : React.RefObject<HTMLUListElement>;
-	containerRef : React.RefObject<HTMLDivElement>;
-	clearField : (...args : any[]) => void;
-	onInput : (...args : any[]) => void;
-};
+	listRef: React.RefObject<HTMLUListElement>;
+	containerRef: React.RefObject<HTMLDivElement>;
+	clearField: (...args: any[]) => void;
+	onInput: (...args: any[]) => void;
+}
 
-export function useCustomSelect({
+export function useCustomSelect ({
 	selectedValue = '',
 	setSelectedValue = () => {},
 	visibleOptions = [],
@@ -50,7 +51,7 @@ export function useCustomSelect({
 	onClear = () => {},
 	multiple = false,
 	options = [],
-}: Partial<useCustomSelectProps>) : useCustomReturnType {
+}: Partial<useCustomSelectProps>): useCustomReturnType {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -67,20 +68,20 @@ export function useCustomSelect({
 	}, [multiple, onClear, options, setSelectedValue, setVisibleOptions]);
 
 	const onFocus = useCallback(() => {
-		if (listRef.current && containerRef.current) {
+		if (listRef.current != null && containerRef.current != null) {
 			listRef.current.style.display = 'block';
 			containerRef.current.classList.add('open');
 		}
 	}, []);
 
-	const onInput = useCallback((e : React.MouseEvent | React.KeyboardEvent<HTMLInputElement>) => {
+	const onInput = useCallback((e: React.MouseEvent | React.KeyboardEvent<HTMLInputElement>) => {
 		const val = (e.target as HTMLInputElement).value;
 
 		let filteredOptions = getVisibleOptions({ selectedValue, options, multiple });
-		if (val) {
+		if (val !== '') {
 			filteredOptions = filteredOptions.filter(
-				(option) => isContain(option.label ?? '', val)
-                    || isContain(option.value, val),
+				(option) => isContain(option.label ?? '', val) ||
+                    isContain(option.value, val),
 			);
 		}
 
@@ -93,7 +94,7 @@ export function useCustomSelect({
 	}, [selectedValue, options, multiple, setVisibleOptions, setCurrentFocus, onSearch]);
 
 	const resetOptions = useCallback(() => {
-		if (listRef.current && containerRef.current) {
+		if (listRef.current != null && containerRef.current != null) {
 			listRef.current.style.display = 'none';
 			containerRef.current.classList.remove('open');
 		}
@@ -102,11 +103,11 @@ export function useCustomSelect({
 		setVisibleOptions(getVisibleOptions({ selectedValue, options, multiple }));
 	}, [multiple, options, selectedValue, setVisibleOptions]);
 
-	const onOutsideClick = useCallback((e : MouseEvent | KeyboardEvent) => {
+	const onOutsideClick = useCallback((e: MouseEvent | KeyboardEvent) => {
 		const { target } = e;
 
-		if ((containerRef.current as HTMLDivElement).contains(target as HTMLElement) 
-			|| (multiple && (target as HTMLElement).dataset.isChild === 'true')) {
+		if ((containerRef.current as HTMLDivElement).contains(target as HTMLElement) ||
+			(multiple && (target as HTMLElement).dataset.isChild === 'true')) {
 			return;
 		}
 
@@ -115,16 +116,16 @@ export function useCustomSelect({
 		}
 	}, [resetOptions, multiple]);
 
-	const onListClick = useCallback((e : MouseEvent | KeyboardEvent | SyntheticClickEvent) => {
+	const onListClick = useCallback((e: MouseEvent | KeyboardEvent | SyntheticClickEvent) => {
 		if ((e.target as HTMLElement).nodeName !== 'LI') {
 			return;
 		}
 
-		const { optionValue = '' } = (e.target as HTMLElement).dataset || {};
+		const { optionValue = '' } = (e.target as HTMLElement).dataset;
 
-		const selectedOption = visibleOptions.find((option) => optionValue && option.value === optionValue);
+		const selectedOption = visibleOptions.find((option) => optionValue != null && option.value === optionValue);
 
-		let newSelectedValue : string | string[] = optionValue;
+		let newSelectedValue: string | string[] = optionValue;
 
 		if (multiple) {
 			if (Array.isArray(selectedValue)) {
@@ -142,33 +143,33 @@ export function useCustomSelect({
 		}
 	}, [visibleOptions, multiple, setSelectedValue, setVisibleOptions, options, onChange, selectedValue]);
 
-	const onListHover = useCallback((e : MouseEvent) => {
+	const onListHover = useCallback((e: MouseEvent) => {
 		if ((e.target as HTMLElement).nodeName === 'LI') {
 			const listItem = (e.target as HTMLElement);
-			const { optionIndex = '' } : { optionIndex ?: string } = listItem.dataset || {};
+			const { optionIndex = '' }: { optionIndex?: string } = listItem.dataset;
 
 			setCurrentFocus(+optionIndex);
 		}
 	}, [setCurrentFocus]);
 
-	const onKeyDown = useCallback((e : KeyboardEvent) => {
+	const onKeyDown = useCallback((e: KeyboardEvent) => {
 		if (e.key === 'ArrowDown') {
-			if (listRef.current && listRef.current.style.display !== 'block') {
+			if (listRef.current != null && listRef.current.style.display !== 'block') {
 				listRef.current.style.display = 'block';
 				(containerRef.current as HTMLElement).classList.add('open');
 			}
-			setCurrentFocus((prev : number) => {
+			setCurrentFocus((prev: number) => {
 				if (prev >= visibleOptions.length - 1) {
 					return 0;
 				}
 				return prev + 1;
 			});
 		} else if (e.key === 'ArrowUp') {
-			if (listRef.current && listRef.current.style.display !== 'block') {
+			if (listRef.current != null && listRef.current.style.display !== 'block') {
 				listRef.current.style.display = 'block';
 				(containerRef.current as HTMLElement).classList.add('open');
 			}
-			setCurrentFocus((prev : number) => {
+			setCurrentFocus((prev: number) => {
 				if (prev <= 0) {
 					return visibleOptions.length - 1;
 				}

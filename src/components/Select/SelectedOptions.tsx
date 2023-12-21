@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { getVisibleOptions } from './helpers';
 import styles from './styles.module.css';
@@ -17,15 +17,15 @@ interface SelectedOptionProps {
 	multiple: boolean;
 }
 
-export function SelectedOptions({
+export function SelectedOptions ({
 	selectedValue = [],
 	options = [],
 	setSelectedValue = () => {},
 	setVisibleOptions = () => {},
 	onRemove = () => {},
 	multiple = true,
-}: Partial<SelectedOptionProps>) : React.JSX.Element {
-	function removeOption(removeValue: string) {
+}: Partial<SelectedOptionProps>): React.JSX.Element {
+	function removeOption (removeValue: string): void {
 		const newSelectedValue = selectedValue.filter((option) => option !== removeValue);
 
 		const removedOption = options.filter((option) => option.value === removeValue);
@@ -47,7 +47,7 @@ export function SelectedOptions({
 					<div key={option.value} className={styles.selected_option} data-is-child>
 						{option.label}
 						<button
-							onClick={() => removeOption(option.value)}
+							onClick={() => { removeOption(option.value); }}
 							className={styles.clear_icon}
 							data-is-child
 						>

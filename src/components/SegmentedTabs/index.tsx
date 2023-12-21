@@ -1,6 +1,8 @@
-import React, {  isValidElement, Children } from 'react';
+import * as React from 'react';
 
 import styles from './styles.module.css';
+
+const { isValidElement, Children, useState, useRef, useEffect } = React;
 
 interface SegmentedTabsProps {
 	defaultActiveTab: string;
@@ -14,29 +16,29 @@ interface TabProps {
 	children?: any;
 }
 
-function Tab({ children }: TabProps) {
+function Tab ({ children }: TabProps): any {
 	return children;
 }
 
-function SegmentedTabs({
+function SegmentedTabs ({
 	defaultActiveTab = '',
 	onTabChange = () => {},
 	children = null
-}: Partial<SegmentedTabsProps>) {
+}: Partial<SegmentedTabsProps>): JSX.Element {
 	const validChildren = Children.toArray(children)
 		.filter((child: any) => isValidElement(child) && child.type === Tab);
 
-	const tabs: { name: string, title?: string }[] = validChildren
-		.map((child: any) => ({ name: child.props.name || '', title: child.props.title || '' }));
+	const tabs: Array<{ name: string, title?: string }> = validChildren
+		.map((child: any) => ({ name: child.props.name ?? '', title: child.props.title ?? '' }));
 
-	const [activeTab, setActiveTab] = React.useState<string>(defaultActiveTab || tabs[0].name);
+	const [activeTab, setActiveTab] = useState<string>(defaultActiveTab ?? tabs[0].name);
 
-	const tabsRef: { [index: string]: any } = React.useRef({});
+	const tabsRef: Record<string, any> = useRef({});
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const currentButton = tabsRef.current?.[activeTab];
 
-		if (currentButton) {
+		if (currentButton != null) {
 			const translateX: number = currentButton.offsetLeft;
 			const { width, height }: { width: number, height: number } = currentButton.getBoundingClientRect();
 
@@ -50,7 +52,7 @@ function SegmentedTabs({
 		}
 	}, [activeTab, tabs]);
 
-	function handleTabChange(newTab: string) {
+	function handleTabChange (newTab: string): void {
 		setActiveTab(newTab);
 
 		if (typeof onTabChange === 'function') { onTabChange(newTab); }
@@ -65,7 +67,7 @@ function SegmentedTabs({
 					<button
 						key={name}
 						ref={(v) => { tabsRef.current[name] = v; }}
-						onClick={() => handleTabChange(name)}
+						onClick={() => { handleTabChange(name); }}
 						className={`${styles.tab} tab`}
 					>
 						{title}
