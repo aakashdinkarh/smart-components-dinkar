@@ -31,15 +31,6 @@ export interface SelectProps {
 	disabled: boolean;
 }
 
-export interface useCustomSelectProps {
-	isSelectOpen: boolean;
-	inputRef: React.RefObject<HTMLInputElement>;
-	listRef: React.RefObject<HTMLUListElement>;
-	containerRef: React.RefObject<HTMLDivElement>;
-	clearField: IFunction;
-	onInput: IFunction;
-}
-
 export interface SelectedOptionProps {
 	selectedValue: string[];
 	options: Options;
@@ -72,11 +63,14 @@ export interface useCustomSelectArgs {
 	options: Option[];
 }
 
-export interface useCustomReturnType {
+export interface IuseCustomSelect {
 	isSelectOpen: boolean;
 	inputRef: React.RefObject<HTMLInputElement>;
 	listRef: React.RefObject<HTMLUListElement>;
 	containerRef: React.RefObject<HTMLDivElement>;
-	clearField: IFunction;
-	onInput: IFunction;
+	clearSelectInput: IFunction;
+	toggleOptionList: IFunction;
+	onListClick: IFunction;
+	onKeyDownInput: IFunction;
+	onListHover: IFunction;
 }

@@ -21,8 +21,6 @@
   position: absolute;
   top: 50%;
   left: 0;
-  width: 40px;
-  height: 90%;
   background-color: #0cf;
   border-radius: 4px;
   transform: translateY(-50%);

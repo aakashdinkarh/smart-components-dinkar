@@ -6,7 +6,7 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
-import { SelectProps, Option, useCustomSelectProps } from './interfaces';
+import { SelectProps, Option, IuseCustomSelect } from './interfaces';
 import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
@@ -50,9 +50,12 @@ function Select ({
 		inputRef,
 		listRef,
 		containerRef,
-		clearField,
-		onInput,
-	}: useCustomSelectProps = useCustomSelect({
+		clearSelectInput,
+		toggleOptionList,
+		onListClick,
+		onKeyDownInput,
+		onListHover
+	}: IuseCustomSelect = useCustomSelect({
 		selectedValue,
 		setSelectedValue,
 		visibleOptions,
@@ -72,7 +75,6 @@ function Select ({
 			className={getCombinedClass(
 				styles.select_input_container,
 				className,
-				{ [styles.open]: isSelectOpen }
 			)}
 		>
 			<input
@@ -83,12 +85,15 @@ function Select ({
 				readOnly
 				className={`${styles.dummy_input} ${!isEmpty(selectedValue) ? styles.not_empty : ''} dummy_input`}
 				disabled={disabled}
+				onClick={toggleOptionList}
+				onKeyDown={onKeyDownInput} // todo: this to be handled with container keydown event
 			/>
 
 			{!isEmpty(selectedValue) && isClearable &&
-				<button onClick={clearField} className={styles.clear_icon}>x</button>}
+				<button onClick={clearSelectInput} className={styles.clear_icon}>x</button>}
 
-			<input name={name} type="hidden" value={selectedValue} onChange={onInput} disabled={disabled} />
+			{/* todo: implement search */}
+			<input name={name} type="hidden" value={selectedValue} disabled={disabled} />
 
 			<ul ref={listRef} className={getCombinedClass(styles.list_options, { [styles.open]: isSelectOpen } )}>
 				{isSelectOpen && (
@@ -117,8 +122,8 @@ function Select ({
 											<li
 												key={option.value}
 												className={itemClass}
-												data-option-value={option.value}
-												data-option-index={index}
+												onClick={() => onListClick(option)}
+												onMouseOver={() => onListHover(index)}
 												data-is-child
 											>
 												{option.label}
@@ -130,6 +135,11 @@ function Select ({
 					</>
 				)}
 			</ul>
+
+			<div onClick={toggleOptionList} className={getCombinedClass(
+				styles.caret_button,
+				{ [styles.open]: isSelectOpen }
+			)} />
 		</div>
 	);
 }
