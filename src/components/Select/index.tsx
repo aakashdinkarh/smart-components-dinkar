@@ -133,8 +133,8 @@ function Select ({
 													styles.list_option,
 													{ [styles.focused]: currentFocus === index }
 												)}
-												onClick={() => onListClick(option)}
-												onMouseOver={() => onListHover(index)}
+												onClick={() => { onListClick(option); }}
+												onMouseOver={() => { onListHover(index); }}
 												data-is-child
 											>
 												{option.label}

@@ -32,8 +32,8 @@ function SegmentedTabs ({
 
 	const tabs: TabProps[] = validChildren
 		.map((child) => ({
-			name: (child as {props: TabProps}).props.name ?? '',
-			title: (child as {props: TabProps}).props.title ?? '',
+			name  : (child as {props: TabProps}).props.name ?? '',
+			title : (child as {props: TabProps}).props.title ?? '',
 		} as TabProps));
 
 	const [activeTab, setActiveTab] = useState<string>(defaultActiveTab ?? tabs[0].name);
@@ -41,7 +41,7 @@ function SegmentedTabs ({
 	const tabsRef: { current: Record<string,HTMLDivElement | HTMLButtonElement | null> } = useRef({});
 
 	useEffect(() => {
-		const currentButton = tabsRef.current?.[activeTab];
+		const currentButton = tabsRef.current[activeTab];
 
 		if (currentButton != null && tabsRef.current.slider) {
 			const translateX: number = currentButton.offsetLeft;

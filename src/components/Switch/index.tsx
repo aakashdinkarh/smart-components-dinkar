@@ -34,7 +34,7 @@ function Switch ({ children }: SwitchProps): null | React.ReactElement {
 		}
 	});
 
-	return matchChild ?? defaultCase ?? null;
+	return matchChild ?? defaultCase;
 }
 
 Switch.Case = Case;

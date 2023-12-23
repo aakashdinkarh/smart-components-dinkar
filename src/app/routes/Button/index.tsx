@@ -4,7 +4,7 @@ import { Button, toast } from '../../../exports';
 
 import styles from './styles.module.css';
 
-const onClick = () => toast(`I'm a toast`);
+const onClick = () => { toast(`I'm a toast`); };
 
 export default function ButtonPage() {
 	return (

@@ -23,7 +23,7 @@ interface OptionsProps {
 
 const uniqueId = 'e47a13d6-4bd5-11ee-be56-0242ac120002';
 
-function toast (message: string = '', options?: Partial<OptionsProps>): void {
+function toast (message = '', options?: Partial<OptionsProps>): void {
 	const {
 		closeAfter = 5,
 		placement = 'top',
@@ -85,7 +85,7 @@ function toast (message: string = '', options?: Partial<OptionsProps>): void {
 	}
 }
 
-function success (message: string = '', options: Partial<OptionsProps> = {}): void {
+function success (message = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {
@@ -95,7 +95,7 @@ function success (message: string = '', options: Partial<OptionsProps> = {}): vo
 	})
 }
 
-function error (message: string = '', options: Partial<OptionsProps> = {}): void {
+function error (message = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {
@@ -105,7 +105,7 @@ function error (message: string = '', options: Partial<OptionsProps> = {}): void
 	})
 }
 
-function warn (message: string = '', options: Partial<OptionsProps> = {}): void {
+function warn (message = '', options: Partial<OptionsProps> = {}): void {
 	toast(message, {
 		...options,
 		toastDiv: {

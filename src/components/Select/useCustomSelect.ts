@@ -23,11 +23,11 @@ export function useCustomSelect ({
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const toggleOptionList = useCallback(() => setIsSelectOpen((p) => !p), []);
-	const hideOptionList = useCallback(() => setIsSelectOpen(false), []);
-	const showOptionList = useCallback(() => setIsSelectOpen(true), []);
+	const toggleOptionList = useCallback(() => { setIsSelectOpen((p) => !p); }, []);
+	const hideOptionList = useCallback(() => { setIsSelectOpen(false); }, []);
+	const showOptionList = useCallback(() => { setIsSelectOpen(true); }, []);
 
-	const resetCurrentFocus = useCallback(() => setCurrentFocus(initialCurrentListFocus), []);
+	const resetCurrentFocus = useCallback(() => { setCurrentFocus(initialCurrentListFocus); }, []);
 
 	useEffect(() => {
 		if(!isSelectOpen){
@@ -113,7 +113,7 @@ export function useCustomSelect ({
 	const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
 		if(document.activeElement?.classList.contains(styles.clear_icon)){
 			if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
-				(document.activeElement as HTMLElement)?.blur();
+				(document.activeElement as HTMLElement).blur();
 				inputRef.current?.focus();
 			}
 		} else if(e.key === 'Enter'){

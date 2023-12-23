@@ -37,7 +37,7 @@ export function SelectedOptions ({
 					<div key={option.value} className={styles.selected_option} data-is-child>
 						{option.label}
 						<button
-							onClick={() => removeOption(option.value)}
+							onClick={() => { removeOption(option.value); }}
 							className={styles.clear_icon}
 							onFocus={resetCurrentFocus}
 							data-is-child

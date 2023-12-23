@@ -5,7 +5,7 @@ export function getCombinedClass (...classes: IClass[]): string {
 		if(typeof item === 'string') {
 			return item;
 		}
-		if (item && typeof item === 'object') {
+		if (typeof item === 'object') {
 			return Object.keys(item).filter((key) => item[key]).join(' ');
 		}
 		return '';
