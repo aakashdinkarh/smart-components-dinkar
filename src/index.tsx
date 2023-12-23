@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './app/App';
-import { nestedRoutes } from './app/routes';
+import { nestedRoutes } from './app/routes/routesConfig';
 
 const router = createBrowserRouter([
 	{

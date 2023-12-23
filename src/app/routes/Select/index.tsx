@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Select } from '../../exports';
+import { Select } from '../../../exports';
 
 function SelectPage() {
 	return (

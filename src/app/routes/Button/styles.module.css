@@ -1,0 +1,10 @@
+.button_group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: 16px;
+}
+
+.button_group > * {
+    margin-right: 16px;
+}

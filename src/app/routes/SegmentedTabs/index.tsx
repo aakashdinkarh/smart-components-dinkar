@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SegmentedTabs } from '../../exports';
+import { SegmentedTabs } from '../../../exports';
 
 export default function SegmentedTabsPage() {
 	return (

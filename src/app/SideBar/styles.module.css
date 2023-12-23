@@ -1,4 +1,26 @@
 .list_container {
     display: flex;
     flex-direction: column;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.list_item {
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+.list_item:not(.active):hover {
+    background-color: #ddd;
+}
+
+.link {
+    width: 100%;
+    display: inline-block;
+    padding: 6px;
+}
+
+.active {
+    /* background-color: #ddd; */
+    background-color: #fff;
+    font-weight: 600;
 }

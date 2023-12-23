@@ -1,0 +1,107 @@
+.button {
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    color: #fff;
+}
+.button:not(:disabled,.outline):hover {
+    opacity: 0.8;
+}
+.xs {
+    font-size: var(--font-size-xs);
+    padding: 2px 4px;
+}
+.sm {
+    font-size: var(--font-size-sm);
+    padding: 4px 6px;
+}
+.md {
+    font-size: var(--font-size-md);
+    padding: 6px 8px;
+}
+.lg {
+    font-size: var(--font-size-lg);
+    padding: 8px 10px;
+}
+.xl {
+    font-size: var(--font-size-xl);
+    padding: 10px 12px;
+}
+
+.primary {
+    background-color: var(--color-primary);
+}
+.secondary {
+    background-color: var(--color-secondary);
+}
+.tertiary {
+    background-color: var(--color-tertiary);
+    color: var(--color-black);
+}
+.success {
+    background-color: var(--color-success);
+}
+.danger {
+    background-color: var(--color-danger);
+}
+.warn {
+    background-color: var(--color-warn);
+    color: #000;
+}
+
+.outline {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+.primary.outline {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+.secondary.outline {
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+}
+.tertiary.outline {
+    border: 1px solid var(--color-tertiary);
+    color: var(--color-black);
+}
+.success.outline {
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+}
+.danger.outline {
+    border: 1px solid var(--color-danger);
+    color: var(--color-danger);
+}
+.warn.outline {
+    border: 1px solid var(--color-warn);
+    color: var(--color-black);
+}
+
+.button:disabled {
+    border: none;
+    background-color: var(--bg-color-disabled);
+    color: var(--color-disabled);
+}
+
+.outline.primary:not(:disabled):hover {
+    background-color: rgba(41, 123, 255, 0.10);
+}
+.outline.secondary:not(:disabled):hover {
+    background-color: rgba(57, 59, 66, 0.10);
+}
+.outline.tertiary:not(:disabled):hover {
+    background-color: rgba(221, 225, 231, 0.30);
+}
+.outline.success:not(:disabled):hover {
+    background-color: rgba(65, 161, 75, 0.10);
+}
+.outline.danger:not(:disabled):hover {
+    background-color: rgba(245, 68, 55, 0.10);
+}
+.outline.warn:not(:disabled):hover {
+    background-color: rgba(255, 225, 32, 0.10);
+}
