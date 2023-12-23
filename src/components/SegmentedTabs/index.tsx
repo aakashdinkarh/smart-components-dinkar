@@ -9,13 +9,13 @@ const { isValidElement, Children, useState, useRef, useEffect } = React;
 interface SegmentedTabsProps {
 	defaultActiveTab: string;
 	onTabChange: (newTab?: string) => void;
-	children: any;
+	children: React.ReactNode;
 }
 
 interface TabProps {
 	name: string;
 	title?: string;
-	children?: any;
+	children?: React.ReactNode;
 }
 
 function Tab ({ children }: TabProps): any {
@@ -28,19 +28,22 @@ function SegmentedTabs ({
 	children = null
 }: Partial<SegmentedTabsProps>): React.JSX.Element {
 	const validChildren = Children.toArray(children)
-		.filter((child: any) => isValidElement(child) && child.type === Tab);
+		.filter((child) => isValidElement(child) && child.type === Tab);
 
-	const tabs: Array<{ name: string, title?: string }> = validChildren
-		.map((child: any) => ({ name: child.props.name ?? '', title: child.props.title ?? '' }));
+	const tabs: TabProps[] = validChildren
+		.map((child) => ({
+			name: (child as {props: TabProps}).props.name ?? '',
+			title: (child as {props: TabProps}).props.title ?? '',
+		} as TabProps));
 
 	const [activeTab, setActiveTab] = useState<string>(defaultActiveTab ?? tabs[0].name);
 
-	const tabsRef: Record<string, any> = useRef({});
+	const tabsRef: { current: Record<string,HTMLDivElement | HTMLButtonElement | null> } = useRef({});
 
 	useEffect(() => {
 		const currentButton = tabsRef.current?.[activeTab];
 
-		if (currentButton != null) {
+		if (currentButton != null && tabsRef.current.slider) {
 			const translateX: number = currentButton.offsetLeft;
 			const { width, height }: { width: number, height: number } = currentButton.getBoundingClientRect();
 
@@ -81,7 +84,7 @@ function SegmentedTabs ({
 			</div>
 
 			<div className="tab_content">
-				{validChildren.filter((child: any) => child.props.name === activeTab)}
+				{validChildren.filter((child) => (child as {props: TabProps}).props.name === activeTab)}
 			</div>
 		</div>
 	);

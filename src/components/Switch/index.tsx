@@ -3,6 +3,7 @@ import * as React from 'react';
 interface CaseProps {
 	children?: any;
 	condition: boolean;
+	[key: string]: any;
 }
 
 interface SwitchProps {
@@ -17,12 +18,12 @@ function Default ({ children }: CaseProps): any {
 }
 
 function Switch ({ children }: SwitchProps): null | React.ReactElement {
-	let matchChild: null | React.ReactElement = null;
-	let defaultCase: null | React.ReactElement = null;
+	let matchChild: null | React.ReactElement | CaseProps = null;
+	let defaultCase: null | React.ReactElement | CaseProps = null;
 
-	React.Children.forEach(children, (child: any) => {
+	React.Children.forEach(children, (child) => {
 		if (matchChild == null && child.type === Case) {
-			const { condition }: { condition: boolean } = child.props;
+			const { condition }: { condition?: boolean } = child.props as Record<string,any>;
 			const conditionResult = Boolean(condition);
 
 			if (conditionResult) {
