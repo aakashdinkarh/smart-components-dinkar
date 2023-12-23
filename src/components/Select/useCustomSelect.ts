@@ -1,16 +1,16 @@
 import * as React from 'react';
 const { useState, useEffect, useCallback, useRef } = React;
 
-import { getVisibleOptions } from './helpers';
+import { getVisibleOptions, setNewFocus } from './helpers';
 import { useCustomSelectArgs, IuseCustomSelect, Option } from './interfaces';
+
+const initialCurrentListFocus = -1;
 
 export function useCustomSelect ({
 	selectedValue = '',
 	setSelectedValue = () => {},
-	// visibleOptions = [],
+	visibleOptions = [],
 	setVisibleOptions = () => {},
-	// currentFocus = -1,
-	setCurrentFocus = () => {},
 	onChange = () => {},
 	// onSearch = () => {},
 	onClear = () => {},
@@ -18,19 +18,23 @@ export function useCustomSelect ({
 	options = [],
 }: Partial<useCustomSelectArgs>): IuseCustomSelect {
 	const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
+	const [currentFocus, setCurrentFocus] = useState<number>(initialCurrentListFocus);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const clearButtonRef = useRef<HTMLButtonElement>(null);
 
 	const toggleOptionList = useCallback(() => setIsSelectOpen((p) => !p), []);
 	const hideOptionList = useCallback(() => setIsSelectOpen(false), []);
-	// const showOptionList = useCallback(() => setIsSelectOpen(true), []);
+	const showOptionList = useCallback(() => setIsSelectOpen(true), []);
 
-	const onKeyDownInput = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-		if(e.key === 'Enter'){
-			toggleOptionList();
+	const resetCurrentFocus = useCallback(() => setCurrentFocus(initialCurrentListFocus), []);
+
+	useEffect(() => {
+		if(!isSelectOpen){
+			resetCurrentFocus();
 		}
-	}, []);
+	}, [isSelectOpen])
 
 	const clearSelectInput = useCallback(() => {
 		const newSelectedValue = multiple ? [] : '';
@@ -62,9 +66,9 @@ export function useCustomSelect ({
 	// 	}
 	// }, [selectedValue, options, multiple, setVisibleOptions, setCurrentFocus, onSearch]);
 
-	const resetVisibleOptions = useCallback(() => {
-		setVisibleOptions(getVisibleOptions({ selectedValue, options, multiple }));
-	}, [multiple, options, selectedValue]);
+	// const resetVisibleOptions = useCallback(() => {
+	// 	setVisibleOptions(getVisibleOptions({ selectedValue, options, multiple }));
+	// }, [multiple, options, selectedValue]);
 
 	const onOutsideClick = useCallback((e: MouseEvent | KeyboardEvent) => {
 		const { target } = e;
@@ -78,7 +82,7 @@ export function useCustomSelect ({
 		// if ((inputRef.current as HTMLInputElement).value !== '' || isSelectOpen) {
 		// 	resetVisibleOptions();
 		// }
-	}, [resetVisibleOptions, multiple, isSelectOpen]);
+	}, [multiple, isSelectOpen]);
 
 	const onListClick = useCallback((option: Option) => {
 		const { value } = option;
@@ -93,6 +97,7 @@ export function useCustomSelect ({
 			}
 		}
 
+		hideOptionList();
 		setSelectedValue(newSelectedValue);
 		setVisibleOptions(getVisibleOptions({ selectedValue: newSelectedValue, options, multiple }));
 
@@ -105,46 +110,35 @@ export function useCustomSelect ({
 		setCurrentFocus(optionIndex);
 	}, [setCurrentFocus]);
 
-	// const onKeyDown = useCallback((e: KeyboardEvent) => {
-	// 	if (e.key === 'ArrowDown') {
-	// 		if (!isSelectOpen) {
-	// 			setIsSelectOpen(true);
-	// 		}
-	// 		setCurrentFocus((prev: number) => {
-	// 			if (prev >= visibleOptions.length - 1) {
-	// 				return 0;
-	// 			}
-	// 			return prev + 1;
-	// 		});
-	// 	} else if (e.key === 'ArrowUp') {
-	// 		if (!isSelectOpen) {
-	// 			setIsSelectOpen(true);
-	// 		}
-	// 		setCurrentFocus((prev: number) => {
-	// 			if (prev <= 0) {
-	// 				return visibleOptions.length - 1;
-	// 			}
-	// 			return prev - 1;
-	// 		});
-	// 	} else if (e.key === 'Enter') {
-	// 		if (currentFocus > -1 && currentFocus < visibleOptions.length) {
-	// 			onListClick({
-	// 				target: {
-	// 					nodeName : 'LI',
-	// 					dataset  : {
-	// 						optionValue: visibleOptions[currentFocus].value,
-	// 					},
-	// 				},
-	// 			});
-	// 		}
-	// 	} else if (e.key === 'Escape') {
-	// 		resetVisibleOptions();
-	// 	}
-	// }, [setCurrentFocus, visibleOptions, currentFocus, onListClick, resetVisibleOptions, isSelectOpen]);
+	const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+		if(document.activeElement === clearButtonRef.current && (
+			e.key === 'ArrowUp' || e.key === 'ArrowDown'
+		)) {
+			clearButtonRef.current?.blur();
+			inputRef.current?.focus();
+		}
+		
+		if(e.key === 'Enter'){
+			if(currentFocus < 0 || currentFocus >= visibleOptions.length){				
+				toggleOptionList();
+			} else {
+				onListClick(visibleOptions[currentFocus]);
+			}
+		} else if (e.key === 'Escape') {
+			hideOptionList();
+		} else if (e.key === 'ArrowDown') {
+			!isSelectOpen && showOptionList();
+
+			setNewFocus({ n: 1, func: setCurrentFocus, max: visibleOptions.length - 1 });
+		} else if (e.key === 'ArrowUp') {
+			!isSelectOpen && showOptionList();
+
+			setNewFocus({ n: -1, func: setCurrentFocus, max: visibleOptions.length - 1 });
+		}
+	}, [setCurrentFocus, visibleOptions, currentFocus, onListClick, isSelectOpen]);
 
 	useEffect(() => {
 		document.addEventListener('click', onOutsideClick);
-		// containerElem.addEventListener('keydown', onKeyDown);
 
 		return () => {
 			document.removeEventListener('click', onOutsideClick);
@@ -156,11 +150,14 @@ export function useCustomSelect ({
 		inputRef,
 		listRef,
 		containerRef,
+		clearButtonRef,
+		currentFocus,
 		clearSelectInput,
+		resetCurrentFocus,
 		// onInput,
 		toggleOptionList,
 		onListClick,
-		onKeyDownInput,
+		onKeyDown,
 		onListHover,
 	};
 }

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { getCombinedClass } from '../../utils/getCombinedClass';
+
 import styles from './styles.module.css';
 
 const { isValidElement, Children, useState, useRef, useEffect } = React;
@@ -60,15 +62,18 @@ function SegmentedTabs ({
 
 	return (
 		<div className="segmented_tabs_container">
-			<div className={`${styles.tabs_container} tabs_container`}>
-				<div ref={(v) => { tabsRef.current.slider = v; }} className={`${styles.slider} slider`} />
+			<div className={getCombinedClass(styles.tabs_container, 'tabs_container')}>
+				<div
+					ref={(v) => { tabsRef.current.slider = v; }} 
+					className={getCombinedClass(styles.slider, 'slider')}
+				/>
 
 				{tabs.map(({ name, title }) => (
 					<button
 						key={name}
 						ref={(v) => { tabsRef.current[name] = v; }}
 						onClick={() => { handleTabChange(name); }}
-						className={`${styles.tab} tab`}
+						className={getCombinedClass(styles.tab, 'tab')}
 					>
 						{title}
 					</button>

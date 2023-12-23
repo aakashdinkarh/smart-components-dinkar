@@ -1,6 +1,6 @@
 import { isEmpty } from '../../utils/isEmpty';
 
-import { helperFunctionsProps, Option } from './interfaces';
+import { helperFunctionsProps, IsetNewFocus, Option } from './interfaces';
 
 export function isContain (val1: string, val2: string): boolean {
 	return val1.toLowerCase().includes(val2.toLowerCase());
@@ -52,4 +52,13 @@ export function getVisibleOptions ({
 	}
 
 	return options.filter((option) => option.value !== selectedValue);
+}
+
+export function setNewFocus({ n = 0, func, max, min = 0 }: IsetNewFocus){
+	if(n > 0){
+		func((prev: number) => prev >= max ? min : prev + n);
+	}
+	else if(n < 0){
+		func((prev: number) => prev <= min ? max : prev + n);
+	}
 }

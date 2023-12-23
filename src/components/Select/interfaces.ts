@@ -16,6 +16,13 @@ export interface helperFunctionsProps {
 	selectedValue: string | string[],
 }
 
+export interface IsetNewFocus {
+	n: number;
+	func: IFunction;
+	max: number;
+	min?: number;
+}
+
 export interface SelectProps {
 	className: string;
 	name: string;
@@ -68,9 +75,12 @@ export interface IuseCustomSelect {
 	inputRef: React.RefObject<HTMLInputElement>;
 	listRef: React.RefObject<HTMLUListElement>;
 	containerRef: React.RefObject<HTMLDivElement>;
+	clearButtonRef: React.RefObject<HTMLButtonElement>;
+	currentFocus: number;
 	clearSelectInput: IFunction;
+	resetCurrentFocus: IFunction;
 	toggleOptionList: IFunction;
 	onListClick: IFunction;
-	onKeyDownInput: IFunction;
+	onKeyDown: IFunction;
 	onListHover: IFunction;
 }

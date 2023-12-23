@@ -41,8 +41,6 @@ function Select ({
 		getVisibleOptions({ selectedValue, options, multiple })
 	);
 
-	const [currentFocus, setCurrentFocus] = useState<number>(-1);
-
 	const displayValue: string | undefined = getDisplayValue({ selectedValue, options, multiple });
 	
 	const {
@@ -50,18 +48,19 @@ function Select ({
 		inputRef,
 		listRef,
 		containerRef,
+		clearButtonRef,
+		currentFocus,
 		clearSelectInput,
+		resetCurrentFocus,
 		toggleOptionList,
 		onListClick,
-		onKeyDownInput,
+		onKeyDown,
 		onListHover
 	}: IuseCustomSelect = useCustomSelect({
 		selectedValue,
 		setSelectedValue,
 		visibleOptions,
 		setVisibleOptions,
-		currentFocus,
-		setCurrentFocus,
 		onChange,
 		onSearch,
 		onClear,
@@ -76,6 +75,7 @@ function Select ({
 				styles.select_input_container,
 				className,
 			)}
+			onKeyDown={onKeyDown}
 		>
 			<input
 				type="text"
@@ -83,14 +83,25 @@ function Select ({
 				ref={inputRef}
 				placeholder={displayValue ?? placeholder}
 				readOnly
-				className={`${styles.dummy_input} ${!isEmpty(selectedValue) ? styles.not_empty : ''} dummy_input`}
+				className={getCombinedClass(
+					'dummy_input',
+					styles.dummy_input,
+					{[styles.not_empty]: !isEmpty(selectedValue)}
+				)}
 				disabled={disabled}
 				onClick={toggleOptionList}
-				onKeyDown={onKeyDownInput} // todo: this to be handled with container keydown event
 			/>
 
 			{!isEmpty(selectedValue) && isClearable &&
-				<button onClick={clearSelectInput} className={styles.clear_icon}>x</button>}
+				<button 
+					ref={clearButtonRef}
+					onClick={clearSelectInput}
+					onFocus={resetCurrentFocus}
+					className={styles.clear_icon}
+				>
+					x
+				</button>
+			}
 
 			{/* todo: implement search */}
 			<input name={name} type="hidden" value={selectedValue} disabled={disabled} />
@@ -115,13 +126,14 @@ function Select ({
 							: (
 								<>
 									{visibleOptions.map((option, index) => {
-										let itemClass = `${styles.list_option} `;
-										itemClass += currentFocus === index ? styles.focused : '';
-		
+
 										return (
 											<li
 												key={option.value}
-												className={itemClass}
+												className={getCombinedClass(
+													styles.list_option,
+													{ [styles.focused]: currentFocus === index }
+												)}
 												onClick={() => onListClick(option)}
 												onMouseOver={() => onListHover(index)}
 												data-is-child
