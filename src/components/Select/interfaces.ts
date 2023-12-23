@@ -41,8 +41,10 @@ export interface SelectProps {
 export interface SelectedOptionProps {
 	selectedValue: string[];
 	options: Options;
+	inputRef: React.RefObject<HTMLInputElement>;
 	setSelectedValue: IFunction;
 	setVisibleOptions: IFunction;
+	resetCurrentFocus: IFunction;
 	onRemove: IFunction;
 	multiple: boolean;
 }
@@ -75,7 +77,6 @@ export interface IuseCustomSelect {
 	inputRef: React.RefObject<HTMLInputElement>;
 	listRef: React.RefObject<HTMLUListElement>;
 	containerRef: React.RefObject<HTMLDivElement>;
-	clearButtonRef: React.RefObject<HTMLButtonElement>;
 	currentFocus: number;
 	clearSelectInput: IFunction;
 	resetCurrentFocus: IFunction;

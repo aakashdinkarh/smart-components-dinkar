@@ -3,7 +3,7 @@ const { useState, useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, setNewFocus } from './helpers';
 import { useCustomSelectArgs, IuseCustomSelect, Option } from './interfaces';
-
+import styles from './styles.module.css';
 const initialCurrentListFocus = -1;
 
 export function useCustomSelect ({
@@ -22,7 +22,6 @@ export function useCustomSelect ({
 	const inputRef = useRef<HTMLInputElement>(null);
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-	const clearButtonRef = useRef<HTMLButtonElement>(null);
 
 	const toggleOptionList = useCallback(() => setIsSelectOpen((p) => !p), []);
 	const hideOptionList = useCallback(() => setIsSelectOpen(false), []);
@@ -77,6 +76,7 @@ export function useCustomSelect ({
 			|| (multiple && (target as HTMLElement).dataset.isChild === 'true')) {
 			return;
 		}
+		
 		hideOptionList();
 
 		// if ((inputRef.current as HTMLInputElement).value !== '' || isSelectOpen) {
@@ -97,7 +97,7 @@ export function useCustomSelect ({
 			}
 		}
 
-		hideOptionList();
+		!multiple && hideOptionList();
 		setSelectedValue(newSelectedValue);
 		setVisibleOptions(getVisibleOptions({ selectedValue: newSelectedValue, options, multiple }));
 
@@ -111,14 +111,12 @@ export function useCustomSelect ({
 	}, [setCurrentFocus]);
 
 	const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-		if(document.activeElement === clearButtonRef.current && (
-			e.key === 'ArrowUp' || e.key === 'ArrowDown'
-		)) {
-			clearButtonRef.current?.blur();
-			inputRef.current?.focus();
-		}
-		
-		if(e.key === 'Enter'){
+		if(document.activeElement?.classList.contains(styles.clear_icon)){
+			if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
+				(document.activeElement as HTMLElement)?.blur();
+				inputRef.current?.focus();
+			}
+		} else if(e.key === 'Enter'){
 			if(currentFocus < 0 || currentFocus >= visibleOptions.length){				
 				toggleOptionList();
 			} else {
@@ -150,7 +148,6 @@ export function useCustomSelect ({
 		inputRef,
 		listRef,
 		containerRef,
-		clearButtonRef,
 		currentFocus,
 		clearSelectInput,
 		resetCurrentFocus,

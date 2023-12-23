@@ -8,8 +8,10 @@ import styles from './styles.module.css';
 export function SelectedOptions ({
 	selectedValue = [],
 	options = [],
+	inputRef,
 	setSelectedValue = () => {},
 	setVisibleOptions = () => {},
+	resetCurrentFocus = () => {},
 	onRemove = () => {},
 	multiple = true,
 }: Partial<SelectedOptionProps>): React.JSX.Element {
@@ -18,8 +20,8 @@ export function SelectedOptions ({
 
 		const removedOption = options.filter((option) => option.value === removeValue);
 
+		inputRef?.current?.focus();
 		setSelectedValue(newSelectedValue);
-
 		setVisibleOptions(getVisibleOptions({ selectedValue: newSelectedValue, options, multiple }));
 
 		if (typeof onRemove === 'function') {
@@ -35,8 +37,9 @@ export function SelectedOptions ({
 					<div key={option.value} className={styles.selected_option} data-is-child>
 						{option.label}
 						<button
-							onClick={() => { removeOption(option.value); }}
+							onClick={() => removeOption(option.value)}
 							className={styles.clear_icon}
+							onFocus={resetCurrentFocus}
 							data-is-child
 						>
 							x

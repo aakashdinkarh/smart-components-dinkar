@@ -48,7 +48,6 @@ function Select ({
 		inputRef,
 		listRef,
 		containerRef,
-		clearButtonRef,
 		currentFocus,
 		clearSelectInput,
 		resetCurrentFocus,
@@ -94,7 +93,6 @@ function Select ({
 
 			{!isEmpty(selectedValue) && isClearable &&
 				<button 
-					ref={clearButtonRef}
 					onClick={clearSelectInput}
 					onFocus={resetCurrentFocus}
 					className={styles.clear_icon}
@@ -114,8 +112,10 @@ function Select ({
 								<SelectedOptions
 									selectedValue={selectedValue}
 									options={options}
+									inputRef={inputRef}
 									setSelectedValue={setSelectedValue}
 									setVisibleOptions={setVisibleOptions}
+									resetCurrentFocus={resetCurrentFocus}
 									onRemove={onRemove}
 									multiple={multiple}
 								/>
@@ -126,7 +126,6 @@ function Select ({
 							: (
 								<>
 									{visibleOptions.map((option, index) => {
-
 										return (
 											<li
 												key={option.value}
