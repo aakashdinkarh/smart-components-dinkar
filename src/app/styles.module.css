@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app_container {
+    display: flex;
+}
+
+.side_menu {
+    height: 100vh;
+    width: min(25%, 400px);
+    min-width: 25%;
+    background-color: #f7f7f7;
+    border-right: 1px solid #e4e4e4;
+    padding: 10px 16px;
+}
+
+.content {
+    padding: 10px 16px;
+}
