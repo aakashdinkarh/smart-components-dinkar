@@ -8,7 +8,7 @@
 }
 
 .tab {
-  z-index: 1;
+  z-index: 0;
   padding: 4px;
   margin: 4px;
   font-weight: 600;
@@ -21,6 +21,7 @@
   position: absolute;
   top: 50%;
   left: 0;
+  z-index: 0;
   background-color: #0cf;
   border-radius: 4px;
   transform: translateY(-50%);
