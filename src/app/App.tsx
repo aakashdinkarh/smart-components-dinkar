@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import SideBar from './SideBar'
 import styles from './styles.module.css';
+import './app.css';
 
 function App() {
 	return (
