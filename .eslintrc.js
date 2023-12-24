@@ -10,36 +10,57 @@ module.exports = {
 		...overrides.base,
 		...overrides.react,
 		...overrides.typescript,
+		'@typescript-eslint/no-unsafe-assignment'              : 'off',
+		'@typescript-eslint/no-unsafe-member-access'           : 'off',
+		'@typescript-eslint/no-unsafe-argument'                : 'off',
+		'@typescript-eslint/no-unnecessary-condition'          : 'off',
+		'@typescript-eslint/non-nullable-type-assertion-style' : 'off',
+
 	},
 	ignorePatterns : ['dist/**/*', 'node_modules/*'],
 	extends        : [
 		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
+		'plugin:eslint-plugin/recommended',
+		'plugin:@typescript-eslint/strict-type-checked',
+		'plugin:@typescript-eslint/stylistic-type-checked',
 	],
 	overrides: [
 		{
-			// add files which will run in node environment
 			env: {
 				node: true
 			},
-			files         : ['.eslintrc.js', 'webpack.config.js', './eslintConfigs/*', 'scripts/*'],
+			files         : ['.eslintrc.js', 'webpack.config.js', 'eslintConfigs/*', 'scripts/*'],
 			parserOptions : {
 				sourceType: 'script'
-			}
-		}
+			},
+			extends: ['plugin:@typescript-eslint/disable-type-checked'],
+		},
 	],
-	parser        : '@typescript-eslint/parser', // Specify the parser for TypeScript files
+	parser        : '@typescript-eslint/parser',
 	parserOptions : {
-		ecmaVersion  : 'latest',
-		sourceType   : 'module',
-		ecmaFeatures : {
+		ecmaVersion : 'latest',
+		sourceType  : 'module',
+		project     : [
+			'./tsconfig.json',
+			'./tsconfig.eslint.json',
+		],
+		ecmaFeatures: {
 			"jsx": true
-		}
+		},
+		tsconfigRootDir: __dirname,
 	},
 	settings: {
 		react: {
 			version: 'detect',
 		},
 	},
-	plugins: ['@typescript-eslint', 'import'],
+	plugins: [
+		'@typescript-eslint',
+		'deprecation',
+		'eslint-comments',
+		'eslint-plugin',
+		'import',
+		'simple-import-sort',
+		'unicorn',
+	],
 };
