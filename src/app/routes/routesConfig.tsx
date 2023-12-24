@@ -1,18 +1,24 @@
 import * as React from 'react';
 
 import { ButtonPage } from './Button'
+import { NpmPackagePage } from './NpmPackage';
 import { SegmentedTabsPage } from './SegmentedTabs';
 import { SelectPage } from "./Select"
 import { ToastPage } from './Toast';
 
 export const routes = {
-	select        : '/select',
-	segmentedTabs : '/segmentedTabs',
-	toast         : '/toast',
-	button        : '/button',
+	npmPackage    : 'tutorial/npm-package',
+	select        : '/component/select',
+	segmentedTabs : '/component/segmented-tabs',
+	toast         : '/component/toast',
+	button        : '/component/button',
 }
 
 export const nestedRoutes = [
+	{
+		path    : routes.npmPackage,
+		element : <NpmPackagePage />,
+	},
 	{
 		path    : routes.select,
 		element : <SelectPage />,
