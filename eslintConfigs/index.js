@@ -41,6 +41,23 @@ const base = {
 			},
 		},
 	],
+	curly  : ['error', 'all'],
+	eqeqeq : [
+		'error',
+		'always',
+		{
+			null: 'never',
+		},
+	],
+	'logical-assignment-operators' : 'error',
+	'no-else-return'               : 'error',
+	'no-mixed-operators'           : 'error',
+	'no-console'                   : 'warn',
+	'no-process-exit'              : 'error',
+	'no-fallthrough'               : [
+		'error',
+		{ commentPattern: '.*intentional fallthrough.*' },
+	],
 };
 
 const overrides = {
