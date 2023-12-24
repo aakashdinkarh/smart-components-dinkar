@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { getVisibleOptions } from './helpers';
-import { SelectedOptionProps } from './interfaces'
+import type { SelectedOptionProps } from './interfaces'
 import styles from './styles.module.css';
 
 

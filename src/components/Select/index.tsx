@@ -6,7 +6,7 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
-import { SelectProps, Option, IuseCustomSelect } from './interfaces';
+import type { SelectProps, Option, IuseCustomSelect } from './interfaces';
 import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';

@@ -1,6 +1,6 @@
 import { isEmpty } from '../../utils/isEmpty';
 
-import { helperFunctionsProps, IsetNewFocus, Option } from './interfaces';
+import type { helperFunctionsProps, IsetNewFocus, Option } from './interfaces';
 
 export function isContain (val1: string, val2: string): boolean {
 	return val1.toLowerCase().includes(val2.toLowerCase());

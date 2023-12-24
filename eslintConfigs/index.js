@@ -55,6 +55,10 @@ const typescript = {
 	'@typescript-eslint/semi'                       : 'off',
 	'@typescript-eslint/member-delimiter-style'     : 'off',
 	'@typescript-eslint/strict-boolean-expressions' : 'warn',
+	'@typescript-eslint/consistent-type-imports'    : [
+		'error',
+		{ prefer: 'type-imports', disallowTypeAnnotations: true },
+	],
 }
 
 const react = {

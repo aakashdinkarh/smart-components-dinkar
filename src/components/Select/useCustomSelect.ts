@@ -2,7 +2,7 @@ import * as React from 'react';
 const { useState, useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, setNewFocus } from './helpers';
-import { useCustomSelectArgs, IuseCustomSelect, Option } from './interfaces';
+import type { useCustomSelectArgs, IuseCustomSelect, Option } from './interfaces';
 import styles from './styles.module.css';
 const initialCurrentListFocus = -1;
 
