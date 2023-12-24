@@ -111,7 +111,7 @@ export function useCustomSelect ({
 	}, [setCurrentFocus]);
 
 	const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-		if(document.activeElement?.classList.contains(styles.clear_icon)){
+		if((document.activeElement as HTMLElement)?.classList.contains(styles.clear_icon)){
 			if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
 				(document.activeElement as HTMLElement).blur();
 				inputRef.current?.focus();

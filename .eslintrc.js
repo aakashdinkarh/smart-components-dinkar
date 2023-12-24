@@ -60,6 +60,7 @@ module.exports = {
 		'eslint-comments',
 		'eslint-plugin',
 		'import',
+		'react',
 		'simple-import-sort',
 		'unicorn',
 	],

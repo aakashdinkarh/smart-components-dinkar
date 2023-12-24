@@ -18,7 +18,8 @@
     "build-dev": "npm run clean && webpack --mode development",
     "build-prod": "npm run clean && webpack --mode production",
     "start": "npx react-scripts start",
-    "eslint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "eslint_file": "eslint"
   },
   "peerDependencies": {

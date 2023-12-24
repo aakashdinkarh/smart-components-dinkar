@@ -29,7 +29,7 @@ export default function SideBar(){
 	const location = useLocation();
 
 	return (
-        <ul className={styles.list_container}>
+		<ul className={styles.list_container}>
 			{sideBarItems.map((item) => (
 				<li key={item.path} className={getCombinedClass(styles.list_item, {
 					[styles.active]: item.path === location.pathname
@@ -37,6 +37,6 @@ export default function SideBar(){
 					<Link className={styles.link} to={item.path}>{item.label}</Link>
 				</li>
 			))}
-        </ul>
+		</ul>
 	)
 }
