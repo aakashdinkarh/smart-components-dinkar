@@ -31,10 +31,10 @@ module.exports = {
 				node: true
 			},
 			files         : ['.eslintrc.js', 'webpack.config.js', 'eslintConfigs/*', 'scripts/*'],
+			extends       : ['plugin:@typescript-eslint/disable-type-checked'],
 			parserOptions : {
 				sourceType: 'script'
 			},
-			extends: ['plugin:@typescript-eslint/disable-type-checked'],
 		},
 	],
 	parser        : '@typescript-eslint/parser',
@@ -56,13 +56,6 @@ module.exports = {
 		},
 	},
 	plugins: [
-		'@typescript-eslint',
-		'deprecation',
-		'eslint-comments',
-		'eslint-plugin',
 		'import',
-		'react',
-		'simple-import-sort',
-		'unicorn',
 	],
 };

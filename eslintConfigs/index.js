@@ -43,6 +43,7 @@ const base = {
 		'error',
 		{ commentPattern: '.*intentional fallthrough.*' },
 	],
+	'one-var': ['error', 'never'],
 };
 
 const overrides = {

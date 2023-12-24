@@ -32,24 +32,24 @@ export function ButtonPage() {
 			</div>
 			
 			<div className={styles.button_group} >
-				<Button themeType='success' onClick={onClick}>Tertiary</Button>
-				<Button disabled themeType='success' onClick={onClick}>Tertiary</Button>
-				<Button outline themeType='success' onClick={onClick}>Tertiary Outline</Button>
-				<Button outline disabled themeType='success' onClick={onClick}>Tertiary Outline</Button>
+				<Button themeType='success' onClick={onClick}>Success</Button>
+				<Button disabled themeType='success' onClick={onClick}>Success</Button>
+				<Button outline themeType='success' onClick={onClick}>Success Outline</Button>
+				<Button outline disabled themeType='success' onClick={onClick}>Success Outline</Button>
 			</div>
 
 			<div className={styles.button_group} >
-				<Button themeType='danger' onClick={onClick}>Tertiary</Button>
-				<Button disabled themeType='danger' onClick={onClick}>Tertiary</Button>
-				<Button outline themeType='danger' onClick={onClick}>Tertiary Outline</Button>
-				<Button outline disabled themeType='danger' onClick={onClick}>Tertiary Outline</Button>
+				<Button themeType='danger' onClick={onClick}>Danger</Button>
+				<Button disabled themeType='danger' onClick={onClick}>Danger</Button>
+				<Button outline themeType='danger' onClick={onClick}>Danger Outline</Button>
+				<Button outline disabled themeType='danger' onClick={onClick}>Danger Outline</Button>
 			</div>
 
 			<div className={styles.button_group} >
-				<Button themeType='warn' onClick={onClick}>Tertiary</Button>
-				<Button disabled themeType='warn' onClick={onClick}>Tertiary</Button>
-				<Button outline themeType='warn' onClick={onClick}>Tertiary Outline</Button>
-				<Button outline disabled themeType='warn' onClick={onClick}>Tertiary Outline</Button>
+				<Button themeType='warn' onClick={onClick}>Warn</Button>
+				<Button disabled themeType='warn' onClick={onClick}>Warn</Button>
+				<Button outline themeType='warn' onClick={onClick}>Warn Outline</Button>
+				<Button outline disabled themeType='warn' onClick={onClick}>Warn Outline</Button>
 			</div>
 		</section>
 	)
