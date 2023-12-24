@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import ButtonPage from './Button'
-import SegmentedTabsPage from './SegmentedTabs';
-import SelectPage from "./Select"
-import ToastPage from './Toast';
+import { ButtonPage } from './Button'
+import { SegmentedTabsPage } from './SegmentedTabs';
+import { SelectPage } from "./Select"
+import { ToastPage } from './Toast';
 
 export const routes = {
 	select        : '/select',

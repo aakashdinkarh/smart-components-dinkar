@@ -54,7 +54,7 @@ export function getVisibleOptions ({
 	return options.filter((option) => option.value !== selectedValue);
 }
 
-export function setNewFocus({ n = 0, func, max, min = 0 }: IsetNewFocus){
+export function setNewFocus({ n = 0, func, max, min = 0 }: IsetNewFocus): void {
 	if(n > 0){
 		func((prev: number) => prev >= max ? min : prev + n);
 	}

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Select } from '../../../exports';
 
-function SelectPage() {
+export function SelectPage() {
 	return (
 		<Select
 			options={[
@@ -17,5 +17,3 @@ function SelectPage() {
 		/>
 	)
 }
-
-export default SelectPage;
