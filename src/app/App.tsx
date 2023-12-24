@@ -5,17 +5,15 @@ import SideBar from './SideBar'
 import styles from './styles.module.css';
 import './app.css';
 
-function App() {
+export default function App() {
 	return (
 		<main className={styles.app_container}>
-			<div className={styles.side_menu}  >
+			<section className={styles.side_menu}  >
 				<SideBar />
-			</div>
-			<div className={styles.content} >
+			</section>
+			<section className={styles.content} >
 				<Outlet />
-			</div>
+			</section>
 		</main>
 	);
 }
-
-export default App;
