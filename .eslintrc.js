@@ -8,6 +8,7 @@ module.exports = {
 	},
 	rules: {
 		...overrides.base,
+		...overrides.importRules,
 		...overrides.react,
 		...overrides.typescript,
 		'@typescript-eslint/no-unsafe-assignment'              : 'off',

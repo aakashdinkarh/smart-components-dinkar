@@ -1,9 +1,10 @@
 import * as React from 'react';
-const { useState, useEffect, useCallback, useRef } = React;
 
 import { getVisibleOptions, setNewFocus } from './helpers';
-import type { useCustomSelectArgs, IuseCustomSelect, Option } from './interfaces';
+import type { IuseCustomSelect, Option,useCustomSelectArgs } from './interfaces';
 import styles from './styles.module.css';
+
+const { useState, useEffect, useCallback, useRef } = React;
 const initialCurrentListFocus = -1;
 
 export function useCustomSelect ({

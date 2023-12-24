@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-const { useState } = React;
-
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
-import type { SelectProps, Option, IuseCustomSelect } from './interfaces';
+import type { IuseCustomSelect,Option, SelectProps } from './interfaces';
 import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
+
+const { useState } = React;
 
 function EmptyList (): React.JSX.Element {
 	return (

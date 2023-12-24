@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 const onClick = () => { toast(`I'm a toast`); };
 
-export default function ButtonPage() {
+export function ButtonPage() {
 	return (
 		<section>
 			<h1 className='text-xl'>Button</h1>

@@ -1,3 +1,4 @@
+const importRules = require('./importRules')
 const react = require('./react');
 const sharedRules = require('./shared');
 const typescript = require('./typescript');
@@ -25,22 +26,6 @@ const base = {
 		ImportDeclaration : { minProperties: 8, multiline: true, consistent: true },
 		ExportDeclaration : { minProperties: 8, multiline: true, consistent: true },
 	}],
-
-	// import
-	'import/no-extraneous-dependencies' : 'off',
-	'import/prefer-default-export'      : 'off',
-	'import/no-unresolved'              : 'off',
-	'import/order'                      : [
-		'error',
-		{
-			groups             : ['builtin', 'external', 'parent', 'sibling', 'index'],
-			'newlines-between' : 'always',
-			alphabetize        : {
-				order           : 'asc',
-				caseInsensitive : true,
-			},
-		},
-	],
 	curly  : ['error', 'all'],
 	eqeqeq : [
 		'error',
@@ -62,6 +47,7 @@ const base = {
 
 const overrides = {
 	base,
+	importRules,
 	react,
 	typescript,
 };
