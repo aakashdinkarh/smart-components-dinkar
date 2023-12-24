@@ -18,7 +18,31 @@ const typescript = {
 		'error',
 		{ prefer: 'type-imports', disallowTypeAnnotations: true },
 	],
-	'@typescript-eslint/no-non-null-assertion': 'off',
+	'@typescript-eslint/no-non-null-assertion'    : 'off',
+	'@typescript-eslint/no-unnecessary-condition' : [
+		'error',
+		{ allowConstantLoopConditions: true },
+	],
+	'@typescript-eslint/prefer-literal-enum-member': [
+		'error',
+		{
+			allowBitwiseExpressions: true,
+		},
+	],
+	'@typescript-eslint/restrict-template-expressions': [
+		'error',
+		{
+			allowNumber  : true,
+			allowBoolean : true,
+			allowAny     : true,
+			allowNullish : true,
+			allowRegExp  : true,
+		},
+	],
+	'@typescript-eslint/no-unused-vars': [
+		'error',
+		{ varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+	],
 }
 
 module.exports = typescript;
