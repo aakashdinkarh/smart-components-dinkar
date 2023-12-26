@@ -1,0 +1,10 @@
+.code_container {
+    position: relative;
+    padding-right: 20px;
+}
+
+.copy_button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
