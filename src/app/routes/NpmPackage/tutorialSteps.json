@@ -26,16 +26,6 @@
             },
             {
                 "title": "Create a new file with the following content",
-                "subText": "<code class=\"file\">public/manifest.json</code>",
-                "code": "{\n\t\"short_name\": \"react-comp-pack\",\n\t\"name\": \"React Component Package demo app\",\n\t\"start_url\": \".\",\n\t\"display\": \"standalone\",\n\t\"theme_color\": \"#000000\",\n\t\"background_color\": \"#ffffff\"\n}"
-            },
-            {
-                "title": "Create a new file with the following content",
-                "subText": "<code class=\"file\">public/robots.txt</code>",
-                "code": "# https://www.robotstxt.org/robotstxt.html\nUser-agent: *\nDisallow:"
-            },
-            {
-                "title": "Create a new file with the following content",
                 "subText": "<code class=\"file\" >src/index.js</code>",
                 "code": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst root = createRoot(document.getElementById('root'));\nroot.render(\n\t<React.StrictMode>\n\t\t<h1>Hello World!!</h1>\n\t</React.StrictMode>\n);"
             },
