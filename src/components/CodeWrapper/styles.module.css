@@ -1,10 +1,16 @@
 .code_container {
     position: relative;
-    padding-right: 20px;
+    min-height: 30px;
+    padding: 4px;
 }
 
 .copy_button {
     position: absolute;
     top: 4px;
     right: 4px;
+}
+
+.code_container > pre {
+    margin: 0;
+    overflow: auto;
 }

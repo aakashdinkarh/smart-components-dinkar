@@ -1,6 +1,8 @@
-import { Button } from 'exports';
 import * as React from 'react';
-import { copyToClipboard } from 'utils/copyToClipboard';
+
+import { Button } from '../../exports';
+import { copyToClipboard } from '../../utils/copyToClipboard';
+import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
@@ -10,7 +12,7 @@ export function CodeWrapper({ children } : { children: any; }){
 	}
 
 	return (
-        <div className={styles.code_container}>
+        <div className={getCombinedClass(styles.code_container, 'code_container')}>
             <Button 
                 themeType='tertiary' 
                 className={styles.copy_button} 

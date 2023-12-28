@@ -1,4 +1,4 @@
-import { toast } from "exports";
+import { toast } from '../exports';
 
 export async function copyToClipboard(text = ''){
 	try {
