@@ -23,6 +23,7 @@ function Button({
 	type = 'button',
 	size = 'md',
 	themeType = 'primary',
+	className = '',
 	onClick = () => {},
 	outline = false,
 	disabled = false,
@@ -35,7 +36,8 @@ function Button({
 			className={getCombinedClass(styles.button,
 				styles[size],
 				styles[themeType],
-				{ [styles.outline]: outline }
+				{ [styles.outline]: outline },
+				className,
 			)}
 			disabled={disabled}
 			{...rest}
