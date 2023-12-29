@@ -33,7 +33,6 @@ const sideBarItems = {
 	]
 }
 
-
 export function SideBar(){
 	const location = useLocation();
 
