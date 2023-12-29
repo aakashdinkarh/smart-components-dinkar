@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { getVisibleOptions, setNewFocus } from './helpers';
 import type { IuseCustomSelect, Option,useCustomSelectArgs } from './interfaces';

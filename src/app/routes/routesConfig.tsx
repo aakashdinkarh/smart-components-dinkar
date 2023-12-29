@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ButtonPage } from './Button'
 import { NpmPackagePage } from './NpmPackage';
