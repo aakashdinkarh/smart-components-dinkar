@@ -7,7 +7,7 @@ import { SelectPage } from "./Select"
 import { ToastPage } from './Toast';
 
 export const routes = {
-	npmPackage    : 'tutorial/npm-package',
+	npmPackage    : '/tutorial/npm-package',
 	select        : '/component/select',
 	segmentedTabs : '/component/segmented-tabs',
 	toast         : '/component/toast',
