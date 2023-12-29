@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '../../exports';
+import { CopyIcon } from '../../icons';
 import { copyToClipboard } from '../../utils/copyToClipboard';
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
@@ -13,13 +13,7 @@ export function CodeWrapper({ children } : { children: any; }){
 
 	return (
         <div className={getCombinedClass(styles.code_container, 'code_container')}>
-            <Button 
-                themeType='tertiary' 
-                className={styles.copy_button} 
-                onClick={handleCopy}
-            >
-                Copy
-            </Button>
+            <CopyIcon width={20} height={20} onClick={handleCopy} className={styles.copy_button} />
             <pre>
                 <code>
                     {children}
