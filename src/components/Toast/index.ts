@@ -1,6 +1,18 @@
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
+
+const uniqueIds = {
+	'top'          : 'top-98f37f06-3e67-4a13-846c-4e5eb5d26e13',
+	'left'         : 'left-7104a3cc-72b5-48b0-91b2-47a0a3e20db6',
+	'bottom'       : 'bottom-2cf39eef-575d-46f1-bbe7-982dcbdf53c7',
+	'right'        : 'right-3b6ff3e8-7d85-40c2-b8c7-8a905a4a77da',
+	'top-left'     : 'top-left-1b8bc077-2c5b-4a9b-8cbb-36e3e3bf1032',
+	'top-right'    : 'top-right-b0b1a76f-56b5-4b25-8c8b-61e0f354ac4a',
+	'bottom-left'  : 'bottom-left-db3b6dcb-3c9c-42db-9cb2-6bf14750961c',
+	'bottom-right' : 'bottom-right-8128e398-5a78-4e0c-bc8b-5d3a049622dd',
+};
+
 /**
  * Interface defining the possible options for the toast function.
  */
@@ -55,7 +67,6 @@ interface OptionsProps {
 	};
 }
 
-const uniqueId = 'e47a13d6-4bd5-11ee-be56-0242ac120002';
 /**
  * Display a toast message with optional configuration options.
  * @param message - The message to be displayed in the toast.
@@ -70,6 +81,8 @@ function toast (message = '', options?: Partial<OptionsProps>): void {
 		toastDiv: { toastDivClass = '' } = {},
 		closeButton: { showCloseIcon = true, closeButtonClass = '' } = {},
 	} = options ?? {};
+
+	const uniqueId = uniqueIds[placement];
 
 	let toastContainer: HTMLElement | null = document.querySelector(`#${uniqueId}`);
 
