@@ -1,0 +1,63 @@
+.instruction_wrapper {
+    position: relative;
+    min-height: 32px;
+    margin-top: 32px;
+    padding-left: 40px;
+}
+
+.instruction_wrapper :global(.code_container) {
+    background-color: var(--color-tertiary);
+}
+
+.instruction_wrapper > * > code:global(.file) {
+    color: red;
+    font-weight: 600;
+}
+
+.instruction_wrapper > * > code:global(.package) {
+    background-color: #ebeceb;
+    border-radius: 4px;
+    padding: 1px 4px;
+    color: #ae007b;
+    font-weight: 400;
+}
+
+.instruction_wrapper h3 {
+    margin: 8px 0;
+}
+
+.instruction_wrapper p {
+    margin: 8px 0;
+}
+
+/* timeline */
+
+.instruction_wrapper:not(:last-of-type)::before {
+    position: absolute;
+    top: 27px;
+
+    /* based on padding-left of timeline row */
+    left: calc(-0px + 8px);
+    display: inline-block;
+    width: 2px;
+    height: 100%;
+    content: "";
+    background-color: #ee3425;
+    transform: translateX(-50%);
+}
+
+
+.instruction_wrapper::after {
+    position: absolute;
+    top: 2px;
+
+    /* based on padding-left of timeline row */
+    left: -0px;
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    content: "";
+    background-color: #ee3425;
+    border-radius: 50%;
+    box-shadow: -8px 0 0 8px #fff;
+}

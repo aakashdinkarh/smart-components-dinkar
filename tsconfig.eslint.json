@@ -8,8 +8,10 @@
     },
     "extends": "./tsconfig.json",
     "include": [
-        "./src/app/**/*",
-        "./src/index.tsx",
+        "./src/**/*",
     ],
-    "exclude": []
+    "exclude": [
+        "node_modules",
+        "dist",
+    ],
 }

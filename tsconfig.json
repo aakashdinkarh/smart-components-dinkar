@@ -29,7 +29,9 @@
     ],
     "exclude": [
         "./src/app/*",
+        "./src/icons/*",
         "./src/index.tsx",
         "node_modules",
+        "dist",
     ],
 }

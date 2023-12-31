@@ -1,0 +1,124 @@
+[
+    {
+        "title": "Repo init with the help of below link for your requirement",
+        "code": "https://createapp.dev/webpack/react--babel--css-modules--react-hot-loader",
+        "key": "1"
+    },
+    {
+        "title": "Initiate Git",
+        "code": "git init",
+        "key": "2"
+    },
+    {
+        "title": "Setup React",
+        "key": "3",
+        "nestedSteps": [
+            {
+                "title": "Install <code class=\"package\">react</code> <code class=\"package\">react-dom</code> <code class=\"package\">react-script</code> as devDependency",
+                "code": "npm install --save-dev react react-dom react-script",
+                "key": "3.1"
+            },
+            {
+                "title": "Add a new script command",
+                "subText": "Add the following to <code class=\"file\">package.json > scripts</code>",
+                "code": "\"start\": \"npx react-scripts start\"",
+                "key": "3.2"
+            },
+            {
+                "title": "Create a new file with the following content",
+                "subText": "<code class=\"file\">public/index.html</code>",
+                "code": "<!DOCTYPE html>\n\t<html lang=\"en\" >\n\t \n\t<head>\n\t\t<meta charset=\"utf-8\" /> \n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n\t\t<meta name=\"theme-color\" content=\"#000000\" />\n\t\t<meta name=\"description\" content=\"Library test site\" />\n\t\t<title>React App</title>\n\t</head>\n\t\n\t<body>\n\t\t<noscript>You need to enable JavaScript to run this app.</noscript>\n\t\t<div id=\"root\"></div>\n\t</body>\n\n</html>",
+                "key": "3.3"
+            },
+            {
+                "title": "Create a new file with the following content",
+                "subText": "<code class=\"file\" >src/index.js</code>",
+                "code": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst root = createRoot(document.getElementById('root'));\nroot.render(\n\t<React.StrictMode>\n\t\t<h1>Hello World!!</h1>\n\t</React.StrictMode>\n);",
+                "key": "3.4"
+            },
+            {
+                "title": "Now you will be able to start development server with the following",
+                "code": "npm run start",
+                "key": "3.5"
+            }
+        ]
+    },
+    {
+        "title": "Add <code class=\"package\">react</code> <code class=\"package\">react-dom</code> to peerDependencies",
+        "subText": "In file <code class=\"file\">package.json</code> add the following and replace the version with the version you want the user to have and your components support",
+        "code": "\"peerDependencies\": {\n\t\"react\": \"^18.2.0\",\n\t\"react-dom\": \"^18.2.0\"\n}",
+        "key": "4"
+    },
+    {
+        "title": "Create a reusable component say with the following content",
+        "subText": "<code class=\"file\">src/components/ButtonWrapper.js</code>",
+        "code": "import React from 'react';\n\nexport function ButtonWrapper({ children, ...rest }){\n\treturn (\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\tonMouseOut={() => {\n\t\t\t\talert('You left out of button');\n\t\t\t}}\n\t\t\t{...rest}\n\t\t>\n\t\t\t{children}\n\t\t</button>\n\t)\n}",
+        "key": "5"
+    },
+    {
+        "title": "Use and test this component",
+        "subText": "Let's render this component in <code class=\"file\">src/index.js</code>",
+        "code": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\n\nimport { ButtonWrapper } from './components/ButtonWrapper';\n\nconst root = createRoot(document.getElementById('root'));\nroot.render(\n\t<React.StrictMode>\n\t\t<h1>Hello World!!</h1>\n\t\t<ButtonWrapper>Move mouse out of me and get alert</ButtonWrapper>\n\t</React.StrictMode>\n);",
+        "key": "6"
+    },
+    {
+        "title": "Create one common entry point to your package",
+        "subText": "Export all your components that need to be exposed in one file, say <code class=\"file\">src/exports.js</code>",
+        "code": "export { ButtonWrapper } from './components/ButtonWrapper'",
+        "key": "7"
+    },
+    {
+        "title": "Changes required to build your package",
+        "subText": "Now that we have a component well tested, we can build our package, change the following in <code class=\"file\">webpack.config.js</code>",
+        "code": "const path = require('path')\n\nconst config = {\n\tentry  : './src/exports.js',\n\toutput : {\n\t\tpath           : path.resolve(__dirname, 'dist'),\n\t\tfilename       : 'index.js', // main build file\n\t\tlibraryTarget  : 'umd', // Universal Module Definition (UMD)\n\t\tumdNamedDefine : true // Use a named define when exporting as UMD\n\t},\n\t...\n\t...\n\t...\n\texternals: {\n\t\treact       : 'react', // Exclude React from the bundle (useful if it's a peer dependency)\n\t\t'react-dom' : 'react-dom' // Exclude React DOM from the bundle (useful if it's a peer dependency)\n\t},\n\tresolve: {\n\t\textensions: [\n\t\t\t'.tsx',\n\t\t\t'.ts',\n\t\t\t'.js'\n\t\t]\n\t}\n}",
+        "key": "8"
+    },
+    {
+        "title": "Build locally and test before prod-build & publish",
+        "key": "9",
+        "nestedSteps": [
+            {
+                "title": "Required script to build for dev mode",
+                "subText": "Make sure you've the following script in <code class=\"file\">package.json > scripts</code>",
+                "code": "\"build-dev\": \"npm run clean && webpack --mode development\"",
+                "key": "9.1"
+            },
+            {
+                "title": "Make sure you have updated entry point for your package",
+                "subText": "Based on above <code class=\"file\">webpack.config.js > output</code>, the path should be the following",
+                "code": "\"main\": \"dist/index.js\",\n\"module\": \"dist/index.js\"",
+                "key": "9.2"
+            },
+            {
+                "title": "Build the package for dev mode",
+                "subText": "Run the following command and it will create a build folder named <code class=\"file\">dist</code> at root",
+                "code": "npm run build-dev",
+                "key": "9.3"
+            },
+            {
+                "title": "Create a pack file locally",
+                "subText": "Run the following command and it will create a <code class=\"file\">*.tgz</code> file at the root",
+                "code": "npm pack",
+                "key": "9.4"
+            },
+            {
+                "title": "Try to install this local pack created and test if all good",
+                "subText": "Copy the absolute path of pack file created and run the following command to your other project where you want to install this package and test it out",
+                "code": "npm install <file_path_to_your_package>",
+                "key": "9.5"
+            },
+            {
+                "title": "Import and use in other project",
+                "subText": "Since we exported our components named we should do named imports",
+                "code": "import { ButtonWrapper } from <your_package_name>",
+                "key": "9.6"
+            }
+        ]
+    },
+    {
+        "title": "Now that we have tested out our package locally we should publish it",
+        "subText": "Please note version in <code class=\"file\">package.json</code>, every time you actually publish your package you should increase the version number",
+        "code": "npm publish",
+        "key": "10"
+    }
+]
