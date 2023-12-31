@@ -10,6 +10,7 @@
     border-radius: 4px;
     margin-bottom: 6px;
 }
+
 .list_item:not(.active):hover {
     background-color: #ddd;
 }
@@ -20,11 +21,13 @@
     display: flex;
     align-items: center;
 }
+
 .title_text {
     z-index: 1;
     background-color: #c2c2c2;
     padding: 4px 6px 4px 0;
 }
+
 .title_text_line {
     position: absolute;
     height: 1px;

@@ -30,7 +30,13 @@ module.exports = {
 			env: {
 				node: true
 			},
-			files         : ['.eslintrc.js', 'webpack.config.js', 'eslintConfigs/*', 'scripts/*'],
+			files: [
+				'.eslintrc.js', 
+				'webpack.config.js',
+				'eslintConfigs/**/*',
+				'customStylelint/**/*',
+				'scripts/*'
+			],
 			extends       : ['plugin:@typescript-eslint/disable-type-checked'],
 			parserOptions : {
 				sourceType: 'script'

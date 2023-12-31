@@ -52,7 +52,7 @@
     top: 2px;
 
     /* based on padding-left of timeline row */
-    left: -0px;
+    left: -0;
     display: inline-flex;
     width: 16px;
     height: 16px;
