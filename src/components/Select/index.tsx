@@ -13,7 +13,7 @@ const { useState } = React;
 
 function EmptyList (): React.JSX.Element {
 	return (
-		<div className={styles.list_option} data-is-child>
+		<div className={styles['list-option']} data-is-child>
 			No options found
 		</div>
 	);
@@ -71,7 +71,7 @@ function Select ({
 		<div
 			ref={containerRef} 
 			className={getCombinedClass(
-				styles.select_input_container,
+				styles['select-input-container'],
 				className,
 			)}
 			onKeyDown={onKeyDown}
@@ -83,9 +83,9 @@ function Select ({
 				placeholder={displayValue ?? placeholder}
 				readOnly
 				className={getCombinedClass(
-					'dummy_input',
-					styles.dummy_input,
-					{[styles.not_empty]: !isEmpty(selectedValue)}
+					'dummy-input',
+					styles['dummy-input'],
+					{[styles['not-empty']]: !isEmpty(selectedValue)}
 				)}
 				disabled={disabled}
 				onClick={toggleOptionList}
@@ -95,7 +95,7 @@ function Select ({
 				<button 
 					onClick={clearSelectInput}
 					onFocus={resetCurrentFocus}
-					className={styles.clear_icon}
+					className={styles['clear-icon']}
 				>
 					x
 				</button>
@@ -104,7 +104,7 @@ function Select ({
 			{/* todo: implement search */}
 			<input name={name} type="hidden" value={selectedValue} disabled={disabled} />
 
-			<ul ref={listRef} className={getCombinedClass(styles.list_options, { [styles.open]: isSelectOpen } )}>
+			<ul ref={listRef} className={getCombinedClass(styles['list-options'], { [styles.open]: isSelectOpen } )}>
 				{isSelectOpen && (
 					<>
 						{multiple && !isEmpty(selectedValue) && Array.isArray(selectedValue) &&
@@ -130,7 +130,7 @@ function Select ({
 											<li
 												key={option.value}
 												className={getCombinedClass(
-													styles.list_option,
+													styles['list-option'],
 													{ [styles.focused]: currentFocus === index }
 												)}
 												onClick={() => { onListClick(option); }}
@@ -148,7 +148,7 @@ function Select ({
 			</ul>
 
 			<div onClick={toggleOptionList} className={getCombinedClass(
-				styles.caret_button,
+				styles['caret-button'],
 				{ [styles.open]: isSelectOpen }
 			)} />
 		</div>

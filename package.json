@@ -20,6 +20,8 @@
     "start": "npx react-scripts start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "stylelint": "npx stylelint \"**/*.css\"",
+    "stylelint:fix": "npx stylelint \"**/*.css\" --fix",
     "eslint_file": "eslint"
   },
   "engines": {
@@ -50,6 +52,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "style-loader": "^3.3.3",
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "^36.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",

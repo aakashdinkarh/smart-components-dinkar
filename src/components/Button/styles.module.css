@@ -7,101 +7,128 @@
     font-weight: 500;
     color: #fff;
 }
-.button:not(:disabled,.outline):hover {
-    opacity: 0.8;
-}
+
 .xs {
-    font-size: var(--font-size-xs);
+    font-size: 0.625rem;
     padding: 2px 4px;
 }
+
 .sm {
-    font-size: var(--font-size-sm);
+    font-size: 0.875rem;
     padding: 4px 6px;
 }
+
 .md {
-    font-size: var(--font-size-md);
+    font-size: 1rem;
     padding: 6px 8px;
 }
+
 .lg {
-    font-size: var(--font-size-lg);
+    font-size: 1.5rem;
     padding: 8px 10px;
 }
+
 .xl {
-    font-size: var(--font-size-xl);
+    font-size: 2rem;
     padding: 10px 12px;
 }
 
 .primary {
-    background-color: var(--color-primary);
+    background-color: #297aff;
 }
+
 .secondary {
-    background-color: var(--color-secondary);
+    background-color: #393b42;
 }
+
 .tertiary {
-    background-color: var(--color-tertiary);
-    color: var(--color-black);
+    background-color: #dde1e7;
+    color: #000;
 }
+
 .success {
-    background-color: var(--color-success);
+    background-color: #41a14a;
 }
+
 .danger {
-    background-color: var(--color-danger);
+    background-color: #f54337;
 }
+
 .warn {
-    background-color: var(--color-warn);
+    background-color: #ffe320;
     color: #000;
 }
 
 .outline {
-    background-color: var(--color-white);
-    color: var(--color-black);
+    background-color: #fff;
+    color: #000;
 }
+
 .primary.outline {
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
+    border: 1px solid #297aff;
+    color: #297aff;
 }
+
 .secondary.outline {
-    border: 1px solid var(--color-secondary);
-    color: var(--color-secondary);
+    border: 1px solid #393b42;
+    color: #393b42;
 }
+
 .tertiary.outline {
-    border: 1px solid var(--color-tertiary);
-    color: var(--color-black);
+    border: 1px solid #dde1e7;
+    color: #000;
 }
+
 .success.outline {
-    border: 1px solid var(--color-success);
-    color: var(--color-success);
+    border: 1px solid #41a14a;
+    color: #41a14a;
 }
+
 .danger.outline {
-    border: 1px solid var(--color-danger);
-    color: var(--color-danger);
+    border: 1px solid #f54337;
+    color: #f54337;
 }
+
 .warn.outline {
-    border: 1px solid var(--color-warn);
-    color: var(--color-black);
+    border: 1px solid #f8efb2;
+    color: #000;
 }
 
 .button:disabled {
     border: none;
-    background-color: var(--bg-color-disabled);
-    color: var(--color-disabled);
+    background-color: #eeeeef;
+    color: #9d9d9d;
+}
+
+.button.outline:disabled {
+    border: 1px solid #9d9d9d;
+    background-color: #fff;
+}
+
+.button:not(:disabled,.outline):hover {
+    opacity: 0.8;
 }
 
 .outline.primary:not(:disabled):hover {
-    background-color: rgba(41, 123, 255, 0.10);
+    background-color: rgb(41 123 255 / 10%);
 }
+
 .outline.secondary:not(:disabled):hover {
-    background-color: rgba(57, 59, 66, 0.10);
+    background-color: rgb(57 59 66 / 10%);
 }
+
 .outline.tertiary:not(:disabled):hover {
-    background-color: rgba(221, 225, 231, 0.30);
+    background-color: rgb(221 225 231 / 30%);
 }
+
 .outline.success:not(:disabled):hover {
-    background-color: rgba(65, 161, 75, 0.10);
+    background-color: rgb(65 161 75 / 10%);
 }
+
 .outline.danger:not(:disabled):hover {
-    background-color: rgba(245, 68, 55, 0.10);
+    background-color: rgb(245 68 55 / 10%);
 }
+
 .outline.warn:not(:disabled):hover {
-    background-color: rgba(255, 225, 32, 0.10);
+    background-color: rgb(255 225 32 / 10%);
 }

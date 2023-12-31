@@ -10,16 +10,15 @@
     --color-warn: #ffe320;
     --color-black: #000;
     --color-white: #fff;
-
     --bg-color-disabled: #eeeeef;
     --color-disabled: #9d9d9d;
-
     --font-size-xs: 0.625rem;
     --font-size-sm: 0.875rem;
     --font-size-md: 1rem;
     --font-size-lg: 1.5rem;
     --font-size-xl: 2rem;
 }
+
 /* 
 32px  -->  2rem
 31px  -->  1.9375rem
@@ -70,11 +69,11 @@ a {
     color: initial;
 }
 
-.app_container {
+.app-container {
     display: flex;
 }
 
-.side_menu {
+.side-menu {
     height: 100vh;
     width: min(25%, 320px);
     min-width: 20%;

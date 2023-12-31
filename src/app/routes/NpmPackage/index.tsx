@@ -16,7 +16,7 @@ interface tutorialStep {
 
 function InstructionWrapper({ title, subText, code, nestedSteps }: tutorialStep){
 	return (
-		<div className={getCombinedClass(styles.instruction_wrapper)} >
+		<div className={getCombinedClass(styles['instruction-wrapper'])} >
 			<h3 dangerouslySetInnerHTML={{ __html: title }} />
 
 			{subText != null ? (

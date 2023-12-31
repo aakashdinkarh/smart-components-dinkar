@@ -30,15 +30,15 @@ export function SelectedOptions ({
 	}
 
 	return (
-		<div className={styles.list_option} data-is-child>
+		<div className={styles['list-option']} data-is-child>
 			{options
 				.filter((option) => selectedValue.includes(option.value))
 				.map((option) => (
-					<div key={option.value} className={styles.selected_option} data-is-child>
+					<div key={option.value} className={styles['selected-option']} data-is-child>
 						{option.label}
 						<button
 							onClick={() => { removeOption(option.value); }}
-							className={styles.clear_icon}
+							className={styles['clear-icon']}
 							onFocus={resetCurrentFocus}
 							data-is-child
 						>
