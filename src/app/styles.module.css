@@ -69,11 +69,11 @@ a {
     color: initial;
 }
 
-.app_container {
+.app-container {
     display: flex;
 }
 
-.side_menu {
+.side-menu {
     height: 100vh;
     width: min(25%, 320px);
     min-width: 20%;

@@ -65,7 +65,7 @@ function SegmentedTabs ({
 
 	return (
 		<div className="segmented_tabs_container">
-			<div className={getCombinedClass(styles.tabs_container, 'tabs_container')}>
+			<div className={getCombinedClass(styles['tabs-container'], 'tabs-container')}>
 				<div
 					ref={(v) => { tabsRef.current.slider = v; }} 
 					className={getCombinedClass(styles.slider, 'slider')}

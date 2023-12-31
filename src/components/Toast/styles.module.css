@@ -20,7 +20,7 @@
     background-color: #ffff6c;
 }
 
-.timer_strip {
+.timer-strip {
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -35,7 +35,7 @@
     to { width: 0%; }
 }
 
-.close_icon {
+.close-icon {
     background-color: transparent;
     padding: 4px;
     border: none;
@@ -43,11 +43,11 @@
     font-weight: 600;
 }
 
-.toast.top, .toast.top_left, .toast.top_right {
+.toast.top, .toast.top-left, .toast.top-right {
     margin-bottom: 10px;
 }
 
-.toast.bottom, .toast.bottom_left, .toast.bottom_right {
+.toast.bottom, .toast.bottom-left, .toast.bottom-right {
     margin-top: 10px;
 }
 
@@ -56,11 +56,11 @@
     animation: height-animate 1s forwards;
 }
 
-.toast.bottom_right, .toast.top_right {
+.toast.bottom-right, .toast.top-right {
     animation: slide-from-right 1s forwards;
 }
 
-.toast.bottom_left, .toast.top_left {
+.toast.bottom-left, .toast.top-left {
     animation: slide-from-left 1s forwards;
 }
 
@@ -82,38 +82,38 @@
 /* Animate incoming and outgoing toast -- end */
 
 /* Positioning the toast container -- start */
-.toast_container {
+.toast-container {
     position: fixed;
 }
 
-.toast_container.top {
+.toast-container.top {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.toast_container.bottom {
+.toast-container.bottom {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.toast_container.top_left {
+.toast-container.top-left {
     top: 10px;
     left: 10px;
 }
 
-.toast_container.top_right {
+.toast-container.top-right {
     top: 10px;
     right: 10px;
 }
 
-.toast_container.bottom_left {
+.toast-container.bottom-left {
     bottom: 10px;
     left: 10px;
 }
 
-.toast_container.bottom_right {
+.toast-container.bottom-right {
     bottom: 10px;
     right: 10px;
 }

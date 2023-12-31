@@ -37,27 +37,27 @@ export function SideBar(){
 	const location = useLocation();
 
 	return (
-		<ul className={styles.list_container}>
-			<li className={styles.category_title}>
-				<span className={styles.title_text} >Tutorials</span>
-				<div className={styles.title_text_line} />
+		<ul className={styles['list-container']}>
+			<li className={styles['category-title']}>
+				<span className={styles['title-text']}>Tutorials</span>
+				<div className={styles['title-text-line']} />
 			</li>
 
 			{sideBarItems.tutorials.map((item) => (
-				<li key={item.path} className={getCombinedClass(styles.list_item, {
+				<li key={item.path} className={getCombinedClass(styles['list-item'], {
 					[styles.active]: item.path === location.pathname
 				})} >
 					<Link className={styles.link} to={item.path}>{item.label}</Link>
 				</li>
 			))}
 
-			<li className={styles.category_title}>
-				<span className={styles.title_text} >Components</span>
-				<div className={styles.title_text_line} />
+			<li className={styles['category-title']}>
+				<span className={styles['title-text']}>Components</span>
+				<div className={styles['title-text-line']} />
 			</li>
 
 			{sideBarItems.components.map((item) => (
-				<li key={item.path} className={getCombinedClass(styles.list_item, {
+				<li key={item.path} className={getCombinedClass(styles['list-item'], {
 					[styles.active]: item.path === location.pathname
 				})} >
 					<Link className={styles.link} to={item.path}>{item.label}</Link>

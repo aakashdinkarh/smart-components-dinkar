@@ -1,28 +1,66 @@
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
-
+/**
+ * Interface defining the possible options for the toast function.
+ */
 interface OptionsProps {
+	/**
+	 * The duration (in seconds) for which the toast will be visible before automatically closing.
+	 */
 	closeAfter: number;
-	placement: string;
+	/**
+	 * The placement of the toast on the screen. It can be one of the following values:
+	 * - 'top'
+	 * - 'left'
+	 * - 'bottom'
+	 * - 'right'
+	 * - 'top-left'
+	 * - 'top-right'
+	 * - 'bottom-left'
+	 * - 'bottom-right'
+	 */
+	placement: 'top' | 'left' | 'bottom' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 	toastContainer: {
+		/**
+		 * Additional CSS class for styling the toast container.
+		 */
 		toastContainerClass?: string;
 	};
 	timerStrip: {
+		/**
+		 * Whether to show the timer strip.
+		 */
 		showTimerStrip?: boolean;
+		/**
+		 * Additional CSS class for styling the timer strip.
+		 */
 		timerStripClass?: string;
 	};
 	toastDiv: {
+		/**
+		 * Additional CSS class for styling the toast div.
+		 */
 		toastDivClass?: string;
 	};
 	closeButton: {
+		/**
+		 * Whether to show the close icon.
+		 */
 		showCloseIcon?: boolean;
+		/**
+		 * Additional CSS class for styling the close button.
+		 */
 		closeButtonClass?: string;
 	};
 }
 
 const uniqueId = 'e47a13d6-4bd5-11ee-be56-0242ac120002';
-
+/**
+ * Display a toast message with optional configuration options.
+ * @param message - The message to be displayed in the toast.
+ * @param options - Optional configuration options for the toast.
+ */
 function toast (message = '', options?: Partial<OptionsProps>): void {
 	const {
 		closeAfter = 5,
@@ -37,18 +75,18 @@ function toast (message = '', options?: Partial<OptionsProps>): void {
 
 	if (toastContainer == null) {
 		toastContainer = document.createElement('div');
-		toastContainer.className = getCombinedClass(styles.toast_container, styles[placement], toastContainerClass);
+		toastContainer.className = getCombinedClass(styles['toast-container'], styles[placement], toastContainerClass);
 		toastContainer.id = uniqueId;
 	}
 
 	const timerStrip: string = showTimerStrip
 		? ` <span class="${
-			getCombinedClass(styles.timer_strip, timerStripClass)
+			getCombinedClass(styles['timer-strip'], timerStripClass)
 		}" style="animation-duration: ${closeAfter}s" ></span>`
 		: '';
 
 	const closeButton: string = showCloseIcon
-		? ` <button class="${getCombinedClass(styles.close_icon, closeButtonClass)}">x</button>`
+		? ` <button class="${getCombinedClass(styles['close-icon'], closeButtonClass)}">x</button>`
 		: '';
 
 	const toastDiv: HTMLDivElement = document.createElement('div');
@@ -74,9 +112,9 @@ function toast (message = '', options?: Partial<OptionsProps>): void {
 		}
 	})
 
-	if (['top', 'top_left', 'top_right'].includes(placement)) {
+	if (['top', 'top-left', 'top-right'].includes(placement)) {
 		toastContainer.append(toastDiv);
-	} else if (['bottom', 'bottom_left', 'bottom_right'].includes(placement)) {
+	} else if (['bottom', 'bottom-left', 'bottom-right'].includes(placement)) {
 		toastContainer.prepend(toastDiv);
 	}
 

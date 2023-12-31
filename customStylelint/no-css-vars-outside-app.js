@@ -52,5 +52,5 @@ module.exports = stylelint.createPlugin(ruleName, (enabled) => {
 module.exports.ruleName = ruleName;
 module.exports.messages = messages;
 module.exports.meta = {
-	fixable: true
+	fixable: 'code'
 }

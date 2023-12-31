@@ -1,20 +1,20 @@
-.instruction_wrapper {
+.instruction-wrapper {
     position: relative;
     min-height: 32px;
     margin-top: 32px;
     padding-left: 40px;
 }
 
-.instruction_wrapper :global(.code_container) {
+.instruction-wrapper :global(.code-container) {
     background-color: var(--color-tertiary);
 }
 
-.instruction_wrapper > * > code:global(.file) {
+.instruction-wrapper > * > code:global(.file) {
     color: red;
     font-weight: 600;
 }
 
-.instruction_wrapper > * > code:global(.package) {
+.instruction-wrapper > * > code:global(.package) {
     background-color: #ebeceb;
     border-radius: 4px;
     padding: 1px 4px;
@@ -22,17 +22,17 @@
     font-weight: 400;
 }
 
-.instruction_wrapper h3 {
+.instruction-wrapper h3 {
     margin: 8px 0;
 }
 
-.instruction_wrapper p {
+.instruction-wrapper p {
     margin: 8px 0;
 }
 
 /* timeline */
 
-.instruction_wrapper:not(:last-of-type)::before {
+.instruction-wrapper:not(:last-of-type)::before {
     position: absolute;
     top: 27px;
 
@@ -47,7 +47,7 @@
 }
 
 
-.instruction_wrapper::after {
+.instruction-wrapper::after {
     position: absolute;
     top: 2px;
 

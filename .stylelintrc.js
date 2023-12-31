@@ -4,8 +4,7 @@ module.exports = {
     plugins: [noCssVarsOutsideApp],
     "extends": ["stylelint-config-standard"],
     "rules": {
-        "selector-class-pattern": null,
-        "custom/no-css-vars-outside-app": true,
+        [noCssVarsOutsideApp.ruleName]: true,
         "selector-pseudo-class-no-unknown": [
             true,
             {

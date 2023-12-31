@@ -8,8 +8,8 @@ import styles from './styles.module.css';
 
 export function App() {
 	return (
-		<main className={styles.app_container}>
-			<section className={styles.side_menu}  >
+		<main className={styles['app-container']}>
+			<section className={styles['side-menu']}>
 				<SideBar />
 			</section>
 			<section className={styles.content} >

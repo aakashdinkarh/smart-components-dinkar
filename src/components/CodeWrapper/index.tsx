@@ -12,8 +12,8 @@ export function CodeWrapper({ children } : { children: any; }){
 	}
 
 	return (
-        <div className={getCombinedClass(styles.code_container, 'code_container')}>
-            <CopyIcon width={20} height={20} onClick={handleCopy} className={styles.copy_button} />
+        <div className={getCombinedClass(styles['code-container'], 'code-container')}>
+            <CopyIcon width={20} height={20} onClick={handleCopy} className={styles['copy-button']} />
             <pre>
                 <code>
                     {children}
