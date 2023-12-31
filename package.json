@@ -20,9 +20,9 @@
     "start": "npx react-scripts start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "eslint_file": "eslint",
     "stylelint": "npx stylelint \"**/*.css\"",
-    "stylelint:fix": "npx stylelint \"**/*.css\" --fix",
-    "eslint_file": "eslint"
+    "stylelint:fix": "npx stylelint \"**/*.css\" --fix"
   },
   "engines": {
     "node": ">=16.0.0"
