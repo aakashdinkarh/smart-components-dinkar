@@ -5,14 +5,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { App } from './app/App';
 import { nestedRoutes } from './app/routes/routesConfig';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+	[
+		{
+			path         : '/',
+			element      : <App />,
+			errorElement : <h4>Error</h4>,
+			children     : nestedRoutes
+		}
+	],
 	{
-		path         : '/',
-		element      : <App />,
-		errorElement : <h4>Error</h4>,
-		children     : nestedRoutes
-	},
-])
+		basename: process.env.PUBLIC_URL,
+	}
+);
 
 
 const root = createRoot(document.getElementById('root') as Element);

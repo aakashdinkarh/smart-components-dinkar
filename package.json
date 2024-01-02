@@ -15,9 +15,10 @@
   "license": "ISC",
   "scripts": {
     "clean": "node scripts/clean-dist.js",
-    "build-dev": "npm run clean && webpack --mode development",
-    "build-prod": "npm run clean && webpack --mode production",
+    "build-lib-dev": "npm run clean && webpack --mode development",
+    "build-lib-prod": "npm run clean && webpack --mode production",
     "start": "npx react-scripts start",
+    "build-web": "BUILD_TARGET=react-app node scripts/build-app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "eslint_file": "eslint",
