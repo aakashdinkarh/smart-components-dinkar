@@ -18,15 +18,12 @@
     "build-lib-dev": "npm run clean && webpack --mode development",
     "build-lib-prod": "npm run clean && webpack --mode production",
     "start": "npx react-scripts start",
-    "build-app": "BUILD_TARGET=react-app node scripts/build-app.js",
+    "build-app": "npx react-scripts build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "eslint_file": "eslint",
     "stylelint": "npx stylelint \"**/*.css\"",
     "stylelint:fix": "npx stylelint \"**/*.css\" --fix"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.2.0",
