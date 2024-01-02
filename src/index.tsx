@@ -13,10 +13,7 @@ const router = createBrowserRouter(
 			errorElement : <h4>Error</h4>,
 			children     : nestedRoutes
 		}
-	],
-	{
-		basename: process.env.PUBLIC_URL,
-	}
+	]
 );
 
 
