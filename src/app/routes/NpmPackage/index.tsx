@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { CodeWrapper } from '../../../exports'
+import { CodeWrapper, Select } from '../../../exports'
 import { getCombinedClass } from "../../../utils/getCombinedClass";
 import { highlightCode } from '../../helpers/highlightCode';
 
@@ -36,8 +36,23 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 	)
 }
 
+const themeOptions = [
+	{ label: "Atom one dark", value: "atom-one-dark" },
+	{ label: "Base16 darcula min", value: "base16-darcula-min" },
+	{ label: "Base16 hardcore min", value: "base16-hardcore-min" },
+];
+
+function StickyWrapper({ children }){
+	return (
+		<div className='sticky border-b bg-white z1 width-full-section' style={{ top: '-1rem' }} >
+			{children}
+		</div>
+	);
+}
+
 export function NpmPackagePage(){
 	const [isCodeHighlighted, setIsCodeHighlighted] = useState(false);
+	const [codeStyleTheme, setCodeStyleTheme] = useState(themeOptions[0].value);
 
 	useEffect(() => {
 		highlightCode()
@@ -46,11 +61,27 @@ export function NpmPackagePage(){
 	}, [])
 
 	return <main>
-		<h1>NPM Package Tutorial</h1>
+		<StickyWrapper>
+			<div className='flex align-items-center justify-content-between' >
+				<h1>NPM Package Tutorial</h1>
+
+				
+				<label className='flex align-items-center' >
+				Code Theme: &nbsp;
+				<Select
+					options={themeOptions}
+					value={codeStyleTheme}
+					onChange={setCodeStyleTheme}
+				/>
+				</label>
+			</div>
+		</StickyWrapper>
+
 		{tutorialSteps.map(
 			(step: tutorialStep) => (
 				<InstructionWrapper isCodeHighlighted={isCodeHighlighted} {...step} />
 			)
 		)}
+		<link rel='stylesheet' href={`/codeHighlighterThemes/${codeStyleTheme}.css`}></link>
 	</main>
 }

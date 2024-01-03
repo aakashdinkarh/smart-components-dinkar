@@ -1,3 +1,12 @@
+/* position utils */
+
+.sticky {
+    position: sticky;
+}
+
+
+/* font-size utils */
+
 .text-xs {
     font-size: var(--font-size-xs);
 }
@@ -18,6 +27,9 @@
     font-size: var(--font-size-xl);
 }
 
+
+/* flex-utils */
+
 .flex {
     display: flex;
 }
@@ -26,11 +38,47 @@
     flex-direction: column;
 }
 
-.align-flex-start {
+.align-items-start {
     align-items: flex-start;
 }
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+
+/* margin utils */
 
 .my-1{
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+}
+
+
+/* bg utils */
+
+.bg-white {
+    background-color: var(--color-white);
+}
+
+
+/* border utils */
+
+.border-b {
+    border-bottom: 1px solid var(--color-secondary);
+}
+
+/* z-index utils */
+.z1 {
+    z-index: 1;
+}
+
+/* width utils */
+.width-full-section {
+    margin: 0 -16px;
+    padding: 0 16px;
 }

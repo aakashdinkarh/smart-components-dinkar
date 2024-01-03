@@ -8,7 +8,6 @@ export async function highlightCode(){
 			(hljs.highlightAll as () => void)();
 			return true;
 		}
-
 	} catch (err) {
 		console.error(err);
 	}
