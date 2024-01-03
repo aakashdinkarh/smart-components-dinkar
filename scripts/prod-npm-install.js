@@ -14,9 +14,6 @@ async function handleBuildApp ({ newPackageJson, packageJson }) {
 		console.error('stderr:', stderr);
 	} catch(err) {
 		console.error('Something went wrong', err)
-	} finally {
-		await fs.writeFile('package.json', JSON.stringify(packageJson, null, 2));
-		console.log(`Removed ${packageJson['website-prod-dependencies'].join(', ')} from dependencies.`);
 	}
 }
 
