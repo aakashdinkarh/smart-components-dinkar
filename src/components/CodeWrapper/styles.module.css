@@ -1,6 +1,11 @@
 .code-container {
     position: relative;
     min-height: 28px;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+.code-container:not(.code-highlighted){
     padding: 4px;
 }
 

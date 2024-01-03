@@ -1,4 +1,5 @@
 import './app.css';
+import './codeHighlighterThemes/atom-one-dark.css';
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
