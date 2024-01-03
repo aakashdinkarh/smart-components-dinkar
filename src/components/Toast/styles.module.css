@@ -84,6 +84,7 @@
 /* Positioning the toast container -- start */
 .toast-container {
     position: fixed;
+    z-index: 99999;
 }
 
 .toast-container.top {
