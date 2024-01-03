@@ -8,7 +8,7 @@ async function handleBuildApp ({ newPackageJson, packageJson }) {
 		await fs.writeFile('package.json', JSON.stringify(newPackageJson, null, 2));
 		console.log(`Added ${packageJson['website-prod-dependencies'].join(', ')} to dependencies.`);
 		
-		const { stdout, stderr } = await exec('npx react-scripts build');
+		const { stdout, stderr } = await exec('npm install --only=production');
 
 		console.log('stdout:', stdout);
 		console.error('stderr:', stderr);
@@ -32,7 +32,7 @@ if (process.env.BUILD_TARGET === 'react-app') {
 		newPackageJson.dependencies = {
 			...newPackageJson.dependencies || {},
 		};
-	
+
 		websiteProdDependencies.forEach((packageName) => {
 			newPackageJson.dependencies[packageName] = newPackageJson.devDependencies[packageName];
 		});
