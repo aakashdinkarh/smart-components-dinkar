@@ -3,6 +3,7 @@ import React from 'react';
 import { ButtonPage } from './Button'
 import { HomePage } from './Home';
 import { NpmPackagePage } from './NpmPackage';
+import { OthersPage } from './Others';
 import { SegmentedTabsPage } from './SegmentedTabs';
 import { SelectPage } from "./Select"
 import { ToastPage } from './Toast';
@@ -14,9 +15,10 @@ export const routes = {
 	segmentedTabs : '/component/segmented-tabs',
 	toast         : '/component/toast',
 	button        : '/component/button',
+	others        : '/component/others',
 };
 
-export const sideBarItems  = {
+export const sideBarItems = {
 	tutorials: [
 		{
 			path  : routes.npmPackage,
@@ -40,6 +42,10 @@ export const sideBarItems  = {
 			path  : routes.button,
 			label : 'Button',
 		},
+		{
+			path  : routes.others,
+			label : 'Others',
+		}
 	]
 }
 
@@ -69,4 +75,8 @@ export const nestedRoutes = [
 		path    : routes.button,
 		element : <ButtonPage />,
 	},
+	{
+		path    : routes.others,
+		element : <OthersPage />
+	}
 ]

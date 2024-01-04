@@ -1,0 +1,110 @@
+/* stylelint-disable custom/no-css-vars-outside-app */
+
+.container {
+	overflow: hidden;
+	border-radius: 4px;
+	transform: translate(0%, 0%);
+	width: fit-content;
+
+	--border-width: 4px;
+}
+
+.container.border-position-outset {
+	padding: var(--border-width);
+}
+
+.container > .internal-span {
+	position: absolute;
+}
+
+.container .internal-span:nth-child(1) {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--border-width);
+	background:
+		linear-gradient(to left,
+			rgb(43 8 8 / 0%),
+			var(--border-color));
+	transform: translateX(100%);
+	animation: animate-top linear infinite;
+}
+
+.container .internal-span:nth-child(2) {
+	top: 0;
+	right: 0;
+	width: var(--border-width);
+	height: 100%;
+	background:
+		linear-gradient(to top,
+			rgb(43 8 8 / 0%),
+			var(--border-color));
+	transform: translateY(100%);
+	animation: animate-right linear infinite;
+}
+
+.container .internal-span:nth-child(3) {
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: var(--border-width);
+	background:
+		linear-gradient(to right,
+			rgb(43 8 8 / 0%),
+			var(--border-color));
+	transform: translateX(-100%);
+	animation: animate-bottom linear infinite;
+}
+
+.container .internal-span:nth-child(4) {
+	top: 0;
+	left: 0;
+	width: var(--border-width);
+	height: 100%;
+	background:
+		linear-gradient(to bottom,
+			rgb(43 8 8 / 0%),
+			var(--border-color));
+	transform: translateY(-100%);
+	animation: animate-left linear infinite;
+}
+
+@keyframes animate-left {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+@keyframes animate-top {
+	0% {
+		transform: translateX(100%);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes animate-bottom {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes animate-right {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(-100%);
+	}
+}
