@@ -40,6 +40,7 @@ const themeOptions = [
 	{ label: "Atom one dark", value: "atom-one-dark" },
 	{ label: "Base16 darcula min", value: "base16-darcula-min" },
 	{ label: "Base16 hardcore min", value: "base16-hardcore-min" },
+	{ label: "Base16 material min", value: "base16-material-min" },
 ];
 
 function StickyWrapper({ children }){
@@ -66,14 +67,14 @@ export function NpmPackagePage(){
 				<h1>NPM Package Tutorial</h1>
 
 				
-				<label className='flex align-items-center' >
+				<div className='flex align-items-center' >
 				Code Theme: &nbsp;
 				<Select
 					options={themeOptions}
 					value={codeStyleTheme}
 					onChange={setCodeStyleTheme}
 				/>
-				</label>
+				</div>
 			</div>
 		</StickyWrapper>
 

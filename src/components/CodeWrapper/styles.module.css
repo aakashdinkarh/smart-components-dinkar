@@ -4,6 +4,7 @@
     border-radius: 4px;
     overflow: auto;
     tab-size: 4;
+    font-size: var(--font-size-sm);
 }
 
 .code-container:not(.code-highlighted){
