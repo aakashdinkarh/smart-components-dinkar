@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ButtonPage } from './Button'
-import { Home } from './Home';
+import { HomePage } from './Home';
 import { NpmPackagePage } from './NpmPackage';
 import { SegmentedTabsPage } from './SegmentedTabs';
 import { SelectPage } from "./Select"
@@ -14,12 +14,40 @@ export const routes = {
 	segmentedTabs : '/component/segmented-tabs',
 	toast         : '/component/toast',
 	button        : '/component/button',
+};
+
+export const sideBarItems  = {
+	tutorials: [
+		{
+			path  : routes.npmPackage,
+			label : 'NPM Package',
+		},
+	],
+	components: [
+		{
+			path  : routes.select,
+			label : 'Select',
+		},
+		{
+			path  : routes.segmentedTabs,
+			label : 'Segmented Tabs',
+		},
+		{
+			path  : routes.toast,
+			label : 'Toast',
+		},
+		{
+			path  : routes.button,
+			label : 'Button',
+		},
+	]
 }
+
 
 export const nestedRoutes = [
 	{
 		path    : routes.home,
-		element : <Home />,
+		element : <HomePage />,
 	},
 	{
 		path    : routes.npmPackage,

@@ -2,42 +2,16 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
-import { routes } from '../routes/routesConfig';
+import { sideBarItems } from '../routes/routesConfig';
 
 import styles from './styles.module.css';
-
-const sideBarItems = {
-	tutorials: [
-		{
-			path  : routes.npmPackage,
-			label : 'NPM Package',
-		},
-	],
-	components: [
-		{
-			path  : routes.select,
-			label : 'Select',
-		},
-		{
-			path  : routes.segmentedTabs,
-			label : 'Segmented Tabs',
-		},
-		{
-			path  : routes.toast,
-			label : 'Toast',
-		},
-		{
-			path  : routes.button,
-			label : 'Button',
-		},
-	]
-}
 
 export function SideBar(){
 	const location = useLocation();
 
 	return (
 		<ul className={styles['list-container']}>
+			{/* todo: remove repetitive code */}
 			<li className={styles['category-title']}>
 				<span className={styles['title-text']}>Tutorials</span>
 				<div className={styles['title-text-line']} />
