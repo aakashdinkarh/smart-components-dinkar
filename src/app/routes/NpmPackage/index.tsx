@@ -41,6 +41,7 @@ const themeOptions = [
 	{ label: "Base16 darcula min", value: "base16-darcula-min" },
 	{ label: "Base16 hardcore min", value: "base16-hardcore-min" },
 	{ label: "Base16 material min", value: "base16-material-min" },
+	{ label: "Github dark min", value: "github-dark-min" },
 ];
 
 function StickyWrapper({ children }){
