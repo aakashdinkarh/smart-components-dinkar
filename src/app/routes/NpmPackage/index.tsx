@@ -16,6 +16,15 @@ interface tutorialStep {
 	isCodeHighlighted?: boolean;
 }
 
+const THEME_OPTIONS = [
+	{ label: "Github dark", value: "github-dark-min" },
+	{ label: "Darcula", value: "base16-darcula-min" },
+	{ label: "Sublime", value: "monokai-sublime-min" },
+	{ label: "Atom one dark", value: "atom-one-dark" },
+	{ label: "Hardcore", value: "base16-hardcore-min" },
+	{ label: "Material", value: "base16-material-min" },
+];
+
 function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlighted = false }: tutorialStep){
 	return (
 		<div className={getCombinedClass(styles['instruction-wrapper'])} >
@@ -36,15 +45,6 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 	)
 }
 
-const themeOptions = [
-	{ label: "Github dark", value: "github-dark-min" },
-	{ label: "Darcula", value: "base16-darcula-min" },
-	{ label: "Sublime", value: "monokai-sublime-min" },
-	{ label: "Atom one dark", value: "atom-one-dark" },
-	{ label: "Hardcore", value: "base16-hardcore-min" },
-	{ label: "Material", value: "base16-material-min" },
-];
-
 function StickyWrapper({ children }){
 	return (
 		<div className='sticky border-b bg-white z1 width-full-section' style={{ top: '-1rem' }} >
@@ -55,7 +55,7 @@ function StickyWrapper({ children }){
 
 export function NpmPackagePage(){
 	const [isCodeHighlighted, setIsCodeHighlighted] = useState(false);
-	const [codeStyleTheme, setCodeStyleTheme] = useState(themeOptions[0].value);
+	const [codeStyleTheme, setCodeStyleTheme] = useState(THEME_OPTIONS[0].value);
 
 	useEffect(() => {
 		highlightCode()
@@ -72,7 +72,7 @@ export function NpmPackagePage(){
 				<div className='flex align-items-center' >
 				Code Theme: &nbsp;
 				<Select
-					options={themeOptions}
+					options={THEME_OPTIONS}
 					value={codeStyleTheme}
 					onChange={setCodeStyleTheme}
 				/>
