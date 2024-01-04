@@ -38,10 +38,11 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 
 const themeOptions = [
 	{ label: "Atom one dark", value: "atom-one-dark" },
-	{ label: "Base16 darcula min", value: "base16-darcula-min" },
-	{ label: "Base16 hardcore min", value: "base16-hardcore-min" },
-	{ label: "Base16 material min", value: "base16-material-min" },
-	{ label: "Github dark min", value: "github-dark-min" },
+	{ label: "Darcula", value: "base16-darcula-min" },
+	{ label: "Hardcore", value: "base16-hardcore-min" },
+	{ label: "Material", value: "base16-material-min" },
+	{ label: "Github dark", value: "github-dark-min" },
+	{ label: "Sublime", value: " monokai-sublime-min" },
 ];
 
 function StickyWrapper({ children }){
