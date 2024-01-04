@@ -37,12 +37,12 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 }
 
 const themeOptions = [
-	{ label: "Atom one dark", value: "atom-one-dark" },
+	{ label: "Github dark", value: "github-dark-min" },
 	{ label: "Darcula", value: "base16-darcula-min" },
+	{ label: "Sublime", value: "monokai-sublime-min" },
+	{ label: "Atom one dark", value: "atom-one-dark" },
 	{ label: "Hardcore", value: "base16-hardcore-min" },
 	{ label: "Material", value: "base16-material-min" },
-	{ label: "Github dark", value: "github-dark-min" },
-	{ label: "Sublime", value: " monokai-sublime-min" },
 ];
 
 function StickyWrapper({ children }){
