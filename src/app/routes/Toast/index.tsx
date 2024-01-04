@@ -4,7 +4,7 @@ import { Button, toast } from "../../../exports";
 
 export function ToastPage() {
 	return (
-        <div className="flex flex-col align-flex-start" >
+        <div className="flex flex-col align-items-start" >
             <Button
                 className="my-1"
                 themeType="primary"

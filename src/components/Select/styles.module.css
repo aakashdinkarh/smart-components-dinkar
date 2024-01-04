@@ -5,6 +5,7 @@
 
 .select-input-container {
 	position: relative;
+	height: min-content;
 }
 
 .caret-button {

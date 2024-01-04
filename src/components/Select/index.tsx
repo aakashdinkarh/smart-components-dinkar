@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
@@ -40,6 +40,14 @@ function Select ({
 	const [visibleOptions, setVisibleOptions] = useState<Option[]>(
 		getVisibleOptions({ selectedValue, options, multiple })
 	);
+
+	useEffect(() => {
+		setSelectedValue(getDefaultValue({ value, options, multiple }));
+	}, [options, multiple, value]);
+
+	useEffect(() => {
+		setVisibleOptions(getVisibleOptions({ selectedValue, options, multiple }));
+	}, [options, multiple, value]);
 
 	const displayValue: string | undefined = getDisplayValue({ selectedValue, options, multiple });
 	
