@@ -47,7 +47,7 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 
 function StickyWrapper({ children }){
 	return (
-		<div className='sticky border-b bg-white z1 width-full-section' style={{ top: '-1rem' }} >
+		<div className='sticky border-b bg-white z1 width-full-section' style={{ top: 0 }} >
 			{children}
 		</div>
 	);

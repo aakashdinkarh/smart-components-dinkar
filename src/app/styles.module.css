@@ -84,8 +84,12 @@ a {
 }
 
 .content {
-    padding: 10px 16px;
+    padding: 0 16px 16px;
     height: 100vh;
     overflow: auto;
     flex: 1;
+
+    /* todo: think about this linear gradient background */
+    
+    /* background: linear-gradient(0deg, #9debffa6, transparent); */
 }
