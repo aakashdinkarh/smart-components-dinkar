@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { Loader } from '../../../exports';
+import { StickyHeader } from '../../common/StickyHeader';
 
 export function LoaderPage(){
 	return (
-		<>
+		<main>
+			<StickyHeader heading='Loader' />
+
 			<h3>Loader 1</h3>
 			<Loader variant="spin" />
 
@@ -22,6 +25,6 @@ export function LoaderPage(){
 
 			<h3>Loader 4</h3>
 			<Loader variant="dots-fade" />
-		</>
+		</main>
 	)
 }

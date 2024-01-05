@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { CodeWrapper, Select, Loader } from '../../../exports';
 import { getCombinedClass } from '../../../utils/getCombinedClass';
+import { StickyHeader } from '../../common/StickyHeader';
 import { highlightCode } from '../../helpers/highlightCode';
 
 import styles from './styles.module.css';
@@ -41,14 +42,6 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 	);
 }
 
-function StickyWrapper({ children }) {
-	return (
-		<div className='sticky border-b bg-white z1 width-full-section' style={{ top: 0 }}>
-			{children}
-		</div>
-	);
-}
-
 export function NpmPackagePage() {
 	const [isCodeHighlighted, setIsCodeHighlighted] = useState<boolean | null>(null);
 	const [codeStyleTheme, setCodeStyleTheme] = useState(THEME_OPTIONS[0].value);
@@ -61,16 +54,12 @@ export function NpmPackagePage() {
 
 	return (
 		<main>
-			<StickyWrapper>
-				<div className='flex align-items-center justify-content-between'>
-					<h1>NPM Package Tutorial</h1>
-
-					<div className='flex align-items-center'>
-						Code Theme: &nbsp;
-						<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
-					</div>
+			<StickyHeader heading='NPM Package Tutorial' className='justify-space-between'>
+				<div className='flex align-items-center'>
+					Code Theme: &nbsp;
+					<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
 				</div>
-			</StickyWrapper>
+			</StickyHeader>
 
 			<p>
 				In this tutorial we will learn to create a simple basic react library, which will provide simple basic
@@ -78,12 +67,16 @@ export function NpmPackagePage() {
 			</p>
 
 			{isCodeHighlighted == null ? (
-				<Loader variant="spin" color="#ff5733" size="40px" />
-			) : (
-				tutorialSteps.map((step: tutorialStep) => (
-					<InstructionWrapper isCodeHighlighted={isCodeHighlighted} {...step} />
-				))
-			)}
+				<div className='flex-center'>
+					<Loader variant='spin' color='#ff5733' size='40px' />
+				</div>
+			) : null}
+
+			<div style={{ display: isCodeHighlighted == null ? 'none' : 'block' }}>
+				{tutorialSteps.map((step: tutorialStep) => (
+					<InstructionWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} {...step} />
+				))}
+			</div>
 
 			<link rel='stylesheet' href={`/codeHighlighterThemes/${codeStyleTheme}.css`}></link>
 		</main>

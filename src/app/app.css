@@ -2,6 +2,7 @@
 
 .sticky {
     position: sticky;
+    top: 0;
 }
 
 
@@ -52,7 +53,7 @@
     align-items: center;
 }
 
-.justify-content-between {
+.justify-space-between {
     justify-content: space-between;
 }
 
@@ -64,6 +65,9 @@
     margin-bottom: 0.25rem;
 }
 
+.mb-4 {
+    margin-bottom: 1rem;
+}
 
 /* bg utils */
 
@@ -85,6 +89,8 @@
 
 /* width utils */
 .width-full-section {
-    margin: 0 -16px;
-    padding: 0 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
 }

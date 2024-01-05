@@ -1,26 +1,25 @@
 import React from 'react';
 
 import { BorderAnimatedContainer, Button } from "../../../exports";
+import { StickyHeader } from '../../common/StickyHeader';
 
 export function OthersPage(){
 	return (
-        <section>
-            <div>
-                <h2>Animated Border Container</h2>
+        <main>
+            <StickyHeader heading='Animated Border Container' />
+            
+            <BorderAnimatedContainer>
+                <Button themeType='secondary'>Inset</Button>
+            </BorderAnimatedContainer>
 
-                <BorderAnimatedContainer>
-                    <Button themeType='secondary'>Inset</Button>
-                </BorderAnimatedContainer>
+            <br />
 
-                <br />
-
-                <BorderAnimatedContainer
-                    borderPositioning='outset'
-                    animationDelay='1s'
-                >
-                    <Button themeType='tertiary'>Outset 1s delay</Button>
-                </BorderAnimatedContainer>
-            </div>
-        </section>
+            <BorderAnimatedContainer
+                borderPositioning='outset'
+                animationDelay='1s'
+            >
+                <Button themeType='tertiary'>Outset 1s delay</Button>
+            </BorderAnimatedContainer>
+        </main>
 	)
 }
