@@ -4,3 +4,5 @@ export { Select } from './components/Select';
 export { toast } from './components/Toast';
 export { Button } from './components/Button';
 export { CodeWrapper } from './components/CodeWrapper';
+export { BorderAnimatedContainer } from './components/BorderAnimatedContainer';
+export { Loader } from './components/Loader';

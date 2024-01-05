@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { Button, toast } from '../../../exports';
+import { StickyHeader } from '../../common/StickyHeader';
 
 import styles from './styles.module.css';
 
@@ -8,8 +9,9 @@ const onClick = () => { toast(`I'm a toast`); };
 
 export function ButtonPage() {
 	return (
-		<section>
-			<h1 className='text-xl'>Button</h1>
+		<main>
+			<StickyHeader heading='Button' />
+
 			<div className={styles['button-group']} >
 				<Button themeType='primary' onClick={onClick}>Primary</Button>
 				<Button disabled themeType='primary' onClick={onClick}>Primary</Button>
@@ -51,6 +53,6 @@ export function ButtonPage() {
 				<Button outline themeType='warn' onClick={onClick}>Warn Outline</Button>
 				<Button outline disabled themeType='warn' onClick={onClick}>Warn Outline</Button>
 			</div>
-		</section>
+		</main>
 	)
 }
