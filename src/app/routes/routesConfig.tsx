@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ButtonPage } from './Button'
 import { HomePage } from './Home';
+import { LoaderPage } from './Loader';
 import { NpmPackagePage } from './NpmPackage';
 import { OthersPage } from './Others';
 import { SegmentedTabsPage } from './SegmentedTabs';
@@ -15,6 +16,7 @@ export const routes = {
 	segmentedTabs : '/component/segmented-tabs',
 	toast         : '/component/toast',
 	button        : '/component/button',
+	loader        : '/component/loader',
 	others        : '/component/others',
 };
 
@@ -41,6 +43,10 @@ export const sideBarItems = {
 		{
 			path  : routes.button,
 			label : 'Button',
+		},
+		{
+			path  : routes.loader,
+			label : 'Loader',
 		},
 		{
 			path  : routes.others,
@@ -74,6 +80,10 @@ export const nestedRoutes = [
 	{
 		path    : routes.button,
 		element : <ButtonPage />,
+	},
+	{
+		path    : routes.loader,
+		element : <LoaderPage />,
 	},
 	{
 		path    : routes.others,
