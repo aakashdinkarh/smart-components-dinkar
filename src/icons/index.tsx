@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import { getCombinedClass } from 'utils/getCombinedClass';
 
 interface PropsType extends SVGAttributes<HTMLOrSVGElement> {
-	pathAttributes: Record<string,any>;
+	pathAttributes?: Record<string,any>;
 }
 
 // todo: find a better way for svg files export
