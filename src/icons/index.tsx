@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import type { SVGAttributes } from 'react';
 import React, { forwardRef } from 'react';
-import { getCombinedClass } from 'utils/getCombinedClass';
+
+import { getCombinedClass } from '../utils/getCombinedClass';
 
 interface PropsType extends SVGAttributes<HTMLOrSVGElement> {
 	pathAttributes?: Record<string,any>;
@@ -18,7 +19,7 @@ export const CopyIcon = forwardRef<SVGSVGElement, PropsType>((props, ref) => {
 			fill='none'
 			viewBox='0 0 14 14'
 			role='img'
-			className={getCombinedClass('icon_svg', className)}
+			className={getCombinedClass('__scd_icon_svg', className)}
 			{...rest}
 			ref={ref}
 		>
