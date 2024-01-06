@@ -1,4 +1,4 @@
-type IClass = string | Record<string,boolean>;
+type IClass = string | Record<string,boolean> | undefined;
 
 export function getCombinedClass (...classes: IClass[]): string {
 	return classes.filter(Boolean).map((item) => {
