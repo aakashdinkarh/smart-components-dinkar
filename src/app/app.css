@@ -28,6 +28,12 @@
     font-size: var(--font-size-xl);
 }
 
+/* font-weight utils */
+
+.bold-6 {
+    font-weight: 600;
+}
+
 
 /* flex-utils */
 
@@ -57,7 +63,6 @@
     justify-content: space-between;
 }
 
-
 /* margin utils */
 
 .my-1{
@@ -69,22 +74,44 @@
     margin-bottom: 1rem;
 }
 
+.mr-1 {
+    margin-right: 0.25rem;
+}
+
+/* padding utils */
+
+.pt-2 {
+    padding-top: 0.5rem;
+}
+
+.pb-3 {
+    padding-bottom: 0.75rem;
+}
+
 /* bg utils */
 
 .bg-white {
     background-color: var(--color-white);
 }
 
+.bg-inherit {
+    background-color: inherit;
+}
+
 
 /* border utils */
 
 .border-b {
-    border-bottom: 1px solid var(--color-secondary);
+    border-bottom: 1px solid #d4d4d4;
 }
 
 /* z-index utils */
 .z1 {
     z-index: 1;
+}
+
+.z2 {
+    z-index: 2;
 }
 
 /* width utils */

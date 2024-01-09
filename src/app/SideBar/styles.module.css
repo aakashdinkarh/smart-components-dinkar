@@ -9,10 +9,12 @@
 .list-item {
     border-radius: 4px;
     margin-bottom: 6px;
+    border: 1px solid #0000;
 }
 
 .list-item:not(.active):hover {
-    background-color: #ddd;
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
 }
 
 .category-title {
@@ -20,19 +22,26 @@
     position: relative;
     display: flex;
     align-items: center;
+    margin-bottom: 6px;
+}
+
+.category-title:first-of-type {
+    margin-top: 6px;
 }
 
 .title-text {
     z-index: 1;
-    background-color: #c2c2c2;
-    padding: 4px 6px 4px 0;
+    background-color: #edeef1;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: inset 2px 2px 2px 0 #fff, 2px 2px 2px 0 #d4d4d4;
 }
 
 .title-text-line {
     position: absolute;
     height: 1px;
     width: 100%;
-    background-color: #9e9e9e;
+    background-color: #d4d4d4;
 }
 
 .link {
@@ -44,5 +53,10 @@
 
 .active {
     background-color: #fff;
+    border: 1px solid #d4d4d4;
     font-weight: 600;
+}
+
+.active a {
+    cursor: initial;
 }
