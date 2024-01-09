@@ -76,7 +76,7 @@ a {
 
 .side-menu {
     height: 100vh;
-    width: min(25%, 320px);
+    width: min(30%, 320px);
     min-width: 20%;
     overflow: auto;
     background-color: #edeef1;
