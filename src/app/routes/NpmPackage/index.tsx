@@ -55,8 +55,13 @@ export function NpmPackagePage() {
 	return (
 		<main>
 			<StickyHeader heading='NPM Package Tutorial' className='justify-space-between'>
-				<div className='flex align-items-center'>
-					Code Theme: &nbsp;
+				<div
+					className={getCombinedClass(
+						'flex align-items-center py-2',
+						'mobile-flex-col mobile-align-flex-start mobile-justify-content-center'
+					)}
+				>
+					<div>Code Theme:</div>
 					<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
 				</div>
 			</StickyHeader>
