@@ -22,7 +22,7 @@ export function CodeWrapper({ children, isCodeHighlighted }: { children: any; is
 				className={getCombinedClass({
 					hljs: isCodeHighlighted,
 				})}
-				style={{ paddingRight: 20 }}
+				style={{ paddingRight: 28 }}
 			>
 				<code>{children}</code>
 			</pre>
