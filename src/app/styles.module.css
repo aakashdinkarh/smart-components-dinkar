@@ -151,7 +151,7 @@ a {
     }
 
     .side-menu.show-mobile-nav {
-        width: 90%;
+        width: min(80%, 320px);
         padding: 0 16px 10px;
     }
 

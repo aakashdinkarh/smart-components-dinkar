@@ -45,8 +45,7 @@ export function App() {
 			<section
 				className={getCombinedClass(styles['side-menu'], { [styles['show-mobile-nav']]: mobileSideNavShow })}
 			>
-				<Link
-					to='/'
+				<div
 					className={getCombinedClass(
 						'flex align-items-center',
 						'sticky bg-inherit z2',
@@ -54,10 +53,14 @@ export function App() {
 						'bold-6'
 					)}
 				>
-					<Logo width={20} height={20} className='mr-1' />
+					<Link to='/'>
+						<Logo width={20} height={20} className='mr-1' />
+					</Link>
 
-					<div>DevDinkar CodeBook</div>
-				</Link>
+					<Link to='/'>
+						DevDinkar CodeBook
+					</Link>
+				</div>
 
 				{/* visible in mobile only */}
 				<Button onClick={hideSideNav} themeType='tertiary' className={getCombinedClass(
