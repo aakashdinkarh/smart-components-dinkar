@@ -6,20 +6,25 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-export function CodeWrapper({ children, isCodeHighlighted } : { children: any; isCodeHighlighted: boolean }){
-	function handleCopy(){
-		void copyToClipboard(children)
+export function CodeWrapper({ children, isCodeHighlighted }: { children: any; isCodeHighlighted: boolean }) {
+	function handleCopy() {
+		void copyToClipboard(children);
 	}
 
 	return (
-		<div className={getCombinedClass(styles['code-container'], 'code-container', {
-			[styles['code-highlighted']]: isCodeHighlighted,
-		})}>
+		<div
+			className={getCombinedClass(styles['code-container'], 'code-container', {
+				[styles['code-highlighted']]: isCodeHighlighted,
+			})}
+		>
 			<CopyIcon width={20} height={20} onClick={handleCopy} className={styles['copy-button']} />
-			<pre>
-				<code>
-					{children}
-				</code>
+			<pre
+				className={getCombinedClass({
+					hljs: isCodeHighlighted,
+				})}
+				style={{ paddingRight: 28 }}
+			>
+				<code>{children}</code>
 			</pre>
 		</div>
 	);
