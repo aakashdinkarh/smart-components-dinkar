@@ -6,7 +6,15 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-export function CodeWrapper({ children, isCodeHighlighted }: { children: any; isCodeHighlighted: boolean }) {
+export function CodeWrapper({
+	children,
+	isCodeHighlighted,
+	languageClass = '' 
+} : { 
+	children: any;
+	isCodeHighlighted: boolean;
+	languageClass ?: string;
+}) {
 	function handleCopy() {
 		void copyToClipboard(children);
 	}
@@ -24,7 +32,7 @@ export function CodeWrapper({ children, isCodeHighlighted }: { children: any; is
 				})}
 				style={{ paddingRight: 28 }}
 			>
-				<code>{children}</code>
+				<code className={languageClass}>{children}</code>
 			</pre>
 		</div>
 	);
