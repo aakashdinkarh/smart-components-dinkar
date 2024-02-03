@@ -6,9 +6,17 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-export function CodeWrapper({ children, isCodeHighlighted } : { children: any; isCodeHighlighted: boolean }){
-	function handleCopy(){
-		void copyToClipboard(children)
+export function CodeWrapper({
+	children,
+	isCodeHighlighted,
+	languageClass = '' 
+} : { 
+	children: any;
+	isCodeHighlighted: boolean;
+	languageClass ?: string;
+}) {
+	function handleCopy() {
+		void copyToClipboard(children);
 	}
 
 	return (
@@ -16,10 +24,13 @@ export function CodeWrapper({ children, isCodeHighlighted } : { children: any; i
 			[styles['code-highlighted']]: isCodeHighlighted,
 		})}>
 			<CopyIcon width={20} height={20} onClick={handleCopy} className={styles['copy-button']} />
-			<pre>
-				<code>
-					{children}
-				</code>
+			<pre
+				className={getCombinedClass({
+					hljs: isCodeHighlighted,
+				})}
+				style={{ paddingRight: 28 }}
+			>
+				<code className={languageClass}>{children}</code>
 			</pre>
 		</div>
 	);
