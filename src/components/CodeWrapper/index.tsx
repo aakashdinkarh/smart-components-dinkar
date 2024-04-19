@@ -1,4 +1,5 @@
-import React from 'react';
+import type { PropsWithChildren} from 'react';
+import React, { memo } from 'react';
 
 import { CopyIcon } from '../../icons';
 import { copyToClipboard } from '../../utils/copyToClipboard';
@@ -6,17 +7,16 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-export function CodeWrapper({
+function CodeWrapper({
 	children,
 	isCodeHighlighted,
-	languageClass = '' 
-} : { 
-	children: any;
+	languageClass = '',
+}: PropsWithChildren & {
 	isCodeHighlighted: boolean;
-	languageClass ?: string;
+	languageClass?: string;
 }) {
 	function handleCopy() {
-		void copyToClipboard(children);
+		void copyToClipboard(children as string);
 	}
 
 	return (
@@ -37,3 +37,7 @@ export function CodeWrapper({
 		</div>
 	);
 }
+
+const memoizedCodeWrapper = memo(CodeWrapper);
+
+export { memoizedCodeWrapper as CodeWrapper };
