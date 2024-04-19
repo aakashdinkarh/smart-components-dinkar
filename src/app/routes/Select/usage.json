@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Single Select Non Clearable",
+        "label": "Please select your food preference: ",
+        "placeholder": "Food preference type",
+        "options": [
+            { "label": "Vegetarian", "value": "veg" },
+            { "label": "Non-vegetarian", "value": "non-veg" },
+            { "label": "Eggeterian", "value": "egg" }
+        ],
+        "isClearable": false
+    },
+    {
+        "id": 2,
+        "title": "Multi Select (Clearable: default) ",
+        "label": "Please select your food preference: ",
+        "placeholder": "Food preference type",
+        "options": [
+            { "label": "Vegetarian", "value": "veg" },
+            { "label": "Non-vegetarian", "value": "non-veg" },
+            { "label": "Eggeterian", "value": "egg" }
+        ],
+        "multiple": true
+    }
+]

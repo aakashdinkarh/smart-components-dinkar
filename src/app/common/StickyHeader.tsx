@@ -1,4 +1,4 @@
-import type { RefObject } from 'react';
+import type { CSSProperties, RefObject } from 'react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Select } from '../../exports';
@@ -29,7 +29,7 @@ export function StickyHeader({
 	withThemeSelector = false
 }: {
 	heading: string;
-	style?: Record<string, any>;
+	style?: CSSProperties;
 	withThemeSelector?: boolean;
 }) {
 	const [codeStyleTheme, setCodeStyleTheme] = useState(THEME_OPTIONS[0].value);
