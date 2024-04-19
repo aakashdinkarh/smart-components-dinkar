@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { highlightCode } from '../helpers/highlightCode';
 
 export function useHighlightCode() {
