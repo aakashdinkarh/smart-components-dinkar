@@ -6,12 +6,14 @@ import styles from './styles.module.css';
 
 type IFunction = (...arr: any[]) => void;
 
+export type themeType = 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger' | 'warn';
+
 interface IButton {
 	children: any
 	className: string;
 	type: "button" | "submit" | "reset" | undefined;
 	size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-	themeType: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger' | 'warn';
+	themeType: themeType;
 	onClick: IFunction,
 	outline: boolean;
 	disabled: boolean;

@@ -11,6 +11,8 @@ const uniqueIds = {
 	'bottom-right' : 'bottom-right-8128e398-5a78-4e0c-bc8b-5d3a049622dd',
 };
 
+export type placement = 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
 /**
  * Interface defining the possible options for the toast function.
  */
@@ -28,7 +30,7 @@ interface OptionsProps {
 	 * - 'bottom-left'
 	 * - 'bottom-right'
 	 */
-	placement: 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+	placement: placement;
 	toastContainer: {
 		/**
 		 * Additional CSS class for styling the toast container.
