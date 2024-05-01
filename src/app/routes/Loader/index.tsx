@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { Loader } from '../../../exports';
+import type { loaderVariant } from '../../../components/Loader';
+import { CodeWrapper, Loader } from '../../../exports';
 import { StickyHeader } from '../../common/StickyHeader';
+import { codeHighlightClassHTML } from '../../constants';
+import { useHighlightCode } from '../../hooks/useHighlightCode';
+
+import usageData from './usage.json';
+
+const usageDataLength = usageData.length;
+
+interface usageDataItem {
+	id: number;
+	title: string;
+	variant: loaderVariant;
+}
 
 export function LoaderPage(){
+	const { isCodeHighlighted } = useHighlightCode();
+
 	return (
 		<main>
-			<StickyHeader heading='Loader' />
+			<StickyHeader heading='Loader' withThemeSelector />
 
-			<h3>Loader 1</h3>
-			<Loader variant="spin" />
+			{(usageData as usageDataItem[]).map((data, index) => {
+				const {id, title, variant} = data;
 
-			<hr style={{ margin: '2rem 0' }} />
+				return <Fragment key={id}>
+					<h3>{title}</h3>
+					<Loader variant={variant} />
 
-			<h3>Loader 2</h3>
-			<Loader variant="lines" />
+					<div className='mt-2'>
+						<CodeWrapper
+							isCodeHighlighted={Boolean(isCodeHighlighted)}
+							languageClass={codeHighlightClassHTML}
+						>
+							{`<Loader variant="${variant}" />`}
+						</CodeWrapper>
+					</div>
 
-			<hr style={{ margin: '2rem 0' }} />
-
-			<h3>Loader 3</h3>
-			<Loader variant="dots-bounce" />
-
-			<hr style={{ margin: '2rem 0' }} />
-
-			<h3>Loader 4</h3>
-			<Loader variant="dots-fade" />
+					{usageDataLength-1 !== index && <hr className='mt-2 mb-4' />}
+				</Fragment>
+			})}
 		</main>
 	)
 }
