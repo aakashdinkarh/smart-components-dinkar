@@ -12,3 +12,5 @@ export const THEME_OPTIONS = [
 	{ label: 'Hardcore', value: 'base16-hardcore-min' },
 	{ label: 'Material', value: 'base16-material-min' },
 ];
+
+export const IMAGE_PREFIX = 'https://aakashdinkarh.github.io/static_assets/images/';

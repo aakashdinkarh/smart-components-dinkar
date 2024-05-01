@@ -10,6 +10,17 @@
     top: 0;
 }
 
+.rel {
+    position: relative;
+}
+
+.abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @media (width <= 480px) {
     .sticky-below-logo {
         top: 2.3125rem; /* height of logo container */
@@ -113,12 +124,28 @@
     margin-bottom: 0.25rem;
 }
 
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
 .mb-4 {
     margin-bottom: 1rem;
 }
 
 .mb-2 {
     margin-bottom: 0.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
 }
 
 .mr-1 {
@@ -156,6 +183,10 @@
     border-bottom: 1px solid #bababa;
 }
 
+.br-1 {
+    border-radius: 0.25rem;
+}
+
 /* z-index utils */
 .z1 {
     z-index: 1;
@@ -172,6 +203,12 @@
     margin-right: -16px;
     padding-left: 16px;
     padding-right: 16px;
+}
+
+/* general */
+
+.overflow-hidden {
+    overflow: hidden;
 }
 
 /* general mobile utils */

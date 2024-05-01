@@ -1,24 +1,92 @@
 import * as React from 'react';
 
-import { SegmentedTabs } from '../../../exports';
+import { CodeWrapper, LazyImageWithLoader, SegmentedTabs } from '../../../exports';
 import { StickyHeader } from '../../common/StickyHeader';
+import { IMAGE_PREFIX } from '../../constants';
+import { useHighlightCode } from '../../hooks/useHighlightCode';
+
+import usageData from './usage.json';
+
+interface usageDataItem {
+	id: number;
+	title: string;
+	content: {
+		title: string;
+		image: string;
+		description: string;
+	};
+}
 
 export function SegmentedTabsPage() {
+	const { isCodeHighlighted } = useHighlightCode();
+
 	return (
 		<main>
-			<StickyHeader heading='Segmented Tabs' />
+			<StickyHeader heading='Segmented Tabs' withThemeSelector />
 
-			<SegmentedTabs defaultActiveTab='tab1'>
-				<SegmentedTabs.Tab name='tab1' title='Tab 1'>
-					Tab 1
-				</SegmentedTabs.Tab>
-				<SegmentedTabs.Tab name='tab2' title='Tab 2'>
-					Tab 2
-				</SegmentedTabs.Tab>
-				<SegmentedTabs.Tab name='tab3' title='Tab 8'>
-					Tab 3
-				</SegmentedTabs.Tab>
+			<h3>Demon Slayer: Kimetsu no Yaiba</h3>
+			<p>
+				Demon Slayer: Kimetsu no Yaiba ("Blade of Demon Destruction") is a Japanese manga series written and
+				illustrated by Koyoharu Gotouge.
+			</p>
+
+			<SegmentedTabs>
+				{(usageData as usageDataItem[]).map((data) => {
+					const { id, title, content } = data;
+					return (
+						<SegmentedTabs.Tab key={id} name={`${id}`} title={title}>
+							<div className='flex mt-2'>
+								<LazyImageWithLoader
+									imgHeight={220}
+									imgWidth={150}
+									imgSrc={`${IMAGE_PREFIX}${content.image}`}
+									imgContainerClass='overflow-hidden br-1 mr-2'
+								/>
+								<div>
+									<h4 className='mt-0 mb-1'>{content.title}</h4>
+									<p className='mt-2'>{content.description}</p>
+								</div>
+							</div>
+						</SegmentedTabs.Tab>
+					);
+				})}
 			</SegmentedTabs>
+
+			<div className='mt-2'>
+				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} >
+					{`interface usageDataItem {
+	id: number;
+	title: string;
+	content: {
+		title: string;
+		image: string;
+		description: string;
+	};
+}
+
+<SegmentedTabs>
+	{(usageData as usageDataItem[]).map((data) => {
+		const { id, title, content } = data;
+		return (
+			<SegmentedTabs.Tab key={id} name={id} title={title}>
+				<div className='flex mt-2'>
+					<LazyImageWithLoader
+						imgHeight={220}
+						imgWidth={150}
+						imgSrc={content.image}
+						imgContainerClass='overflow-hidden br-1 mr-2'
+					/>
+					<div>
+						<h4 className='mt-0 mb-1'>{content.title}</h4>
+						<p className='mt-2'>{content.description}</p>
+					</div>
+				</div>
+			</SegmentedTabs.Tab>
+		);
+	})}
+</SegmentedTabs>`}
+				</CodeWrapper>
+			</div>
 		</main>
 	);
 }
