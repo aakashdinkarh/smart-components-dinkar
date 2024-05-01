@@ -5,12 +5,14 @@ import { Switch } from '../../exports';
 
 import styles from './loader.module.css';
 
+export type loaderVariant = 'spin' | 'lines' | 'dots-bounce' | 'dots-fade';
+
 interface LoaderPropsCommon {
 	/**
 	 * The variant of the loader animation
 	 * @default 'spin'
 	 */
-	variant: 'spin' | 'lines' | 'dots-bounce' | 'dots-fade';
+	variant: loaderVariant;
 	/**
 	 * The color of the loader animation.
 	 * @default '#3498db'
