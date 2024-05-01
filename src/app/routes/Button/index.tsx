@@ -1,58 +1,72 @@
 import * as React from 'react'
 
-import { Button, toast } from '../../../exports';
+import type { themeType } from '../../../components/Button';
+import { Button, CodeWrapper, toast } from '../../../exports';
 import { StickyHeader } from '../../common/StickyHeader';
+import { useHighlightCode } from '../../hooks/useHighlightCode';
 
 import styles from './styles.module.css';
+import usageData from './usage.json';
+
+interface usageDataItem {
+	id: number;
+	title: string;
+	themeType: themeType;
+	outline?: boolean;
+	disabled?: boolean;
+}
+
+type usageDataGroup = usageDataItem[];
 
 const onClick = () => { toast(`I'm a toast`); };
 
 export function ButtonPage() {
+	const { isCodeHighlighted } = useHighlightCode();
+
 	return (
 		<main>
-			<StickyHeader heading='Button' />
+			<StickyHeader heading='Button' withThemeSelector />
 
-			<div className={styles['button-group']} >
-				<Button themeType='primary' onClick={onClick}>Primary</Button>
-				<Button disabled themeType='primary' onClick={onClick}>Primary</Button>
-				<Button outline themeType='primary' onClick={onClick}>Primary Outline</Button>
-				<Button outline disabled themeType='primary' onClick={onClick}>Primary Outline</Button>
-			</div>
+			{(usageData as usageDataGroup[]).map((dataGroup, index) => {
+				return <React.Fragment key={index}>
+					<div className={styles['button-group']} >
+						{(dataGroup as usageDataItem[]).map((data) => {
+							const { id, title, ...restParams } = data;
+							return (
+								<Button key={id} {...restParams} onClick={onClick}>{title}</Button>
+							)})}
+					</div>
+				</React.Fragment>
+			})}
 
-			<div className={styles['button-group']} >
-				<Button themeType='secondary' onClick={onClick}>Secondary</Button>
-				<Button disabled themeType='secondary' onClick={onClick}>Secondary</Button>
-				<Button outline themeType='secondary' onClick={onClick}>Secondary Outline</Button>
-				<Button outline disabled themeType='secondary' onClick={onClick}>Secondary Outline</Button>
-			</div>
+			<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)}>
+				{`<Button themeType="primary" onClick={onClick}>Primary</Button>
 
-			<div className={styles['button-group']} >
-				<Button themeType='tertiary' onClick={onClick}>Tertiary</Button>
-				<Button disabled themeType='tertiary' onClick={onClick}>Tertiary</Button>
-				<Button outline themeType='tertiary' onClick={onClick}>Tertiary Outline</Button>
-				<Button outline disabled themeType='tertiary' onClick={onClick}>Tertiary Outline</Button>
-			</div>
-			
-			<div className={styles['button-group']} >
-				<Button themeType='success' onClick={onClick}>Success</Button>
-				<Button disabled themeType='success' onClick={onClick}>Success</Button>
-				<Button outline themeType='success' onClick={onClick}>Success Outline</Button>
-				<Button outline disabled themeType='success' onClick={onClick}>Success Outline</Button>
-			</div>
+Group Usage -->
+				
+interface usageDataItem {
+	id: number;
+	title: string;
+	themeType: 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger' | 'warn';
+	outline?: boolean;
+	disabled?: boolean;
+}
 
-			<div className={styles['button-group']} >
-				<Button themeType='danger' onClick={onClick}>Danger</Button>
-				<Button disabled themeType='danger' onClick={onClick}>Danger</Button>
-				<Button outline themeType='danger' onClick={onClick}>Danger Outline</Button>
-				<Button outline disabled themeType='danger' onClick={onClick}>Danger Outline</Button>
-			</div>
+type usageDataGroup = usageDataItem[];
 
-			<div className={styles['button-group']} >
-				<Button themeType='warn' onClick={onClick}>Warn</Button>
-				<Button disabled themeType='warn' onClick={onClick}>Warn</Button>
-				<Button outline themeType='warn' onClick={onClick}>Warn Outline</Button>
-				<Button outline disabled themeType='warn' onClick={onClick}>Warn Outline</Button>
-			</div>
+{(usageData as usageDataGroup[]).map((dataGroup, index) => {
+	return <React.Fragment key={index}>
+		<div className={styles['button-group']} >
+			{(dataGroup as usageDataItem[]).map((data) => {
+				const { id, title, ...restParams } = data;
+				return (
+					<Button key={id} {...restParams} onClick={onClick}>{title}</Button>
+				)})}
+		</div>
+	</React.Fragment>
+})}
+`}
+			</CodeWrapper>
 		</main>
 	)
 }
