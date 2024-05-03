@@ -17,6 +17,46 @@ function EmptyList (): React.JSX.Element {
 	);
 }
 
+/**
+ * @component - Customizable Select component.
+ * @param {SelectProps} props - Props for Select component
+ * @param {string} [props.className=''] - Additional CSS class names to be applied to the component container.
+ * @param {string} [props.name=''] - The name attribute of the Select component.
+ * @param {string} [props.value=''] - The currently selected value(s) in the Select component.
+ * @param {string} [props.placeholder=''] - Placeholder text displayed when no option is selected.
+ * @param {Array} [props.options=[]] - An array of options to be displayed in the dropdown menu.
+ * @param {boolean} [props.multiple=false] - Boolean indicating whether multiple options can be selected.
+ * @param {boolean} [props.isClearable=false] - Boolean indicating whether a clear button is displayed to 
+   clear the selected value(s).
+ * @param {Function} [props.onChange=()=>{}] - Callback function triggered when the selected value(s) change.
+ * @param {Function} [props.onSearch=()=>{}] - Callback function triggered when the user searches within 
+   the dropdown menu.
+ * @param {Function} [props.onRemove=()=>{}] - Callback function triggered when an option is removed from 
+   the selection (only applicable in multiple mode).
+ * @param {Function} [props.onClear=()=>{}] - Callback function triggered when the clear button is clicked.
+ * @param {boolean} [props.disabled=false] - Boolean indicating whether the Select component is disabled.
+ * 
+ * @example
+	//usage example
+	<Select 
+		placeholder="Food preference type"
+		options={[
+			{
+				"label": "Vegetarian",
+				"value": "veg"
+			},
+			{
+				"label": "Non-vegetarian",
+				"value": "non-veg"
+			},
+			{
+				"label": "Eggeterian",
+				"value": "egg"
+			}
+		],
+		isClearable={false}
+	/>
+ */
 export const Select = memo(function Select ({
 	className = '',
 	name = '',
@@ -25,10 +65,10 @@ export const Select = memo(function Select ({
 	options = [],
 	multiple = false,
 	isClearable = true,
-	onChange = () => { },
-	onSearch = () => { },
-	onRemove = () => { },
-	onClear = () => { },
+	onChange = () => {},
+	onSearch = () => {},
+	onRemove = () => {},
+	onClear = () => {},
 	disabled = false,
 }: Partial<SelectProps>): React.JSX.Element {
 	const [selectedValue, setSelectedValue] = useState<string | string[]>(

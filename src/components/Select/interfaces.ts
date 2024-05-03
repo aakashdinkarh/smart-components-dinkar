@@ -10,7 +10,7 @@ type IFunction = (...ars: any[]) => void;
 export type Options = Option[] | [];
 
 export interface helperFunctionsProps {
-	value: string,
+	value: string | string[],
 	options: Options,
 	multiple: boolean,
 	selectedValue: string | string[],
@@ -26,7 +26,7 @@ export interface IsetNewFocus {
 export interface SelectProps {
 	className: string;
 	name: string;
-	value: string;
+	value: string | string[];
 	placeholder: string;
 	options: Options;
 	multiple: boolean;

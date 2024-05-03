@@ -5,7 +5,7 @@ export function HomePage() {
         <>
             <header>
                 <h1>Smart Components Dinkar</h1>
-                <p>Building something amazing!</p>
+                <p>Building from scratch!</p>
             </header>
 
             <section>
@@ -29,7 +29,7 @@ export function HomePage() {
             </section>
 
             <footer>
-                <p>&copy; 2023 smart-components-dinkar. All rights reserved.</p>
+                <p>&copy; 2024 smart-components-dinkar. All rights reserved.</p>
             </footer>
         </>
 	);

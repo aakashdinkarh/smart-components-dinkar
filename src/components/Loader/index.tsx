@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import type { JSX } from 'react';
 
 import { Switch } from '../../exports';
@@ -33,7 +33,7 @@ interface LoaderProps {
  * <Loader variant="dots-bounce" color="#ff5733" size="1rem" />
  * <Loader variant="dots-fade" color="#ff5733" size="1rem" />
  */
-export function Loader({
+export const Loader = memo(function Loader({
 	variant = 'spin',
 	color = '#3498db',
 	size = '',
@@ -91,4 +91,4 @@ export function Loader({
 			</Switch>
 		</div>
 	)
-}
+});

@@ -49,6 +49,10 @@ interface OptionsProps {
  * @param {Object} [options.closeButton] - Close Button props.
  * @param {boolean} [options.closeButton.showCloseIcon] - Whether to show the close icon.
  * @param {string} [options.closeButton.closeButtonClass] - Additional CSS class for styling the close button.
+ * @example
+ * //usage example
+ * <button onClick={() => {toast('I am a toast (top)', { placement: 'top' });}}>Toast Top</button>
+ * <button onClick={() => {toast.success('I am a toast (top-left)', { placement: 'top-left' });}}>Toast Top</button>
  */
 function toast (message = '', options?: Partial<OptionsProps>): void {
 	const {

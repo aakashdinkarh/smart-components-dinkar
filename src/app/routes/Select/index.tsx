@@ -30,6 +30,17 @@ export function SelectPage() {
 			{(usageData as usageDataItem[]).map((data) => {
 				const { id, title, label, ...restSelectParams } = data;
 
+				let usageDataString = '<Select\n\t';
+				usageDataString += 'placeholder="'+ restSelectParams.placeholder +'"\n\t';
+				usageDataString += 'options={'+ JSON.stringify(restSelectParams.options, null, 4) +'}\n\t';
+				if(restSelectParams.isClearable !== undefined) {
+					usageDataString += 'isClearable={'+ restSelectParams.isClearable +'}\n';
+				}
+				if(restSelectParams.multiple !== undefined) {
+					usageDataString += 'multiple={'+ restSelectParams.multiple +'}\n';
+				}
+				usageDataString += '/>';
+
 				return (
 					<React.Fragment key={id}>
 						<h4 className='my-1'>{title}</h4>
@@ -43,13 +54,12 @@ export function SelectPage() {
 								isCodeHighlighted={Boolean(isCodeHighlighted)}
 								languageClass={codeHighlightClassHTML}
 							>
-								{`<Select ${JSON.stringify(restSelectParams, null, 4).slice(1).slice(0,-1)} />`}
+								{usageDataString}
 							</CodeWrapper>
 						</div>
 					</React.Fragment>
 				)
 			})}
-
 			</main>
 	);
 }

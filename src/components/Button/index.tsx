@@ -23,13 +23,13 @@ interface IButton extends PropsWithChildren {
 /**
  * A container component with an animated border.
  * @param {IButton} props - The props of the component.
- * @param {IButton} [props.className] - Additional class names to be applied to the component.
- * @param {IButton} [props.type='button'] - The type of the button.
- * @param {IButton} [props.size='md'] - The size of the button.
- * @param {IButton} [props.themeType='primary'] - The theme type of the button.
- * @param {IButton} [props.onClick=()=>{}] - The function to be called when the button is clicked.
- * @param {IButton} [props.outline=false] - Whether the button should have an outline.
- * @param {IButton} [props.disabled=false] - Whether the button is disabled. Defaults to false.
+ * @param {string} [props.className] - Additional class names to be applied to the component.
+ * @param {string} [props.type='button'] - The type of the button.
+ * @param {string} [props.size='md'] - The size of the button.
+ * @param {string} [props.themeType='primary'] - The theme type of the button.
+ * @param {Function} [props.onClick=()=>{}] - The function to be called when the button is clicked.
+ * @param {boolean} [props.outline=false] - Whether the button should have an outline.
+ * @param {boolean} [props.disabled=false] - Whether the button is disabled. Defaults to false.
  * @returns {JSX.Element} The rendered button component.
  * @example
  * // Usage example:

@@ -1,16 +1,13 @@
 import type { JSX, NamedExoticComponent, PropsWithChildren } from 'react';
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo, isValidElement, useState, useRef, useEffect } from 'react';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-const { isValidElement, Children, useState, useRef, useEffect } = React;
-
 interface SegmentedTabsProps extends PropsWithChildren {
-	defaultActiveTab: string;
-	onTabChange: (newTab?: string) => void;
-	Tab: any;
+	defaultActiveTab?: string;
+	onTabChange?: (newTab?: string) => void;
 }
 
 interface TabProps extends PropsWithChildren {
@@ -22,6 +19,7 @@ interface TabProps extends PropsWithChildren {
  * A single tab component to be used inside SegmentedTabs.
  * @param {TabProps} props - The props of the component.
  * @param {string} props.name - The variant of the loader animation.
+ * @param {React.ReactNode} props.children - The content to be displayed in the Tab.
  * @param {string} [props.title] - The variant of the loader animation.
  * @returns {JSX.Element} The rendered Tab component.
  * @example
@@ -35,8 +33,9 @@ export const Tab = memo(function Tab ({ children }: TabProps): JSX.Element {
 /**
  * A segmented tabs component.
  * @param {SegmentedTabsProps} props - The props of the component.
- * @param {string} props.defaultActiveTab - The name of the default active tab.
- * @param {string} props.onTabChange - Function called when the active tab changes.
+ * @param {React.ReactNode} props.children - The Tab children components.
+ * @param {string} [props.defaultActiveTab] - The name of the default active tab.
+ * @param {string} [props.onTabChange] - Function called when the active tab changes.
  * @returns {JSX.Element} The rendered SegmentedTabs component.
  * @example
  * // Usage example:
@@ -50,8 +49,8 @@ export const SegmentedTabs = memo(function SegmentedTabs ({
 	defaultActiveTab = '',
 	onTabChange = () => {},
 	children = null
-}: Partial<SegmentedTabsProps>): React.JSX.Element {
-	const validChildren = Children.toArray(children)
+}: Partial<SegmentedTabsProps>): JSX.Element {
+	const validChildren = React.Children.toArray(children)
 		.filter((child) => isValidElement(child) && child.type === Tab);
 
 	const tabs: TabProps[] = validChildren

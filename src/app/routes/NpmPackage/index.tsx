@@ -38,7 +38,7 @@ export function NpmPackagePage() {
 
 	return (
 		<main>
-			<StickyHeader heading='NPM Package Tutorial' />
+			<StickyHeader heading='NPM Package Tutorial' withThemeSelector />
 
 			<p>
 				In this tutorial we will learn to create a simple basic react library, which will provide simple basic

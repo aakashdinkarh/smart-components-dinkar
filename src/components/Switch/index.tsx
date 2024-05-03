@@ -10,15 +10,12 @@ type SwitchProps = PropsWithChildren;
 /**
  * The content to render if no other Case is matched.
  * @param {CaseProps} props - The props of the Default component.
+ * @param {React.ReactNode} props.children - The content to be displayed in Case.
  * @param {boolean} props.condition - Renders its content if the provided condition is truthy.
  * @returns {ReactElement | null} The rendered content.
  * @example
  * // Usage example:
-	<Switch>
-		<Switch.Case condition={false}>Case 1</Switch.Case>
-		<Switch.Case condition>Case 2</Switch.Case>
-		<Switch.Default>Default</Switch.Default>
-	</Switch>
+	<Switch.Case condition={false}>Case 1</Switch.Case>
  */
 const Case = memo(function Case({ children }: CaseProps): ReactElement | null {
 	return children as ReactElement;
@@ -30,11 +27,7 @@ const Case = memo(function Case({ children }: CaseProps): ReactElement | null {
  * @returns {ReactElement} The rendered content.
  * @example
  * // Usage example:
-	<Switch>
-		<Switch.Case condition={false}>Case 1</Switch.Case>
-		<Switch.Case condition={false}>Case 2</Switch.Case>
-		<Switch.Default>Default</Switch.Default>
-	</Switch>
+	<Switch.Default>Default</Switch.Default>
  */
 const Default = memo(function Default({ children }: DefaultProps): ReactElement {
 	return children as ReactElement;
@@ -44,6 +37,9 @@ const Default = memo(function Default({ children }: DefaultProps): ReactElement 
  * Represents a switch-like component that conditionally renders the first matched case or the default case.
  * The children can include instances of `Switch.Case` and `Switch.Default`.
  * @component
+ * @param {DefaultProps} props - The props of the Switch component.
+ * @param {React.ReactNode} props.children - Switch.Case or Switch.Default child components.
+ * @returns {ReactElement | null} The first matched case or the default case or null.
  * @example
  * // Usage example:
  * <Switch>
@@ -52,8 +48,6 @@ const Default = memo(function Default({ children }: DefaultProps): ReactElement 
  *   <Switch.Case condition={false}>Case 3</Switch.Case>
  *   <Switch.Default>Default</Switch.Default>
  * </Switch>
- * @param {SwitchProps} props - The props of the component.
- * @returns {ReactElement | null} The first matched case or the default case or null.
  */
 export const Switch = memo(function Switch({ children }: SwitchProps): ReactElement | null {
 	let matchChild: ReactElement | null = null;

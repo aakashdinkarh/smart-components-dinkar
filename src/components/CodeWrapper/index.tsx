@@ -7,6 +7,16 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
+/**
+ * CodeWrapper component for displaying and highlighting code snippets.
+ * @component
+ * @param {object} props - The props for the CodeWrapper component.
+ * @param {React.ReactNode} props.children - The content to be displayed within the code wrapper.
+ * @param {boolean} props.isCodeHighlighted - Indicates whether code highlighting should be applied.
+ * @param {string} [props.languageClass=''] - Additional CSS class to apply to the code wrapper 
+	based on the programming language.
+ * @returns {JSX.Element} The rendered CodeWrapper component.
+ */
 export const CodeWrapper = memo(function CodeWrapper({
 	children,
 	isCodeHighlighted,
