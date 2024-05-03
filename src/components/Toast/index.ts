@@ -13,54 +13,21 @@ const uniqueIds = {
 
 export type placement = 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-/**
- * Interface defining the possible options for the toast function.
- */
 interface OptionsProps {
-	/**
-	 * The duration (in seconds) for which the toast will be visible before automatically closing.
-	 */
 	closeAfter: number;
-	/**
-	 * The placement of the toast on the screen. It can be one of the following values:
-	 * - 'top'
-	 * - 'bottom'
-	 * - 'top-left'
-	 * - 'top-right'
-	 * - 'bottom-left'
-	 * - 'bottom-right'
-	 */
 	placement: placement;
 	toastContainer: {
-		/**
-		 * Additional CSS class for styling the toast container.
-		 */
 		toastContainerClass?: string;
 	};
 	timerStrip: {
-		/**
-		 * Whether to show the timer strip.
-		 */
 		showTimerStrip?: boolean;
-		/**
-		 * Additional CSS class for styling the timer strip.
-		 */
 		timerStripClass?: string;
 	};
 	toastDiv: {
-		/**
-		 * Additional CSS class for styling the toast div.
-		 */
 		toastDivClass?: string;
 	};
 	closeButton: {
-		/**
-		 * Whether to show the close icon.
-		 */
 		showCloseIcon?: boolean;
-		/**
-		 * Additional CSS class for styling the close button.
-		 */
 		closeButtonClass?: string;
 	};
 }
@@ -69,6 +36,19 @@ interface OptionsProps {
  * Display a toast message with optional configuration options.
  * @param message - The message to be displayed in the toast.
  * @param options - Optional configuration options for the toast.
+ * @param {number} [options.closeAfter] - The duration (in seconds) for which 
+ * the toast will be visible before automatically closing.
+ * @param {number} [options.placement] - The placement of the toast on the screen.
+ * @param {Object} [options.toastContainer] - Toast container props
+ * @param {string} [options.toastContainer.toastContainerClass] - Additional CSS class for styling the toast container.
+ * @param {Object} [options.timerStrip] - Toast timer strip props
+ * @param {boolean} [options.timerStrip.showTimerStrip] - Whether to show the timer strip.
+ * @param {string} [options.timerStrip.timerStripClass] - Additional CSS class for styling the timer strip.
+ * @param {Object} [options.toastDiv] - Toast Div props.
+ * @param {string} [options.toastDiv.toastDivClass] - Additional CSS class for styling the toast div.
+ * @param {Object} [options.closeButton] - Close Button props.
+ * @param {boolean} [options.closeButton.showCloseIcon] - Whether to show the close icon.
+ * @param {string} [options.closeButton.closeButtonClass] - Additional CSS class for styling the close button.
  */
 function toast (message = '', options?: Partial<OptionsProps>): void {
 	const {
