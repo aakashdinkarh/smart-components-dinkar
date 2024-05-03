@@ -5,7 +5,7 @@ import type { ButtonHTMLAttributes } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 import { Button } from '../exports';
-import { Logo } from '../icons';
+import { ReactComponent as Logo } from '../icons/logo.svg';
 import { getCombinedClass } from '../utils/getCombinedClass';
 
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID } from './constants';

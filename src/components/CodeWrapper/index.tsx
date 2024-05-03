@@ -1,7 +1,7 @@
 import type { PropsWithChildren} from 'react';
 import React, { memo } from 'react';
 
-import { CopyIcon } from '../../icons';
+import { CopyIcon } from '../../exports';
 import { copyToClipboard } from '../../utils/copyToClipboard';
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
