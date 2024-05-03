@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { isEmpty } from '../../utils/isEmpty';
@@ -9,8 +9,6 @@ import { SelectedOptions } from './SelectedOptions';
 import styles from './styles.module.css';
 import { useCustomSelect } from './useCustomSelect';
 
-const { useState } = React;
-
 function EmptyList (): React.JSX.Element {
 	return (
 		<div className={styles['list-option']} data-is-child>
@@ -19,7 +17,7 @@ function EmptyList (): React.JSX.Element {
 	);
 }
 
-function Select ({
+export const Select = memo(function Select ({
 	className = '',
 	name = '',
 	value = '',
@@ -91,7 +89,7 @@ function Select ({
 				placeholder={displayValue ?? placeholder}
 				readOnly
 				className={getCombinedClass(
-					'dummy-input',
+					'__scd_dummy-input',
 					styles['dummy-input'],
 					{[styles['not-empty']]: !isEmpty(selectedValue)}
 				)}
@@ -161,6 +159,4 @@ function Select ({
 			)} />
 		</div>
 	);
-}
-
-export { Select };
+});
