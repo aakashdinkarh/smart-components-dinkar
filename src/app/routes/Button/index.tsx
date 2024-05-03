@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { themeType } from '../../../components/Button';
 import { Button, CodeWrapper, toast } from '../../../exports';
 import { StickyHeader } from '../../common/StickyHeader';
+import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 
 import styles from './styles.module.css';
@@ -39,7 +40,7 @@ export function ButtonPage() {
 				</React.Fragment>
 			})}
 
-			<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)}>
+			<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 				{`<Button themeType="primary" onClick={onClick}>Primary</Button>
 
 Group Usage -->
