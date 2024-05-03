@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CodeWrapper, LazyImageWithLoader, SegmentedTabs } from '../../../exports';
 import { StickyHeader } from '../../common/StickyHeader';
-import { IMAGE_PREFIX } from '../../constants';
+import { IMAGE_PREFIX, codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 
 import usageData from './usage.json';
@@ -53,7 +53,7 @@ export function SegmentedTabsPage() {
 			</SegmentedTabs>
 
 			<div className='mt-2'>
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} >
+				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 					{`interface usageDataItem {
 	id: number;
 	title: string;
