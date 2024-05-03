@@ -4,20 +4,44 @@ import { getCombinedClass } from 'utils/getCombinedClass';
 import { Loader } from '../../exports';
 import type { loaderVariant } from '../Loader';
 
-export const LazyImageWithLoader = memo(function LazyImageWithLoader({
-	imgSrc,
-	alt = '',
-	imgWidth,
-	imgHeight,
-	imgContainerClass = '',
-}: {
+interface LazyImageWithLoaderProps {
 	imgSrc: string;
 	alt?: string;
 	imgWidth?: number;
 	imgHeight?: number;
 	imgContainerClass?: string;
 	loaderVariant?: loaderVariant;
-}) {
+}
+
+/**
+ * A component that lazy loads an image with a loader while the image is loading.
+ * @component
+ * @param {LazyImageWithLoaderProps} props - The props of the component.
+ * @param {string} props.imgSrc - The URL of the image to be loaded.
+ * @param {string} [props.alt=''] - The alt text for the image.
+ * @param {number} [props.imgWidth] - The width of the image.
+ * @param {number} [props.imgHeight] - The height of the image.
+ * @param {string} [props.imgContainerClass=''] - Additional class names to be applied to the image container.
+ * @param {loaderVariant} [props.loaderVariant] - The variant of the loader to be displayed while the image is loading.
+ * @returns {JSX.Element} The rendered LazyImageWithLoader component.
+ * @example
+ * // Usage example:
+ * <LazyImageWithLoader
+ *   imgSrc="https://example.com/image.jpg"
+ *   alt="Example Image"
+ *   imgWidth={300}
+ *   imgHeight={200}
+ *   imgContainerClass="image-container"
+ *   loaderVariant="dots-bounce"
+ * />
+ */
+export const LazyImageWithLoader = memo(function LazyImageWithLoader({
+	imgSrc,
+	alt = '',
+	imgWidth,
+	imgHeight,
+	imgContainerClass = '',
+}: LazyImageWithLoaderProps) {
 	const imgRef = useRef<HTMLImageElement>(null);
 	const [isImgLoaded, setIsImgLoaded] = useState(false);
 
