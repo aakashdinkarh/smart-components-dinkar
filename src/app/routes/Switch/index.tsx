@@ -25,7 +25,7 @@ export function SwitchPage() {
                     {`<Switch>
     <Switch.Case condition={false}>Case 1</Switch.Case>
     <Switch.Case condition={true}>Case 2</Switch.Case>
-    <Switch.Case condition={false}>Case 3</Switch.Case>
+    <Switch.Case condition={true}>Case 3</Switch.Case>
     <Switch.Default>Default</Switch.Default>
 </Switch>
 `}
