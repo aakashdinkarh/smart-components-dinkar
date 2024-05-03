@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BorderAnimatedContainer, Button, CodeWrapper } from "../../../exports";
 import { StickyHeader } from '../../common/StickyHeader';
+import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 
 export function OthersPage(){
@@ -16,7 +17,7 @@ export function OthersPage(){
             </BorderAnimatedContainer>
 
             <div className='my-1 mb-4'>
-                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)}>
+                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
                     {`<BorderAnimatedContainer>
     <Button themeType='secondary'>Inset</Button>
 </BorderAnimatedContainer>
@@ -33,7 +34,7 @@ export function OthersPage(){
             </BorderAnimatedContainer>
 
             <div className='my-1 mb-4'>
-                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)}>
+                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
                     {`<BorderAnimatedContainer
     borderPositioning='outset'
     animationDelay='1s'
