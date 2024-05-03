@@ -7,7 +7,7 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-function CodeWrapper({
+export const CodeWrapper = memo(function CodeWrapper({
 	children,
 	isCodeHighlighted,
 	languageClass = '',
@@ -21,7 +21,7 @@ function CodeWrapper({
 
 	return (
 		<div
-			className={getCombinedClass(styles['code-container'], 'code-container', {
+			className={getCombinedClass(styles['code-container'], '__scd_code-container', {
 				[styles['code-highlighted']]: isCodeHighlighted,
 			})}
 		>
@@ -36,8 +36,4 @@ function CodeWrapper({
 			</pre>
 		</div>
 	);
-}
-
-const memoizedCodeWrapper = memo(CodeWrapper);
-
-export { memoizedCodeWrapper as CodeWrapper };
+})
