@@ -7,11 +7,16 @@
   border-radius: 4px;
 }
 
+.overflow-container {
+  overflow: auto;
+}
+
 .tab {
   z-index: 0;
   padding: 4px;
   margin: 4px;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
   background: transparent;
   border: none;

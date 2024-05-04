@@ -35,7 +35,7 @@ export function SegmentedTabsPage() {
 					const { id, title, content } = data;
 					return (
 						<SegmentedTabs.Tab key={id} name={`${id}`} title={title}>
-							<div className='flex mt-2'>
+							<div className='desktop-flex mt-2'>
 								<LazyImageWithLoader
 									imgHeight={220}
 									imgWidth={150}

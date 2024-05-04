@@ -211,8 +211,14 @@
     overflow: hidden;
 }
 
-/* general mobile utils */
+/* general desktop utils */
+@media (width > 480px) {
+    .desktop-flex {
+        display: flex;
+    }
+}
 
+/* general mobile utils */
 .mobile-block {
     display: none;
 }

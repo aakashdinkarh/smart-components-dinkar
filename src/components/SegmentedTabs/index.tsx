@@ -88,22 +88,24 @@ export const SegmentedTabs = memo(function SegmentedTabs ({
 
 	return (
 		<div className="__scd_segmented_tabs_container">
-			<div className={getCombinedClass(styles['tabs-container'], '__scd_tabs-container')}>
-				<div
-					ref={(v) => { tabsRef.current.slider = v; }} 
-					className={getCombinedClass(styles.slider, '__scd_slider')}
-				/>
+			<div className={getCombinedClass(styles['overflow-container'], '__scd_overflow_container')}>
+				<div className={getCombinedClass(styles['tabs-container'], '__scd_tabs-container')}>
+					<div
+						ref={(v) => { tabsRef.current.slider = v; }} 
+						className={getCombinedClass(styles.slider, '__scd_slider')}
+					/>
 
-				{tabs.map(({ name, title }) => (
-					<button
-						key={name}
-						ref={(v) => { tabsRef.current[name] = v; }}
-						onClick={() => { handleTabChange(name); }}
-						className={getCombinedClass(styles.tab, '__scd_tab')}
-					>
-						{title}
-					</button>
-				))}
+					{tabs.map(({ name, title }) => (
+						<button
+							key={name}
+							ref={(v) => { tabsRef.current[name] = v; }}
+							onClick={() => { handleTabChange(name); }}
+							className={getCombinedClass(styles.tab, '__scd_tab')}
+						>
+							{title}
+						</button>
+					))}
+				</div>
 			</div>
 
 			<div className="__scd_tab_content">
