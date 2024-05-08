@@ -20,6 +20,11 @@ Once the repository is clone, Please change the directory to `smart-components-d
 cd smart-components-dinkar
 ```
 
+Please run the repo with node version >= 18
+```
+nvm use 18
+```
+
 Run the below command to install the dependencies
 ```
 npm run install
