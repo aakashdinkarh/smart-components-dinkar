@@ -18,7 +18,7 @@ module.exports = {
 		'@typescript-eslint/non-nullable-type-assertion-style' : 'off',
 
 	},
-	ignorePatterns : ['dist/**/*', 'node_modules/*'],
+	ignorePatterns : ['dist/**/*', 'node_modules/*', 'build/*'],
 	extends        : [
 		'eslint:recommended',
 		'plugin:eslint-plugin/recommended',
