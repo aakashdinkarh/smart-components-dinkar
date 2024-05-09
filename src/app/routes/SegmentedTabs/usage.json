@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Season 1",
+        "content": {
+            "title": "Demon Slayer: Unwavering Resolve Arc",
+            "image": "demon_slayer/season_1_thumbnail.webp",
+            "description": "Ever since the death of his father, the burden of supporting the family has fallen upon Tanjirou Kamado's shoulders. Though living impoverished on a remote mountain, the Kamado family are able to enjoy a relatively peaceful and happy life. One day, Tanjirou decides to go down to the local village to make a little money selling charcoal. On his way back, night falls, forcing Tanjirou to take shelter in the house of a strange man, who warns him of the existence of flesh-eating demons that lurk in the woods at night. When he finally arrives back home the next day, he is met with a horrifying sight—his whole family has been slaughtered. Worse still, the sole survivor is his sister Nezuko, who has been turned into a bloodthirsty demon. Consumed by rage and hatred, Tanjirou swears to avenge his family and stay by his only remaining sibling. Alongside the mysterious group calling themselves the Demon Slayer Corps, Tanjirou will do whatever it takes to slay the demons and protect the remnants of his beloved sister's humanity. [Written by MAL Rewrite]"
+        }
+    },
+    {
+        "id": 2,
+        "title": "Movie",
+        "content": {
+            "title": "Demon Slayer Movie: Mugen Train",
+            "image": "demon_slayer/mugen_train_movie_thumbnail.webp",
+            "description": "After a string of mysterious disappearances begin to plague a train, the Demon Slayer Corps' multiple attempts to remedy the problem prove fruitless. To prevent further casualties, the flame pillar, Kyoujurou Rengoku, takes it upon himself to eliminate the threat. Accompanying him are some of the Corps' most promising new blood: Tanjirou Kamado, Zenitsu Agatsuma, and Inosuke Hashibira, who all hope to witness the fiery feats of this model demon slayer firsthand. Unbeknownst to them, the demonic forces responsible for the disappearances have already put their sinister plan in motion. Under this demonic presence, the group must muster every ounce of their willpower and draw their swords to save all two hundred passengers onboard. Kimetsu no Yaiba Movie: Mugen Ressha-hen delves into the deepest corners of Tanjirou's mind, putting his resolve and commitment to duty to the test. - Less"
+        }
+    },
+    {
+        "id": 3,
+        "title": "Season 2",
+        "content": {
+            "title": "Demon Slayer: Entertainment District Arc",
+            "image": "demon_slayer/season_2_thumbnail.webp",
+            "description": "Tanjirou and his comrades embark on a new mission within the Yoshiwara Entertainment District to face the demon Daki."
+        }
+    },
+    {
+        "id": 4,
+        "title": "Season 3",
+        "content": {
+            "title": "Demon Slayer: Swordsmith Village Arc",
+            "image": "demon_slayer/season_3_thumbnail.webp",
+            "description": "After a string of mysterious disappearances begin to plague a train, the Demon Slayer Corps' multiple attempts to remedy the problem prove fruitless. To prevent further casualties, the flame pillar, Kyoujurou Rengoku, takes it upon himself to eliminate the threat. Accompanying him are some of the Corps' most promising new blood: Tanjirou Kamado, Zenitsu Agatsuma, and Inosuke Hashibira, who all hope to witness the fiery feats of this model demon slayer firsthand. Unbeknownst to them, the demonic forces responsible for the disappearances have already put their sinister plan in motion. Under this demonic presence, the group must muster every ounce of their willpower and draw their swords to save all two hundred passengers onboard. Kimetsu no Yaiba Movie: Mugen Ressha-hen delves into the deepest corners of Tanjirou's mind, putting his resolve and commitment to duty to the test."
+        }
+    },
+    {
+        "id": 5,
+        "title": "Season 4",
+        "content": {
+            "title": "Demon Slayer: Hashira Training Arc",
+            "image": "demon_slayer/season_4_thumbnail.webp",
+            "description": "Although, this season is yet to release on May 12, 2024. Giving a brief description of the season here: \"Tanjiro goes to see the Stone Hashira, Himejima, who intends to prepare him for the battles to come. The training to become a Hashira – a high-ranking member of the Demon Slayer Corps – is intense and demanding. Earning Himejima's approval seems impossible, but Tanjiro won't give up! Meanwhile, the demon lord Muzan continues to search for the location of Nezuko and Ubuyashiki.\""
+        }
+    }
+]

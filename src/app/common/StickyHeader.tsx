@@ -1,8 +1,9 @@
-import type { ReactNode, RefObject } from 'react';
-import React, { useCallback, useEffect, useRef } from 'react';
+import type { CSSProperties, RefObject } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+import { Select } from '../../exports';
 import { getCombinedClass } from '../../utils/getCombinedClass';
-import { MOBILE_ONLY_LOGO_AND_TITLE_ID } from '../constants';
+import { MOBILE_ONLY_LOGO_AND_TITLE_ID, THEME_OPTIONS } from '../constants';
 import { checkIsMobile } from '../helpers';
 
 function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTMLDivElement>) {
@@ -24,15 +25,15 @@ function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTM
 
 export function StickyHeader({
 	heading,
-	children,
-	className = '',
 	style = {},
+	withThemeSelector = false
 }: {
 	heading: string;
-	children?: ReactNode;
-	className?: string;
-	style?: Record<string, any>;
+	style?: CSSProperties;
+	withThemeSelector?: boolean;
 }) {
+	const [codeStyleTheme, setCodeStyleTheme] = useState(THEME_OPTIONS[0].value);
+
 	const stickyBelowLogoContainer = useRef<HTMLDivElement>(null);
 
 	const windowResizeEventListener = useCallback(() => {
@@ -52,13 +53,27 @@ export function StickyHeader({
 		<div
 			ref={stickyBelowLogoContainer}
 			className={getCombinedClass(
-				'flex sticky-below-logo border-b mb-4 bg-white z1 width-full-section',
-				className
+				'flex sticky-below-logo border-b mb-4 bg-white z1 width-full-section justify-space-between',
 			)}
 			style={style}
 		>
 			<h2 className='mobile-text-lg align-self-center'>{heading}</h2>
-			{children}
+
+			{withThemeSelector && (
+				<>
+					<div
+						className={getCombinedClass(
+							'flex align-items-center py-2',
+							'mobile-flex-col mobile-align-flex-start mobile-justify-content-center'
+						)}
+					>
+						<div>Code Theme:</div>
+						<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
+					</div>
+
+					<link rel='stylesheet' href={`/codeHighlighterThemes/${codeStyleTheme}.css`}></link>
+				</>
+			)}
 		</div>
 	);
 }

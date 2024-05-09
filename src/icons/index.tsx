@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import type { SVGAttributes } from 'react';
-import React, { forwardRef } from 'react';
+import React, { memo, forwardRef } from 'react';
 
 import { getCombinedClass } from '../utils/getCombinedClass';
 
@@ -8,9 +8,7 @@ interface PropsType extends SVGAttributes<HTMLOrSVGElement> {
 	pathAttributes?: Record<string, any>;
 }
 
-// todo: find a better way for svg files export
-
-export const CopyIcon = forwardRef<SVGSVGElement, PropsType>((props, ref) => {
+export const CopyIcon = memo(forwardRef<SVGSVGElement, PropsType>((props, ref) => {
 	const { pathAttributes, className, ...rest } = props;
 
 	return (
@@ -31,9 +29,9 @@ export const CopyIcon = forwardRef<SVGSVGElement, PropsType>((props, ref) => {
 			></path>
 		</svg>
 	);
-});
+}));
 
-export const Logo = forwardRef<SVGSVGElement, PropsType>((props, ref) => {
+export const Logo = memo(forwardRef<SVGSVGElement, PropsType>((props, ref) => {
 	const { className, ...rest } = props;
 
 	return (
@@ -58,4 +56,4 @@ export const Logo = forwardRef<SVGSVGElement, PropsType>((props, ref) => {
 			<path d='M20 100h70c-30 0-50-20-50-50s20-50 50-50v100H80z' fill='url(#grad)' />
 		</svg>
 	);
-});
+}));

@@ -7,6 +7,7 @@ import { NpmPackagePage } from './NpmPackage';
 import { OthersPage } from './Others';
 import { SegmentedTabsPage } from './SegmentedTabs';
 import { SelectPage } from "./Select"
+import { SwitchPage } from './Switch';
 import { ToastPage } from './Toast';
 
 export const routes = {
@@ -18,6 +19,7 @@ export const routes = {
 	button        : '/component/button',
 	loader        : '/component/loader',
 	others        : '/component/others',
+	switch        :	'/components/switch',
 };
 
 export const sideBarItems = {
@@ -47,6 +49,10 @@ export const sideBarItems = {
 		{
 			path  : routes.loader,
 			label : 'Loader',
+		},
+		{
+			path  : routes.switch,
+			label : 'Switch',
 		},
 		{
 			path  : routes.others,
@@ -84,6 +90,10 @@ export const nestedRoutes = [
 	{
 		path    : routes.loader,
 		element : <LoaderPage />,
+	},
+	{
+		path    : routes.switch,
+		element : <SwitchPage />,
 	},
 	{
 		path    : routes.others,

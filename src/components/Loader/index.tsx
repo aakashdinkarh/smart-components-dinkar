@@ -1,33 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import type { JSX } from 'react';
 
 import { Switch } from '../../exports';
 
 import styles from './loader.module.css';
 
-interface LoaderPropsCommon {
-	/**
-	 * The variant of the loader animation
-	 * @default 'spin'
-	 */
-	variant: 'spin' | 'lines' | 'dots-bounce' | 'dots-fade';
-	/**
-	 * The color of the loader animation.
-	 * @default '#3498db'
-	 */
-	color?: string;
-	/**
-	 * The size of the loader animation. For variants spin, dots-bounce, dots-fade size meaning is self explanatory,
-	 * for variant lines size implies the height of lines.
-	 * defaultSize = {
-	 *	spin : 50px,
-	 *	lines : 40px,
-	 *	dots-bounce : 1rem,
-	 *	dots-fade : 1rem,
-	 * };
-	 */
-	size?: string;
-}
+export type loaderVariant = 'spin' | 'lines' | 'dots-bounce' | 'dots-fade';
 
 const defaultSizes = {
 	spin          : '50px',
@@ -36,25 +14,30 @@ const defaultSizes = {
 	'dots-fade'   : '1rem',
 };
 
+interface LoaderProps {
+	variant: loaderVariant;
+	color?: string;
+	size?: string;
+}
 /**
- * Loader component displays a loading animation based on the specified variant.
- *
- * @component
- * @param {Object} props - The properties of the Loader component.
- * @returns {JSX.Element} - The rendered Loader component.
- *
+ * A customizable loader component that displays different loading animations.
+ * @param {LoaderProps} props - The props of the component.
+ * @param {string} [props.variant='spin'] - The variant of the loader animation.
+ * @param {string} [props.color='#3498db'] - The color of the loader.
+ * @param {string} [props.size=''] - The size of the loader.
+ * @returns {JSX.Element} The rendered loader component.
  * @example
- * // Example usage of Loader component:
+ * // Usage example:
  * <Loader variant="spin" color="#ff5733" size="50px" />
  * <Loader variant="lines" color="#ff5733" size="40px" />
  * <Loader variant="dots-bounce" color="#ff5733" size="1rem" />
  * <Loader variant="dots-fade" color="#ff5733" size="1rem" />
  */
-export function Loader({
+export const Loader = memo(function Loader({
 	variant = 'spin',
 	color = '#3498db',
 	size = '',
-} : LoaderPropsCommon ) : JSX.Element {
+} : LoaderProps ) : JSX.Element {
 	const cssVariable = variant === 'lines' ? '--loader-height' : '--loader-size';
 	const defaultSize = size || defaultSizes[variant] || '1rem';
 
@@ -108,4 +91,4 @@ export function Loader({
 			</Switch>
 		</div>
 	)
-}
+});

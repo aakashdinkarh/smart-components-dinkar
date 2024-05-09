@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { CodeWrapper, Select, Loader } from '../../../exports';
+import { CodeWrapper, Loader } from '../../../exports';
 import { getCombinedClass } from '../../../utils/getCombinedClass';
 import { StickyHeader } from '../../common/StickyHeader';
-import { highlightCode } from '../../helpers/highlightCode';
+import { useHighlightCode } from '../../hooks/useHighlightCode';
 
 import styles from './styles.module.css';
 import tutorialSteps from './tutorialSteps.json';
@@ -16,15 +16,6 @@ interface tutorialStep {
 	nestedSteps?: tutorialStep[];
 	isCodeHighlighted?: boolean;
 }
-
-const THEME_OPTIONS = [
-	{ label: 'Github dark', value: 'github-dark-min' },
-	{ label: 'Darcula', value: 'base16-darcula-min' },
-	{ label: 'Sublime', value: 'monokai-sublime-min' },
-	{ label: 'Atom one dark', value: 'atom-one-dark' },
-	{ label: 'Hardcore', value: 'base16-hardcore-min' },
-	{ label: 'Material', value: 'base16-material-min' },
-];
 
 function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlighted = false }: tutorialStep) {
 	return (
@@ -43,28 +34,11 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 }
 
 export function NpmPackagePage() {
-	const [isCodeHighlighted, setIsCodeHighlighted] = useState<boolean | null>(null);
-	const [codeStyleTheme, setCodeStyleTheme] = useState(THEME_OPTIONS[0].value);
-
-	useEffect(() => {
-		highlightCode()
-			.then((res) => { setIsCodeHighlighted(res); })
-			.catch(() => { setIsCodeHighlighted(false); });
-	}, []);
+	const { isCodeHighlighted } = useHighlightCode();
 
 	return (
 		<main>
-			<StickyHeader heading='NPM Package Tutorial' className='justify-space-between'>
-				<div
-					className={getCombinedClass(
-						'flex align-items-center py-2',
-						'mobile-flex-col mobile-align-flex-start mobile-justify-content-center'
-					)}
-				>
-					<div>Code Theme:</div>
-					<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
-				</div>
-			</StickyHeader>
+			<StickyHeader heading='NPM Package Tutorial' withThemeSelector />
 
 			<p>
 				In this tutorial we will learn to create a simple basic react library, which will provide simple basic
@@ -82,8 +56,6 @@ export function NpmPackagePage() {
 					<InstructionWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} {...step} />
 				))}
 			</div>
-
-			<link rel='stylesheet' href={`/codeHighlighterThemes/${codeStyleTheme}.css`}></link>
 		</main>
 	);
 }

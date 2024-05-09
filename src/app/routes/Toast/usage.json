@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "Toast Top",
+        "buttonThemeType": "primary",
+        "toastMessage": "I am a toast (top)",
+        "placement": "top"
+    },
+    {
+        "id": 2,
+        "title": "Toast Bottom",
+        "buttonThemeType": "secondary",
+        "toastMessage": "I am a toast (bottom)",
+        "placement": "bottom"
+    },
+    {
+        "id": 3,
+        "title": "Toast Top left",
+        "buttonThemeType": "tertiary",
+        "toastMessage": "I am a toast (top-left)",
+        "placement": "top-left"
+    },
+    {
+        "id": 4,
+        "title": "Toast Top right",
+        "buttonThemeType": "success",
+        "toastMessage": "I am a toast (top-right)",
+        "placement": "top-right"
+    },
+    {
+        "id": 5,
+        "title": "Toast Bottom left",
+        "buttonThemeType": "warn",
+        "toastMessage": "I am a toast (bottom-left)",
+        "placement": "bottom-left"
+    },
+    {
+        "id": 6,
+        "title": "Toast Bottom right",
+        "buttonThemeType": "danger",
+        "toastMessage": "I am a toast (bottom-right)",
+        "placement": "bottom-right"
+    }
+]

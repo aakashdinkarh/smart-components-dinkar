@@ -1,48 +1,30 @@
-import type { ReactNode, JSX} from 'react';
-import React, { useMemo } from 'react';
+import type { JSX, PropsWithChildren } from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './borderAnimated.module.css';
 
-interface BorderAnimatedContainerProps {
-	/**
-	 * Additional class names to be applied to the component.
-	 */
+export type borderPositioningTypes = 'outset' | 'inset';
+
+interface BorderAnimatedContainerProps extends PropsWithChildren {
 	className?: string;
-	/**
-	 * The color of the animated border.
-	 * @default '#f68b21'
-	 */
 	animatedBorderColor?: string;
-	/**
-	 * The duration of the animation in seconds.
-	 * @default '2s'
-	 */
 	animationDuration?: string;
-	/**
-	 * The delay in animation in seconds.
-	 * @default '0s'
-	 */
 	animationDelay?: string;
-	/**
-	 * Determines the positioning of the border animation within the component.
-	 *
-	 * - If set to 'outset', the animation will appear outside the border.
-	 * - If set to 'inset', the animation will be positioned on the border.
-	 *
-	 * @default 'inset'
-	 */
-	borderPositioning?: 'outset' | 'inset';
-	/**
-	 * The content to be rendered within the component.
-	 */
-	children: ReactNode;
+	borderPositioning?: borderPositioningTypes;
 }
 
 /**
  * A container component with an animated border.
- * @component
+ * @param {BorderAnimatedContainerProps} props - The props of the component.
+ * @param {string} [props.className] - Additional class names to be applied to the component.
+ * @param {string} [props.animatedBorderColor='#f68b21'] - The color of the animated border.
+ * @param {string} [props.animationDuration='2s'] - The duration of the animation in seconds.
+ * @param {string} [props.animationDelay='0s'] - The delay in animation in seconds.
+ * @param {borderPositioningTypes} [props.borderPositioning='inset'] - Determines the positioning 
+ * of the border animation within the component.
+ * @returns {JSX.Element} The rendered component wrapped inside a animated border container.
  * @example
  * // Usage example:
  *	<BorderAnimatedContainer
@@ -56,10 +38,8 @@ interface BorderAnimatedContainerProps {
  *			Outset 2s Duration Container
  *		</div>
  *	</BorderAnimatedContainer>
- * @param {BorderAnimatedContainerProps} props - The props of the component.
- * @returns {JSX.Element} The rendered component wrapped inside a animated border container.
  */
-export function BorderAnimatedContainer({
+export const BorderAnimatedContainer = memo(function BorderAnimatedContainer({
 	className = '',
 	animatedBorderColor = '#f68b21',
 	animationDuration = '2s',
@@ -123,4 +103,4 @@ export function BorderAnimatedContainer({
 			{children}
 		</section>
 	);
-}
+});

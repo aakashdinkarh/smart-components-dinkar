@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Loader 1",
+        "variant": "spin"
+    },
+    {
+        "id": 2,
+        "title": "Loader 2",
+        "variant": "lines"
+    },
+    {
+        "id": 3,
+        "title": "Loader 3",
+        "variant": "dots-bounce"
+    },
+    {
+        "id":4,
+        "title": "Loader 4",
+        "variant": "dots-fade"
+    }
+]

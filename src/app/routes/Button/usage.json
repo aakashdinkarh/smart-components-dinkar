@@ -1,0 +1,152 @@
+[
+    [
+        {
+            "id": 1,
+            "title": "Primary",
+            "themeType": "primary"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Primary",
+            "disabled": true,
+            "themeType": "primary"
+        },
+        {
+            "id": 3,
+            "title": "Primary Outline",
+            "outline": true,
+            "themeType": "primary"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Primary Outline",
+            "disabled": true,
+            "themeType": "primary"
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "title": "Secondary",
+            "themeType": "secondary"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Secondary",
+            "disabled": true,
+            "themeType": "secondary"
+        },
+        {
+            "id": 3,
+            "title": "Secondary Outline",
+            "outline": true,
+            "themeType": "secondary"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Secondary Outline",
+            "disabled": true,
+            "themeType": "secondary"
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "title": "Tertiary",
+            "themeType": "tertiary"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Tertiary",
+            "disabled": true,
+            "themeType": "tertiary"
+        },
+        {
+            "id": 3,
+            "title": "Tertiary Outline",
+            "outline": true,
+            "themeType": "tertiary"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Tertiary Outline",
+            "disabled": true,
+            "themeType": "tertiary"
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "title": "Success",
+            "themeType": "success"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Success",
+            "disabled": true,
+            "themeType": "success"
+        },
+        {
+            "id": 3,
+            "title": "Success Outline",
+            "outline": true,
+            "themeType": "success"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Success Outline",
+            "disabled": true,
+            "themeType": "success"
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "title": "Danger",
+            "themeType": "danger"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Danger",
+            "disabled": true,
+            "themeType": "danger"
+        },
+        {
+            "id": 3,
+            "title": "Danger Outline",
+            "outline": true,
+            "themeType": "danger"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Danger Outline",
+            "disabled": true,
+            "themeType": "danger"
+        }
+    ],
+    [
+        {
+            "id": 1,
+            "title": "Warn",
+            "themeType": "warn"
+        },
+        {
+            "id": 2,
+            "title": "Disabled Warn",
+            "disabled": true,
+            "themeType": "warn"
+        },
+        {
+            "id": 3,
+            "title": "Warn Outline",
+            "outline": true,
+            "themeType": "warn"
+        },
+        {
+            "id": 4,
+            "title": "Disabled Warn Outline",
+            "disabled": true,
+            "themeType": "warn"
+        }
+    ]
+]

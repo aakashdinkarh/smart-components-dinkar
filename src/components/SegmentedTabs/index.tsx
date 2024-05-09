@@ -1,33 +1,56 @@
-import React from 'react';
+import type { JSX, NamedExoticComponent, PropsWithChildren } from 'react';
+import React, { Fragment, memo, isValidElement, useState, useRef, useEffect } from 'react';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
-const { isValidElement, Children, useState, useRef, useEffect } = React;
-
-interface SegmentedTabsProps {
-	defaultActiveTab: string;
-	onTabChange: (newTab?: string) => void;
-	children: React.ReactNode;
+interface SegmentedTabsProps extends PropsWithChildren {
+	defaultActiveTab?: string;
+	onTabChange?: (newTab?: string) => void;
 }
 
-interface TabProps {
+interface TabProps extends PropsWithChildren {
 	name: string;
 	title?: string;
-	children?: React.ReactNode;
 }
 
-function Tab ({ children }: TabProps): any {
-	return children;
-}
+/**
+ * A single tab component to be used inside SegmentedTabs.
+ * @param {TabProps} props - The props of the component.
+ * @param {string} props.name - The variant of the loader animation.
+ * @param {React.ReactNode} props.children - The content to be displayed in the Tab.
+ * @param {string} [props.title] - The variant of the loader animation.
+ * @returns {JSX.Element} The rendered Tab component.
+ * @example
+ * // Usage example:
+	<SegmentedTabs.Tab name="tab1" title="Tab 1">Tab 1</SegmentedTabs.Tab>
+ */
+export const Tab = memo(function Tab ({ children }: TabProps): JSX.Element {
+	return <Fragment>{children}</Fragment>;
+});
 
-function SegmentedTabs ({
+/**
+ * A segmented tabs component.
+ * @param {SegmentedTabsProps} props - The props of the component.
+ * @param {React.ReactNode} props.children - The Tab children components.
+ * @param {string} [props.defaultActiveTab] - The name of the default active tab.
+ * @param {string} [props.onTabChange] - Function called when the active tab changes.
+ * @returns {JSX.Element} The rendered SegmentedTabs component.
+ * @example
+ * // Usage example:
+    <SegmentedTabs defaultActiveTab="tab1">
+        <SegmentedTabs.Tab name="tab1" title="Tab 1">Tab 1</SegmentedTabs.Tab>
+        <SegmentedTabs.Tab name="tab2" title="Tab 2">Tab 2</SegmentedTabs.Tab>
+        <SegmentedTabs.Tab name="tab3" title="Tab 8">Tab 8</SegmentedTabs.Tab>
+    </SegmentedTabs>
+ */
+export const SegmentedTabs = memo(function SegmentedTabs ({
 	defaultActiveTab = '',
 	onTabChange = () => {},
 	children = null
-}: Partial<SegmentedTabsProps>): React.JSX.Element {
-	const validChildren = Children.toArray(children)
+}: Partial<SegmentedTabsProps>): JSX.Element {
+	const validChildren = React.Children.toArray(children)
 		.filter((child) => isValidElement(child) && child.type === Tab);
 
 	const tabs: TabProps[] = validChildren
@@ -64,32 +87,34 @@ function SegmentedTabs ({
 	}
 
 	return (
-		<div className="segmented_tabs_container">
-			<div className={getCombinedClass(styles['tabs-container'], 'tabs-container')}>
-				<div
-					ref={(v) => { tabsRef.current.slider = v; }} 
-					className={getCombinedClass(styles.slider, 'slider')}
-				/>
+		<div className="__scd_segmented_tabs_container">
+			<div className={getCombinedClass(styles['overflow-container'], '__scd_overflow_container')}>
+				<div className={getCombinedClass(styles['tabs-container'], '__scd_tabs-container')}>
+					<div
+						ref={(v) => { tabsRef.current.slider = v; }} 
+						className={getCombinedClass(styles.slider, '__scd_slider')}
+					/>
 
-				{tabs.map(({ name, title }) => (
-					<button
-						key={name}
-						ref={(v) => { tabsRef.current[name] = v; }}
-						onClick={() => { handleTabChange(name); }}
-						className={getCombinedClass(styles.tab, 'tab')}
-					>
-						{title}
-					</button>
-				))}
+					{tabs.map(({ name, title }) => (
+						<button
+							key={name}
+							ref={(v) => { tabsRef.current[name] = v; }}
+							onClick={() => { handleTabChange(name); }}
+							className={getCombinedClass(styles.tab, '__scd_tab')}
+						>
+							{title}
+						</button>
+					))}
+				</div>
 			</div>
 
-			<div className="tab_content">
+			<div className="__scd_tab_content">
 				{validChildren.filter((child) => (child as {props: TabProps}).props.name === activeTab)}
 			</div>
 		</div>
 	);
-}
+}) as NamedExoticComponent<SegmentedTabsProps> & {
+	Tab: NamedExoticComponent<TabProps>;
+};
 
 SegmentedTabs.Tab = Tab;
-
-export { SegmentedTabs };
