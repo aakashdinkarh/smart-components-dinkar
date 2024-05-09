@@ -53,7 +53,7 @@ function EmptyList (): React.JSX.Element {
 				"label": "Eggeterian",
 				"value": "egg"
 			}
-		],
+		]}
 		isClearable={false}
 	/>
  */

@@ -7,11 +7,15 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 
 import styles from './styles.module.css';
 
+interface CodeWrapperProps extends PropsWithChildren {
+	isCodeHighlighted: boolean;
+	languageClass?: string;
+}
+
 /**
  * CodeWrapper component for displaying and highlighting code snippets.
  * @component
- * @param {object} props - The props for the CodeWrapper component.
- * @param {React.ReactNode} props.children - The content to be displayed within the code wrapper.
+ * @param {CodeWrapperProps} props - The props for the CodeWrapper component.
  * @param {boolean} props.isCodeHighlighted - Indicates whether code is highlighted with hljs or not.
  * @param {string} [props.languageClass=''] - Additional CSS class to apply to the code wrapper 
 	based on the programming language.
@@ -29,10 +33,7 @@ export const CodeWrapper = memo(function CodeWrapper({
 	children,
 	isCodeHighlighted,
 	languageClass = '',
-}: PropsWithChildren & {
-	isCodeHighlighted: boolean;
-	languageClass?: string;
-}) {
+}: CodeWrapperProps) {
 	function handleCopy() {
 		void copyToClipboard(children as string);
 	}

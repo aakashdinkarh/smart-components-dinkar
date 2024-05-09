@@ -7,4 +7,5 @@ export { Loader } from './components/Loader';
 export { CodeWrapper } from './components/CodeWrapper';
 export { LazyImageWithLoader } from './components/LazyImageWithLoader'
 export { BorderAnimatedContainer } from './components/BorderAnimatedContainer';
-export { ReactComponent as CopyIcon } from './icons/copy.svg';
+export { CopyIcon } from './icons';
+export { Logo } from './icons';
