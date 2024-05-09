@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, memo } from 'react';
-import { getCombinedClass } from 'utils/getCombinedClass';
 
 import { Loader } from '../../exports';
+import { getCombinedClass } from '../../utils/getCombinedClass';
 import type { loaderVariant } from '../Loader';
 
 interface LazyImageWithLoaderProps {
