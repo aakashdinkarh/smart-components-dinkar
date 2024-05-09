@@ -84,4 +84,4 @@ This file was not created at that time.
 
 -   Demo/Playground React app, deployed on [Vercel](https://devdinkar-codebook.vercel.app/).
 
-## [1.3.1] - 2024-05-09
+## [1.4.0] - 2024-05-09
