@@ -167,6 +167,10 @@
     padding-bottom: 0.75rem;
 }
 
+.p-1 {
+    padding: 0.25rem;
+}
+
 /* bg utils */
 
 .bg-white {
@@ -181,6 +185,10 @@
 
 .border-b {
     border-bottom: 1px solid #bababa;
+}
+
+.border-t {
+    border-top: 1px solid #bababa;
 }
 
 .br-1 {

@@ -9,3 +9,4 @@ export { LazyImageWithLoader } from './components/LazyImageWithLoader'
 export { BorderAnimatedContainer } from './components/BorderAnimatedContainer';
 export { CopyIcon } from './icons';
 export { Logo } from './icons';
+export { GitHubLogo } from './icons';

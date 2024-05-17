@@ -84,6 +84,8 @@ a {
 }
 
 .side-menu {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: min(30%, 320px);
     min-width: 20%;
@@ -129,6 +131,10 @@ a {
 
 .menu-icon .menu-icon-bar:not(:last-of-type) {
     margin-bottom: 2px;
+}
+
+.github-logo-container {
+    background-color: #edeef1;
 }
 
 @media (width <= 480px) {
