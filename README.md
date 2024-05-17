@@ -7,24 +7,22 @@ by providing reusable and efficient solutions for common UI patterns.
 These components are built with a focus on modularity, flexibility, and ease of integration into various projects.
 Also this repo only contains the code for playground for the components.
 
+## Usage Documentation
+All the usage and description is available on https://devdinkar-codebook.vercel.app/
+
 # Installation
 Clone the repository
-
 ```
 git clone https://github.com/aakashdinkarh/smart-components-dinkar.git
 ```
-
 Once the repository is clone, Please change the directory to `smart-components-dinkar` folder.
-
 ```
 cd smart-components-dinkar
 ```
-
 Please run the repo with node version >= 18
 ```
 nvm use 18
 ```
-
 Run the below command to install the dependencies
 ```
 npm run install
@@ -52,7 +50,3 @@ To build playground application on production mode, run the following command, i
 ```
 npm run build
 ```
-
-## Documentation
-
-All the usage and description is available on https://devdinkar-codebook.vercel.app/
