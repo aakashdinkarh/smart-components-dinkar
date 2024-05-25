@@ -1,6 +1,6 @@
 {
   "name": "smart-components-dinkar",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
   "main": "dist/index.js",
   "module": "dist/index.js",
