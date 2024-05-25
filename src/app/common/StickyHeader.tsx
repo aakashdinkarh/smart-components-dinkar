@@ -25,10 +25,12 @@ function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTM
 
 export function StickyHeader({
 	heading,
+	subtitle,
 	style = {},
 	withThemeSelector = false
 }: {
 	heading: string;
+	subtitle?: string;
 	style?: CSSProperties;
 	withThemeSelector?: boolean;
 }) {
@@ -57,7 +59,10 @@ export function StickyHeader({
 			)}
 			style={style}
 		>
-			<h2 className='mobile-text-lg align-self-center'>{heading}</h2>
+			<div>
+				<h2 className='mobile-text-lg align-self-center'>{heading}</h2>
+				{(subtitle != null) && <p className='mb-1' style={{ marginTop: '-1rem'}} >{subtitle}</p>}
+			</div>
 
 			{withThemeSelector && (
 				<>

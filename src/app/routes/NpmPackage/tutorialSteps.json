@@ -120,5 +120,11 @@
         "subText": "Please note version in <code class=\"file\">package.json</code>, every time you actually publish your package you should increase the version number",
         "code": "npm publish",
         "key": "10"
+    },
+    {
+        "title": "Upgrading the package version",
+        "subText": "Once we published our package, we might want to upgrade our package to provide more or improve the package",
+        "code": "npm version patch // bug-fix changes 1.0.0 -> 1.0.1 \nnpm version minor // minor changes 1.0.0 -> 1.1.0 \nnpm version major // major changes 1.0.0 -> 2.0.0",
+        "key": "11"
     }
 ]

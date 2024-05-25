@@ -1,10 +1,10 @@
 {
   "name": "smart-components-dinkar",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/types/exports.d.ts",
+  "types": "dist/exports.d.ts",
   "keywords": [
     "smart-components",
     "dinkar",
@@ -13,10 +13,13 @@
   ],
   "author": "Aakash Dinkar aakashdinkarh@gmail.com",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aakashdinkarh/smart-components-dinkar"
+  },
   "scripts": {
-    "clean": "node scripts/clean-dist.js",
-    "build-lib-dev": "npm run clean && webpack --mode development",
-    "build-lib-prod": "npm run clean && webpack --mode production",
+    "build-lib-dev": "webpack --mode development",
+    "build-lib-prod": "webpack --mode production",
     "start": "npx react-scripts start",
     "build": "npx react-scripts build",
     "lint": "eslint .",
@@ -56,6 +59,7 @@
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
+  "sideEffects": false,
   "browserslist": {
     "production": [
       ">0.2%",
