@@ -3,16 +3,16 @@ import type { OverridedMixpanel } from 'mixpanel-browser';
 import { DEVELOPMENT, PRODUCTION } from '../constants';
 
 const getMixpanel = async (): Promise<OverridedMixpanel> => {
-	const module = (await import('mixpanel-browser')) as unknown as OverridedMixpanel;
+	const module = (await import('mixpanel-browser')).default;
 	return module;
 };
 
 const getMixpanelToken = () => {
-	switch (process.env.REACT_APP_PUBLIC_ENVIRONMENT) {
+	switch (process.env.REACT_APP_ENVIRONMENT) {
 		case DEVELOPMENT:
-			return process.env.REACT_APP_PUBLIC_MIXPANEL_TOKEN_DEV;
+			return process.env.REACT_APP_MIXPANEL_TOKEN_DEV;
 		case PRODUCTION:
-			return process.env.REACT_APP_PUBLIC_MIXPANEL_TOKEN_PROD;
+			return process.env.REACT_APP_MIXPANEL_TOKEN_PROD;
 		default:
 			return null;
 	}
@@ -27,7 +27,7 @@ export const mixpanel = {
 			this.mixpanel = await getMixpanel();
 			const mixpanelToken = getMixpanelToken();
 			if (mixpanelToken != null && mixpanelToken !== '') {
-				this.mixpanel.init(mixpanelToken, {}, process.env.REACT_APP_PUBLIC_MIXPANEL_PROJECT_NAME);
+				this.mixpanel.init(mixpanelToken);
 			}
 			this.queue.forEach((fn: () => void) => { fn(); });
 			this.queue = [];
