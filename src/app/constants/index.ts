@@ -17,3 +17,6 @@ export const THEME_OPTIONS = [
 export const IMAGE_PREFIX = 'https://aakashdinkarh.github.io/static_assets/images/';
 
 export const SOURCE_CODE = 'https://github.com/aakashdinkarh/smart-components-dinkar';
+
+export const DEVELOPMENT = 'development';
+export const PRODUCTION = 'production';
