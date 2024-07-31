@@ -5,10 +5,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { App } from './app/App';
 import { nestedRoutes } from './app/routes/routesConfig';
 
+const appLoadStartTime = Date.now();
+
 const router = createBrowserRouter([
 	{
 		path         : '/',
-		element      : <App />,
+		element      : <App appLoadStartTime={appLoadStartTime} />,
 		errorElement : <h4>Error</h4>,
 		children     : nestedRoutes,
 	},
