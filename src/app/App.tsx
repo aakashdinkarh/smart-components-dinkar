@@ -67,11 +67,10 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 						'bold-6'
 					)}
 				>
-					<Link to='/'>
+					<Link to='/' className='flex align-items-center'>
 						<Logo width={20} height={20} className='mr-1' />
+						DevDinkar CodeBook
 					</Link>
-
-					<Link to='/'>DevDinkar CodeBook</Link>
 				</div>
 
 				{/* visible in mobile only */}
