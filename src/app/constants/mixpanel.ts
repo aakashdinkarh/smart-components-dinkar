@@ -1,5 +1,6 @@
 export const MIXPANEL_EVENTS = {
 	APP_OPENED               : 'App Opened',
+	STICKY_HEADER_RENDER     : 'Sticky Header Render',
 	THEME_CHANGED            : 'Theme Changed',
 	LOGO_CLICKED             : 'Logo Clicked',
 	NAVIGATION_CLICKED       : 'Navigation Clicked',

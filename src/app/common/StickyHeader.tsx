@@ -4,7 +4,10 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Select } from '../../exports';
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, THEME_OPTIONS } from '../constants';
+import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import { checkIsMobile } from '../helpers';
+import { getCurrentScreen } from '../routes/routesConfig';
+import { mixpanel } from '../utils/mixpanel';
 
 function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTMLDivElement>) {
 	if (stickyBelowLogoContainer.current == null) {
@@ -27,7 +30,7 @@ export function StickyHeader({
 	heading,
 	subtitle,
 	style = {},
-	withThemeSelector = false
+	withThemeSelector = false,
 }: {
 	heading: string;
 	subtitle?: string;
@@ -46,10 +49,26 @@ export function StickyHeader({
 		windowResizeEventListenerEffect(stickyBelowLogoContainer);
 		window.addEventListener('resize', windowResizeEventListener);
 
+		mixpanel.track(MIXPANEL_EVENTS.STICKY_HEADER_RENDER, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
+			...(withThemeSelector && {
+				[MIXPANEL_EVENT_PROPERTIES.THEME]: THEME_OPTIONS.find((option) => option.value === codeStyleTheme)
+					?.label,
+			}),
+		});
+
 		return () => {
 			window.removeEventListener('resize', windowResizeEventListener);
 		};
 	}, []);
+
+	const onThemeChange = (theme: string) => {
+		setCodeStyleTheme(theme);
+		mixpanel.track(MIXPANEL_EVENTS.THEME_CHANGED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE] : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.THEME]        : THEME_OPTIONS.find((option) => option.value === theme)?.label,
+		});
+	};
 
 	return (
 		<div
@@ -73,7 +92,7 @@ export function StickyHeader({
 						)}
 					>
 						<div>Code Theme:</div>
-						<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={setCodeStyleTheme} />
+						<Select options={THEME_OPTIONS} value={codeStyleTheme} onChange={onThemeChange} />
 					</div>
 
 					<link rel='stylesheet' href={`/codeHighlighterThemes/${codeStyleTheme}.css`}></link>
