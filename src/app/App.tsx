@@ -65,7 +65,14 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
 			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
 			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_LOGO]       : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]            : checkIsMobile(),
+		});
+	};
+
+	const trackSourceCodeClick = () => {
+		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE] : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]    : checkIsMobile(),
 		});
 	};
 
@@ -82,7 +89,13 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 						'bold-6'
 					)}
 				>
-					<Link to='/' onClick={() => { trackLogoClick('Side Bar'); }} className='flex align-items-center'>
+					<Link
+						to='/'
+						onClick={() => {
+							trackLogoClick('Side Bar');
+						}}
+						className='flex align-items-center'
+					>
 						<Logo width={20} height={20} className='mr-1' />
 						DevDinkar CodeBook
 					</Link>
@@ -101,7 +114,12 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 				<div className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}>
 					<BorderAnimatedContainer borderPositioning='outset' animatedBorderColor='#79c0ff'>
-						<Link className='flex align-items-center p-1' to={SOURCE_CODE}>
+						<Link
+							onClick={trackSourceCodeClick}
+							className='flex align-items-center p-1'
+							to={SOURCE_CODE}
+							target='_blank'
+						>
 							<GitHubLogo style={{ marginRight: '0.25rem' }} /> Source Code
 						</Link>
 					</BorderAnimatedContainer>
@@ -122,7 +140,9 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 					<Link
 						to='/'
-						onClick={() => { trackLogoClick('Main Page'); }}
+						onClick={() => {
+							trackLogoClick('Main Page');
+						}}
 						className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}
 					>
 						<Logo width={20} height={20} className='mr-1' />

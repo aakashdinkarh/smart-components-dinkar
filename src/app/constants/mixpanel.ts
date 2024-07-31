@@ -16,8 +16,7 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	CURRENT_PAGE         : 'Current Page',
 	THEME                : 'Theme',
 	LOGO_DISPLAY_CONTEXT : 'Logo Display Context',
-	IS_MOBILE_LOGO       : 'Is Mobile Logo',
+	IS_MOBILE            : 'Is Mobile',
 	NAVIGATION_CONTEXT   : 'Navigation Context',
 	NAVIGATION_TITLE     : 'Navigation Title',
-	IS_MOBILE_NAVIGATION : 'Is Mobile Navigation',
 } as const;

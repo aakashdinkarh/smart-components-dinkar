@@ -14,10 +14,10 @@ export const SideBar = memo(function SideBar() {
 
 	const trackNavClick = (navContext: 'Tutorials' | 'Components', navTitle: string) => {
 		mixpanel.track(MIXPANEL_EVENTS.NAVIGATION_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_CONTEXT]   : navContext,
-			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TITLE]     : navTitle,
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_NAVIGATION] : checkIsMobile(),
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_CONTEXT] : navContext,
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TITLE]   : navTitle,
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]          : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]       : getCurrentScreen(),
 		})
 	}
 
