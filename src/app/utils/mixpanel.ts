@@ -32,7 +32,7 @@ class MixpanelService {
 			this.mixpanel = await MixpanelService.getMixpanel();
 			const mixpanelToken = MixpanelService.getMixpanelToken();
 			if (mixpanelToken != null && mixpanelToken !== '') {
-				this.mixpanel.init(mixpanelToken, { debug: MixpanelService.isDevelopment, ip: true });
+				this.mixpanel.init(mixpanelToken);
 				this.isInitialized = true;
 			}
 			this.queue.forEach((fn: () => void) => { fn(); });
