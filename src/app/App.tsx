@@ -48,10 +48,16 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 	const showSideNav = useCallback(() => {
 		setMobileSideNavShow(true);
+		mixpanel.track(MIXPANEL_EVENTS.HAMBURGER_ICON_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
+		});	
 	}, []);
 
 	const hideSideNav = useCallback(() => {
 		setMobileSideNavShow(false);
+		mixpanel.track(MIXPANEL_EVENTS.SIDEBAR_CLOSE_ICON_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
+		});
 	}, []);
 
 	const trackLogoClick = (logoDisplayContext: 'mobile' | 'desktop') => {
