@@ -10,6 +10,7 @@ import { getCombinedClass } from '../utils/getCombinedClass';
 
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, SOURCE_CODE } from './constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from './constants/mixpanel';
+import { checkIsMobile } from './helpers';
 import { getCurrentScreen } from './routes/routesConfig';
 import { SideBar } from './SideBar';
 import styles from './styles.module.css';
@@ -60,10 +61,11 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 		});
 	}, []);
 
-	const trackLogoClick = (logoDisplayContext: 'mobile' | 'desktop') => {
+	const trackLogoClick = (logoDisplayContext: 'Main Page' | 'Side Bar') => {
 		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
 			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
 			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_LOGO]       : checkIsMobile(),
 		});
 	};
 
@@ -80,7 +82,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 						'bold-6'
 					)}
 				>
-					<Link to='/' onClick={() => { trackLogoClick('desktop'); }} className='flex align-items-center'>
+					<Link to='/' onClick={() => { trackLogoClick('Side Bar'); }} className='flex align-items-center'>
 						<Logo width={20} height={20} className='mr-1' />
 						DevDinkar CodeBook
 					</Link>
@@ -120,7 +122,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 					<Link
 						to='/'
-						onClick={() => { trackLogoClick('desktop'); }}
+						onClick={() => { trackLogoClick('Main Page'); }}
 						className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}
 					>
 						<Logo width={20} height={20} className='mr-1' />
