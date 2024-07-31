@@ -74,8 +74,16 @@ Object.keys(sideBarItems).forEach((key) => {
 	});
 });
 
-// Type assertion to inform TypeScript that all properties are now defined
-export const navTitleMapping = navTitleMap as Readonly<Record<(typeof routes)[keyof typeof routes], string>>;
+// Type assertion to inform TypeScript that all properties are now defined, Export if needed
+const navTitleMapping = navTitleMap as Readonly<Record<(typeof routes)[keyof typeof routes], string>>;
+
+export const getCurrentScreen = () => {
+	try {
+		return navTitleMapping[window.location.pathname as keyof typeof navTitleMapping];
+	} catch (error) {
+		return null;
+	}
+}
 
 export const nestedRoutes = [
 	{

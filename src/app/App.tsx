@@ -10,7 +10,7 @@ import { getCombinedClass } from '../utils/getCombinedClass';
 
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, SOURCE_CODE } from './constants';
 import { MIXPANEL_EVENT_PROPERTIES } from './constants/mixpanel';
-import { navTitleMapping } from './routes/routesConfig';
+import { getCurrentScreen } from './routes/routesConfig';
 import { SideBar } from './SideBar';
 import styles from './styles.module.css';
 import { mixpanel } from './utils/mixpanel';
@@ -42,7 +42,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 		const appLoadEndTime = Date.now();
 		mixpanel.track('App Render', {
 			[MIXPANEL_EVENT_PROPERTIES.APP_LOAD_TIME] : appLoadEndTime - appLoadStartTime,
-			[MIXPANEL_EVENT_PROPERTIES.PAGE_VIEWED]   : navTitleMapping[window.location.pathname],
+			[MIXPANEL_EVENT_PROPERTIES.PAGE_VIEWED]   : getCurrentScreen(),
 		});
 	}, []);
 
