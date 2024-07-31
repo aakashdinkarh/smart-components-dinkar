@@ -6,6 +6,8 @@ class MixpanelService {
 	private mixpanel: OverridedMixpanel | null = null;
 	private queue: (() => void)[] = [];
 
+	public isInitialized = false;
+
 	private static isDevelopment = process.env.REACT_APP_ENVIRONMENT === DEVELOPMENT;
 	private static isProduction = process.env.REACT_APP_ENVIRONMENT === PRODUCTION;
 
@@ -31,6 +33,7 @@ class MixpanelService {
 			const mixpanelToken = MixpanelService.getMixpanelToken();
 			if (mixpanelToken != null && mixpanelToken !== '') {
 				this.mixpanel.init(mixpanelToken, { debug: MixpanelService.isDevelopment, ip: true });
+				this.isInitialized = true;
 			}
 			this.queue.forEach((fn: () => void) => { fn(); });
 			this.queue = [];
@@ -41,7 +44,7 @@ class MixpanelService {
 	}
 
 	public track(eventName: string, properties?: Record<string, unknown>): void {
-		if (this.mixpanel) {
+		if (this.isInitialized && this.mixpanel) {
 			if (MixpanelService.isProduction) {
 				this.mixpanel.track(eventName, properties);
 				return;
