@@ -8,7 +8,6 @@ class MixpanelService {
 
 	public isInitialized = false;
 
-	private static isDevelopment = process.env.REACT_APP_ENVIRONMENT === DEVELOPMENT;
 	private static isProduction = process.env.REACT_APP_ENVIRONMENT === PRODUCTION;
 
 	private static getMixpanelToken(): string | null {
