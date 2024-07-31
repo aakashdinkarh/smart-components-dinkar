@@ -54,6 +54,13 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 		setMobileSideNavShow(false);
 	}, []);
 
+	const trackLogoClick = (logoDisplayContext: 'mobile' | 'desktop') => {
+		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
+		});
+	};
+
 	return (
 		<main className={styles['app-container']}>
 			<section
@@ -67,7 +74,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 						'bold-6'
 					)}
 				>
-					<Link to='/' className='flex align-items-center'>
+					<Link to='/' onClick={() => { trackLogoClick('desktop'); }} className='flex align-items-center'>
 						<Logo width={20} height={20} className='mr-1' />
 						DevDinkar CodeBook
 					</Link>
@@ -84,9 +91,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 				<SideBar />
 
-				<div
-					className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}
-				>
+				<div className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}>
 					<BorderAnimatedContainer borderPositioning='outset' animatedBorderColor='#79c0ff'>
 						<Link className='flex align-items-center p-1' to={SOURCE_CODE}>
 							<GitHubLogo style={{ marginRight: '0.25rem' }} /> Source Code
@@ -107,7 +112,11 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 				>
 					<MenuIcon onClick={showSideNav} style={{ marginRight: '1rem' }} />
 
-					<Link to='/' className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}>
+					<Link
+						to='/'
+						onClick={() => { trackLogoClick('desktop'); }}
+						className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}
+					>
 						<Logo width={20} height={20} className='mr-1' />
 
 						<div>DevDinkar CodeBook</div>

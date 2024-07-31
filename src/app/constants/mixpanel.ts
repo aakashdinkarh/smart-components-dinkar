@@ -3,6 +3,7 @@ export const MIXPANEL_EVENTS = {
 	STICKY_HEADER_RENDER     : 'Sticky Header Render',
 	THEME_CHANGED            : 'Theme Changed',
 	LOGO_CLICKED             : 'Logo Clicked',
+	HAMBURGER_ICON_CLICKED   : 'Hamburger Icon Clicked',
 	NAVIGATION_CLICKED       : 'Navigation Clicked',
 	SOURCE_CODE_LINK_CLICKED : 'Source Code Link Clicked',
 	PAGE_SCROLLED_TILL_END   : 'Page Scrolled Till End',
@@ -10,7 +11,8 @@ export const MIXPANEL_EVENTS = {
 } as const;
 
 export const MIXPANEL_EVENT_PROPERTIES = {
-	APP_LOAD_TIME : 'App Load Time',
-	CURRENT_PAGE  : 'Current Page',
-	THEME         : 'Theme',
+	APP_LOAD_TIME        : 'App Load Time',
+	CURRENT_PAGE         : 'Current Page',
+	THEME                : 'Theme',
+	LOGO_DISPLAY_CONTEXT : 'Logo Display Context',
 } as const;
