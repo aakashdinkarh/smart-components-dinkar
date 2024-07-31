@@ -65,7 +65,9 @@ export const sideBarItems: SideBarItems = {
 } as const;
 
 
-const navTitleMap = {};
+const navTitleMap = {
+	[routes.home]: 'Home',
+};
 Object.keys(sideBarItems).forEach((key) => {
 	sideBarItems[key as keyof typeof sideBarItems].forEach((item) => {
 		navTitleMap[item.path] = item.label;
