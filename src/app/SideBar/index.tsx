@@ -2,12 +2,24 @@ import React, { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
-import { sideBarItems } from '../routes/routesConfig';
+import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
+import { checkIsMobile } from '../helpers';
+import { getCurrentScreen, sideBarItems } from '../routes/routesConfig';
+import { mixpanel } from '../utils/mixpanel';
 
 import styles from './styles.module.css';
 
 export const SideBar = memo(function SideBar() {
 	const location = useLocation();
+
+	const trackNavClick = (navContext: 'Tutorials' | 'Components', navTitle: string) => {
+		mixpanel.track(MIXPANEL_EVENTS.NAVIGATION_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_CONTEXT]   : navContext,
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TITLE]     : navTitle,
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_NAVIGATION] : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
+		})
+	}
 
 	return (
 		<ul className={styles['list-container']}>
@@ -18,10 +30,21 @@ export const SideBar = memo(function SideBar() {
 			</li>
 
 			{sideBarItems.tutorials.map((item) => (
-				<li key={item.path} className={getCombinedClass(styles['list-item'], {
-					[styles.active]: item.path === location.pathname
-				})} >
-					<Link className={styles.link} to={item.path}>{item.label}</Link>
+				<li
+					key={item.path}
+					className={getCombinedClass(styles['list-item'], {
+						[styles.active]: item.path === location.pathname,
+					})}
+				>
+					<Link
+						onClick={() => {
+							trackNavClick('Tutorials', item.label);
+						}}
+						className={styles.link}
+						to={item.path}
+					>
+						{item.label}
+					</Link>
 				</li>
 			))}
 
@@ -31,12 +54,23 @@ export const SideBar = memo(function SideBar() {
 			</li>
 
 			{sideBarItems.components.map((item) => (
-				<li key={item.path} className={getCombinedClass(styles['list-item'], {
-					[styles.active]: item.path === location.pathname
-				})} >
-					<Link className={styles.link} to={item.path}>{item.label}</Link>
+				<li
+					key={item.path}
+					className={getCombinedClass(styles['list-item'], {
+						[styles.active]: item.path === location.pathname,
+					})}
+				>
+					<Link
+						onClick={() => {
+							trackNavClick('Components', item.label);
+						}}
+						className={styles.link}
+						to={item.path}
+					>
+						{item.label}
+					</Link>
 				</li>
 			))}
 		</ul>
-	)
+	);
 })
