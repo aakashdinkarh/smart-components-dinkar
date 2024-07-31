@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
@@ -6,7 +6,7 @@ import { sideBarItems } from '../routes/routesConfig';
 
 import styles from './styles.module.css';
 
-export function SideBar(){
+export const SideBar = memo(function SideBar() {
 	const location = useLocation();
 
 	return (
@@ -39,4 +39,4 @@ export function SideBar(){
 			))}
 		</ul>
 	)
-}
+})
