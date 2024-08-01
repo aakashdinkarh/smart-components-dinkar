@@ -5,12 +5,15 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 export function SwitchPage() {
 	const { isCodeHighlighted } = useHighlightCode();
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Switch' withThemeSelector />
 			<p>
 				Sometimes rendering logic for the components become complex and we end up writing something which is not

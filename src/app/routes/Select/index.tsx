@@ -5,6 +5,7 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import usageData from './usage.json'
 
@@ -26,6 +27,8 @@ export function SelectPage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Select' withThemeSelector />
 
 			{(usageData as usageDataItem[]).map((data) => {

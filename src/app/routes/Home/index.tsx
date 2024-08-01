@@ -4,6 +4,7 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassJS } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 const StyledH2 = ({ children }) => {
 	return <h2 style={{ marginBottom: '0.5rem' }} >{children}</h2>
@@ -14,6 +15,8 @@ export function HomePage() {
 
 	return (
 		<>
+			<HelmetComponent />
+
 			<header>
 				<StickyHeader heading='Smart Components Dinkar' subtitle='Building from scratch!' withThemeSelector />
 			</header>

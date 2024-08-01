@@ -6,6 +6,7 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import usageData from './usage.json';
 
@@ -22,6 +23,8 @@ export function LoaderPage(){
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Loader' withThemeSelector />
 
 			{(usageData as usageDataItem[]).map((data, index) => {

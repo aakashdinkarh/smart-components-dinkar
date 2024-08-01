@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Fragment } from 'react'
 
 import type { themeType } from '../../../components/Button';
 import { Button, toast } from '../../../exports';
@@ -6,6 +6,7 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import styles from './styles.module.css';
 import usageData from './usage.json';
@@ -27,10 +28,12 @@ export function ButtonPage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Button' withThemeSelector />
 
 			{(usageData as usageDataGroup[]).map((dataGroup, index) => {
-				return <React.Fragment key={index}>
+				return <Fragment key={index}>
 					<div className={styles['button-group']} >
 						{(dataGroup as usageDataItem[]).map((data) => {
 							const { id, title, ...restParams } = data;
@@ -38,7 +41,7 @@ export function ButtonPage() {
 								<Button key={id} {...restParams} onClick={onClick}>{title}</Button>
 							)})}
 					</div>
-				</React.Fragment>
+				</Fragment>
 			})}
 
 			<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>

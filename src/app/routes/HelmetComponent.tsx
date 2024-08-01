@@ -6,7 +6,7 @@ import { getCurrentScreen } from './routesConfig';
 export const HelmetComponent = () => {
 	return (
 		<Helmet>
-			<title>DevDinkar CodeBook - {getCurrentScreen()}</title>
+			<title>{getCurrentScreen()} - DevDinkar CodeBook</title>
 		</Helmet>
 	);
 };

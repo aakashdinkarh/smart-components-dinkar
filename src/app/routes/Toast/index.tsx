@@ -7,6 +7,7 @@ import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import usageData from './usage.json';
 
@@ -23,6 +24,8 @@ export function ToastPage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Toast' withThemeSelector />
 
 			{(usageData as usageDataItem[]).map((data) => {

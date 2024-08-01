@@ -5,6 +5,7 @@ import { getCombinedClass } from '../../../utils/getCombinedClass';
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import styles from './styles.module.css';
 import tutorialSteps from './tutorialSteps.json';
@@ -39,6 +40,8 @@ export function NpmPackagePage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='NPM Package Tutorial' withThemeSelector />
 
 			<p>
