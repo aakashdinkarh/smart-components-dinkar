@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { loadHljs } from "./hljsLoader";
 
 export async function highlightCode(){
@@ -9,7 +8,7 @@ export async function highlightCode(){
 			return true;
 		}
 	} catch (err) {
-		console.error(err);
+		throw new Error(err);
 	}
 	return false;
 }
