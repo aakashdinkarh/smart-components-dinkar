@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
-import { checkIsMobile } from '../helpers';
 import { getCurrentScreen, sideBarItems } from '../routes/routesConfig';
+import { checkIsMobile, checkIsMobileViewPort } from '../utils';
 import { mixpanel } from '../utils/mixpanel';
 
 import styles from './styles.module.css';
@@ -14,10 +14,11 @@ export const SideBar = memo(function SideBar() {
 
 	const trackNavClick = (navContext: 'Tutorials' | 'Components', navTitle: string) => {
 		mixpanel.track(MIXPANEL_EVENTS.NAVIGATION_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_CONTEXT] : navContext,
-			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TITLE]   : navTitle,
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]          : checkIsMobile(),
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]       : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_CONTEXT]  : navContext,
+			[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TITLE]    : navTitle,
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT] : checkIsMobileViewPort(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
 		})
 	}
 

@@ -7,7 +7,7 @@ import { mixpanel } from './mixpanel';
 
 import { getSafe } from '.';
 
-interface ExtendedNavigator {
+export interface ExtendedNavigator {
 	connection?: {
 		effectiveType?: string;
 	};
