@@ -31,4 +31,5 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	CONNECTION_MODE      : 'Connection Mode',
 	RATING               : 'Rating',
 	NAVIGATION_TYPE      : 'Navigation Type',
+	REFERRER             : 'Referrer',
 } as const;

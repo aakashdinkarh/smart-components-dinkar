@@ -44,6 +44,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 		mixpanel.track(MIXPANEL_EVENTS.APP_OPENED, {
 			[MIXPANEL_EVENT_PROPERTIES.APP_LOAD_TIME] : appLoadEndTime - appLoadStartTime,
 			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.REFERRER]      : document.referrer,
 		});
 	}, []);
 
