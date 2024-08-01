@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
 import type { loaderVariant } from '../../../components/Loader';
-import { CodeWrapper, Loader } from '../../../exports';
+import { Loader } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
@@ -31,12 +32,12 @@ export function LoaderPage(){
 					<Loader variant={variant} />
 
 					<div className='mt-2'>
-						<CodeWrapper
+						<AppCodeWrapper
 							isCodeHighlighted={Boolean(isCodeHighlighted)}
 							languageClass={codeHighlightClassHTML}
 						>
 							{`<Loader variant="${variant}" />`}
-						</CodeWrapper>
+						</AppCodeWrapper>
 					</div>
 
 					{usageDataLength-1 !== index && <hr className='mt-2 mb-4' />}

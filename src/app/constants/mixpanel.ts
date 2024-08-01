@@ -20,6 +20,6 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	IS_MOBILE            : 'Is Mobile',
 	NAVIGATION_CONTEXT   : 'Navigation Context',
 	NAVIGATION_TITLE     : 'Navigation Title',
-	CURRENT_STEP         : 'Current Step',
+	CODE_INITIALS        : 'Code Initials',
 	ERROR_MESSAGE        : 'Error Message',
 } as const;

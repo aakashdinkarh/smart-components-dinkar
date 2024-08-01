@@ -1,7 +1,8 @@
 import * as React from 'react'
 
 import type { themeType } from '../../../components/Button';
-import { Button, CodeWrapper, toast } from '../../../exports';
+import { Button, toast } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
@@ -40,7 +41,7 @@ export function ButtonPage() {
 				</React.Fragment>
 			})}
 
-			<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+			<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 				{`<Button themeType="primary" onClick={onClick}>Primary</Button>
 
 Group Usage -->
@@ -67,7 +68,7 @@ type usageDataGroup = usageDataItem[];
 	</React.Fragment>
 })}
 `}
-			</CodeWrapper>
+			</AppCodeWrapper>
 		</main>
 	)
 }

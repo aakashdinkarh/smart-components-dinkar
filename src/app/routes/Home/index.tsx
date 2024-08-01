@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CodeWrapper } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassJS } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
@@ -37,14 +37,14 @@ export function HomePage() {
 
 				<div>
 				Instead of this
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
 					{`import { Select } from 'smart-components-dinkar';`}
-				</CodeWrapper>
+				</AppCodeWrapper>
 				<br />
 				Import like this
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
 					{`import { Select } from 'smart-components-dinkar/dist/components/Select';`}
-				</CodeWrapper>
+				</AppCodeWrapper>
 			</div>
 			</section>
 

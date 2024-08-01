@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Select, CodeWrapper } from '../../../exports';
+import { Select } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
@@ -50,12 +51,12 @@ export function SelectPage() {
 						</div>
 
 						<div className='mb-4'>
-							<CodeWrapper 
+							<AppCodeWrapper 
 								isCodeHighlighted={Boolean(isCodeHighlighted)}
 								languageClass={codeHighlightClassHTML}
 							>
 								{usageDataString}
-							</CodeWrapper>
+							</AppCodeWrapper>
 						</div>
 					</React.Fragment>
 				)

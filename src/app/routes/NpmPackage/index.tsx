@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { CodeWrapper, Loader } from '../../../exports';
+import { Loader } from '../../../exports';
 import { getCombinedClass } from '../../../utils/getCombinedClass';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 
@@ -27,7 +28,7 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 			{nestedSteps ? (
 				nestedSteps.map((step) => <InstructionWrapper isCodeHighlighted={isCodeHighlighted} {...step} />)
 			) : (
-				<CodeWrapper isCodeHighlighted={isCodeHighlighted}>{code}</CodeWrapper>
+				<AppCodeWrapper isCodeHighlighted={isCodeHighlighted}>{code}</AppCodeWrapper>
 			)}
 		</div>
 	);

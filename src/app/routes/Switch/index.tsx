@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { CodeWrapper, Switch } from '../../../exports';
+import { Switch } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
@@ -26,7 +27,7 @@ export function SwitchPage() {
 			</Switch>
 
 			<div>
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 					{`<Switch>
     <Switch.Case condition={false}>Case 1</Switch.Case>
     <Switch.Case condition={true}>Case 2</Switch.Case>
@@ -34,7 +35,7 @@ export function SwitchPage() {
     <Switch.Default>Default</Switch.Default>
 </Switch>
 `}
-				</CodeWrapper>
+				</AppCodeWrapper>
 			</div>
 
 			<hr />
@@ -48,7 +49,7 @@ export function SwitchPage() {
 			</Switch>
 
 			<div>
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 					{`<Switch>
     <Switch.Case condition={false}>Case 1</Switch.Case>
     <Switch.Case condition={false}>Case 2</Switch.Case>
@@ -56,7 +57,7 @@ export function SwitchPage() {
     <Switch.Default>Default</Switch.Default>
 </Switch>
 `}
-				</CodeWrapper>
+				</AppCodeWrapper>
 			</div>
 		</main>
 	);
