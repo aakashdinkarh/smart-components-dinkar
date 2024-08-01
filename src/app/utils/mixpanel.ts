@@ -9,6 +9,7 @@ class MixpanelService {
 	public isInitialized = false;
 
 	private static isProduction = process.env.REACT_APP_ENVIRONMENT === PRODUCTION;
+	private static isDevelopment = process.env.REACT_APP_ENVIRONMENT === DEVELOPMENT;
 
 	private static getMixpanelToken(): string | null {
 		switch (process.env.REACT_APP_ENVIRONMENT) {
@@ -45,10 +46,14 @@ class MixpanelService {
 	public track(eventName: string, properties?: Record<string, unknown>): void {
 		if (this.isInitialized && this.mixpanel) {
 			if (MixpanelService.isProduction) {
-				this.mixpanel.track(eventName, properties);
-				return;
+				// defer the track call to the next event loop to avoid blocking the main thread
+				setTimeout(() => {
+					this.mixpanel?.track(eventName, properties);
+				}, 0);
+			} else if (MixpanelService.isDevelopment) {
+				// eslint-disable-next-line no-console
+				console.log(eventName, properties);
 			}
-			console.log(eventName, properties);
 		} else {
 			this.queue.push(() => {
 				this.track(eventName, properties);
