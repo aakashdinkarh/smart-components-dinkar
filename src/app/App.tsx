@@ -113,7 +113,7 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 					x
 				</Button>
 
-				<SideBar />
+				<SideBar hideSideNav={hideSideNav} />
 
 				<div className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}>
 					<BorderAnimatedContainer borderPositioning='outset' animatedBorderColor='#79c0ff'>

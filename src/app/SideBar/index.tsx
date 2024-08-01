@@ -9,7 +9,7 @@ import { mixpanel } from '../utils/mixpanel';
 
 import styles from './styles.module.css';
 
-export const SideBar = memo(function SideBar() {
+export const SideBar = memo(function SideBar({ hideSideNav }: { hideSideNav: () => void }) {
 	const location = useLocation();
 
 	const trackNavClick = (navContext: 'Tutorials' | 'Components', navTitle: string) => {
@@ -40,6 +40,7 @@ export const SideBar = memo(function SideBar() {
 					<Link
 						onClick={() => {
 							trackNavClick('Tutorials', item.label);
+							checkIsMobileViewPort() && hideSideNav();
 						}}
 						className={styles.link}
 						to={item.path}
@@ -64,6 +65,7 @@ export const SideBar = memo(function SideBar() {
 					<Link
 						onClick={() => {
 							trackNavClick('Components', item.label);
+							checkIsMobileViewPort() && hideSideNav();
 						}}
 						className={styles.link}
 						to={item.path}
