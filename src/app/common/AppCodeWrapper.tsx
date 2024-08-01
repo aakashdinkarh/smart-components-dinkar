@@ -1,51 +1,51 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { CodeWrapper } from '../../exports';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import { getCurrentScreen } from '../routes/routesConfig';
 import { mixpanel } from '../utils/mixpanel';
 
-const trackCopySuccess = (title: string) => {
+const trackCopySuccess = (code: string) => {
 	mixpanel.track(MIXPANEL_EVENTS.COPY_CODE_BUTTON_CLICKED, {
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE] : getCurrentScreen(),
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_STEP] : title,
+		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
+		[MIXPANEL_EVENT_PROPERTIES.CODE_INITIALS] : code,
 	});
 };
 
-const trackCopyFail = (errorMsg: string, title: string) => {
+const trackCopyFail = (errorMsg: string, code: string) => {
 	mixpanel.track(MIXPANEL_EVENTS.COPY_CODE_BUTTON_CLICKED, {
 		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_STEP]  : title,
+		[MIXPANEL_EVENT_PROPERTIES.CODE_INITIALS] : code,
 		[MIXPANEL_EVENT_PROPERTIES.ERROR_MESSAGE] : errorMsg,
 	});
 };
 
 export const AppCodeWrapper = memo(function AppCodeWrapper({
-	code,
-	isCodeHighlighted,
-	title,
 	trackSuccess = true,
 	trackFail = true,
+	children,
+	...rest
 }: {
-	code: string;
-	isCodeHighlighted: boolean;
-	title: string;
-	trackSuccess: boolean;
-	trackFail: boolean;
-}) {
+	trackSuccess?: boolean;
+	trackFail?: boolean;
+} & Omit<React.ComponentProps<typeof CodeWrapper>, 'onCopy' | 'onCopyFail'>) {
+	const codeInitials = useMemo(() => {
+		return typeof children === 'string' ? children.slice(0, 10) : String(children).slice(0, 10);
+	}, [children]);
+
 	const handleCopySuccess = () => {
-		trackCopySuccess(title);
+		trackCopySuccess(codeInitials);
 	};
 	const handleCopyFail = (errorMsg: string) => {
-		trackCopyFail(errorMsg, title);
+		trackCopyFail(errorMsg, codeInitials);
 	};
 	return (
 		<CodeWrapper
 			{...(trackSuccess && { onCopy: handleCopySuccess })}
 			{...(trackFail && { onCopyFail: handleCopyFail })}
-			isCodeHighlighted={isCodeHighlighted}
+			{...rest}
 		>
-			{code}
+			{children}
 		</CodeWrapper>
 	);
 });
