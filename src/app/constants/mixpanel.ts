@@ -7,8 +7,9 @@ export const MIXPANEL_EVENTS = {
 	SIDEBAR_CLOSE_ICON_CLICKED : 'Sidebar Close Icon Clicked',
 	NAVIGATION_CLICKED         : 'Navigation Clicked',
 	SOURCE_CODE_LINK_CLICKED   : 'Source Code Link Clicked',
-	PAGE_SCROLLED_TILL_END     : 'Page Scrolled Till End',
 	COPY_CODE_BUTTON_CLICKED   : 'Copy Code Button Clicked',
+	CODE_HIGHLIGHTED_SUCCESS   : 'Code Highlighted Success',
+	CODE_HIGHLIGHTED_ERROR     : 'Code Highlighted Error',
 } as const;
 
 export const MIXPANEL_EVENT_PROPERTIES = {
@@ -19,4 +20,6 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	IS_MOBILE            : 'Is Mobile',
 	NAVIGATION_CONTEXT   : 'Navigation Context',
 	NAVIGATION_TITLE     : 'Navigation Title',
+	CURRENT_STEP         : 'Current Step',
+	ERROR_MESSAGE        : 'Error Message',
 } as const;
