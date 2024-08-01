@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react';
 
 import { CodeWrapper } from '../../exports';
+import { CODE_INITIALS_LENGTH } from '../constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import { getCurrentScreen } from '../routes/routesConfig';
 import { mixpanel } from '../utils/mixpanel';
@@ -30,7 +31,9 @@ export const AppCodeWrapper = memo(function AppCodeWrapper({
 	trackFail?: boolean;
 } & Omit<React.ComponentProps<typeof CodeWrapper>, 'onCopy' | 'onCopyFail'>) {
 	const codeInitials = useMemo(() => {
-		return typeof children === 'string' ? children.slice(0, 10) : String(children).slice(0, 10);
+		return typeof children === 'string'
+			? children.slice(0, CODE_INITIALS_LENGTH)
+			: String(children).slice(0, CODE_INITIALS_LENGTH);
 	}, [children]);
 
 	const handleCopySuccess = () => {

@@ -20,3 +20,5 @@ export const SOURCE_CODE = 'https://github.com/aakashdinkarh/smart-components-di
 
 export const DEVELOPMENT = 'development';
 export const PRODUCTION = 'production';
+
+export const CODE_INITIALS_LENGTH = 25;
