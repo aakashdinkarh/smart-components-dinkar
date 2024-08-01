@@ -6,7 +6,7 @@ import { getCombinedClass } from '../../utils/getCombinedClass';
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, THEME_OPTIONS } from '../constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import { getCurrentScreen } from '../routes/routesConfig';
-import { checkIsMobile, checkIsMobileViewPort } from '../utils';
+import { checkIsMobileViewPort } from '../utils';
 import { mixpanel } from '../utils/mixpanel';
 
 function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTMLDivElement>) {
@@ -15,12 +15,11 @@ function windowResizeEventListenerEffect(stickyBelowLogoContainer: RefObject<HTM
 	}
 
 	const isMobileViewPort = checkIsMobileViewPort();
-	const isMobile = checkIsMobile();
 
 	const logoContainer = document.querySelector(`#${MOBILE_ONLY_LOGO_AND_TITLE_ID}`);
 	const { height } = logoContainer?.getBoundingClientRect() ?? {};
 
-	if (Boolean(height) && ((isMobile ?? false) || isMobileViewPort)) {
+	if (Boolean(height) && isMobileViewPort) {
 		stickyBelowLogoContainer.current.style.top = `${height}px`;
 	} else {
 		stickyBelowLogoContainer.current.style.top = `0px`;
