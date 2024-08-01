@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { App } from './app/App';
 import { nestedRoutes } from './app/routes/routesConfig';
+import { sendPerfAnalytics } from './app/utils/sendPerfAnalytics';
+import { reportWebVitals } from './reportWebVitals';
 
 const appLoadStartTime = Date.now();
 
@@ -22,3 +24,5 @@ root.render(
 		<RouterProvider router={router} />
 	</React.StrictMode>
 );
+
+reportWebVitals(sendPerfAnalytics);

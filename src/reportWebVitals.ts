@@ -1,4 +1,6 @@
-export const reportWebVitals = (onPerfEntry?: (metric: any) => void) => {
+import type { Metric } from 'web-vitals';
+
+export const reportWebVitals = (onPerfEntry?: (metric: Metric) => void) => {
 	if (onPerfEntry && onPerfEntry instanceof Function) {
 		void import('web-vitals').then((vitals) => {
 			vitals.onCLS(onPerfEntry);

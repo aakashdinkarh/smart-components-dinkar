@@ -1,4 +1,5 @@
 export const MIXPANEL_EVENTS = {
+	APP_WEB_VITAL_SCORE        : 'App Web Vital Score',
 	APP_OPENED                 : 'App Opened',
 	STICKY_HEADER_RENDER       : 'Sticky Header Render',
 	THEME_CHANGED              : 'Theme Changed',
@@ -22,4 +23,11 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	NAVIGATION_TITLE     : 'Navigation Title',
 	CODE_INITIALS        : 'Code Initials',
 	ERROR_MESSAGE        : 'Error Message',
+	EVENT_LABEL          : 'Event Label',
+	EVENT_NAME           : 'Event Name',
+	EVENT_VALUE          : 'Event Value',
+	EVENT_ID             : 'Event Id',
+	CONNECTION_MODE      : 'Connection Mode',
+	RATING               : 'Rating',
+	NAVIGATION_TYPE      : 'Navigation Type',
 } as const;
