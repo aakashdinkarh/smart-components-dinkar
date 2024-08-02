@@ -1,4 +1,5 @@
 import React from 'react';
+import type { RouteObject } from 'react-router-dom';
 
 import { ButtonPage } from './Button'
 import { HomePage } from './Home';
@@ -62,7 +63,7 @@ export const sideBarItems = {
 }
 
 
-export const nestedRoutes = [
+export const nestedRoutes: RouteObject[] = [
 	{
 		path    : routes.home,
 		element : <HomePage />,
