@@ -30,6 +30,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		}
 	}
 
+	static getDerivedStateFromError() {
+		return { hasError: true };
+	}
+
 	componentDidMount() {
 		window.addEventListener('error', (event) => {
 			this.handleError(event);
@@ -41,7 +45,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
 		this.handleError({ ...error, componentStack: errorInfo.componentStack, type: APP_CRASH });
-		this.setState({ hasError: true });
 	}
 
 	render() {
