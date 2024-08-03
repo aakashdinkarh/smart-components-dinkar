@@ -8,6 +8,10 @@ import { nestedRoutes } from './app/routes/routesConfig';
 
 const AppFallback = lazy(() => import('./app/common/AppFallback').then((module) => ({ default: module.AppFallback })));
 
+console.log(process.env);
+console.log(process.env.APP_ENVIRONMENT);
+console.log(process.env.REACT_APP_ENVIRONMENT);
+
 const router = createBrowserRouter([
 	{
 		path    : '/',
