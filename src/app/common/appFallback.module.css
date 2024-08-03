@@ -1,0 +1,227 @@
+.app-fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(180deg, #87ceeb, #1e90ff);
+	padding: 2rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 600px;
+	z-index: 2;
+	background-color: rgb(255 255 255 / 90%);
+	padding: 1.5rem;
+	border-radius: 20px;
+	box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
+}
+
+.logo {
+	margin-bottom: 1.5rem;
+	animation: float 3s ease-in-out infinite;
+}
+
+.title {
+	font-size: 2.25rem;
+	font-weight: bold;
+	color: #2d3748;
+	margin-bottom: 0.75rem;
+}
+
+.subtitle {
+	font-size: 1.125rem;
+	color: #4a5568;
+	margin-bottom: 1.5rem;
+}
+
+.refresh-button {
+	margin-bottom: 0.75rem;
+	padding: 0.625rem 1.25rem;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	background-color: #ffd700;
+	color: #2d3748;
+	border: none;
+	border-radius: 50px;
+}
+
+.refresh-button:hover {
+	transform: scale(1.05);
+	box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+}
+
+.home-link {
+	color: #4299e1;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+.home-link:hover {
+	color: #2b6cb0;
+}
+
+.submarine {
+	position: absolute;
+	bottom: 50px;
+	left: 10%;
+	width: 200px;
+	height: 100px;
+	animation: submarine-move 15s linear infinite;
+}
+
+.body {
+	width: 100%;
+	height: 80px;
+	background-color: #ffd700;
+	border-radius: 50px;
+	position: relative;
+	overflow: hidden;
+}
+
+.body::before {
+	content: '';
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 30px;
+	height: 30px;
+	background-color: #2d3748;
+	border-radius: 50%;
+	border: 5px solid #4a5568;
+}
+
+.body::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	right: 30px;
+	width: 60px;
+	height: 20px;
+	background-color: #4a5568;
+	border-radius: 10px;
+}
+
+.periscope {
+	width: 10px;
+	height: 50px;
+	background-color: #4a5568;
+	position: absolute;
+	top: -40px;
+	left: 50px;
+}
+
+.periscope::before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -5px;
+	width: 20px;
+	height: 10px;
+	background-color: #4a5568;
+	border-radius: 5px 5px 0 0;
+}
+
+.propeller {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 8px solid #4a5568;
+	border-top-color: transparent;
+	position: absolute;
+	right: -20px;
+	top: 50%;
+	transform: translateY(-50%);
+	animation: spin 0.5s linear infinite;
+}
+
+.bubble {
+	position: absolute;
+	background-color: rgb(255 255 255 / 70%);
+	border-radius: 50%;
+	width: var(--size, 20px);
+	height: var(--size, 20px);
+	left: var(--left, 50%);
+	bottom: -20px;
+	animation: rise var(--anim-duration, 5s) infinite ease-in;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+
+	50% {
+		transform: translate3d(0, -10px, 0);
+	}
+}
+
+@keyframes submarine-move {
+	0% {
+		transform: translateX(0) rotate(0deg);
+	}
+
+	25% {
+		transform: translateX(calc(30vw - 4vw)) rotate(5deg);
+	}
+
+	50% {
+		transform: translateX(calc(60vw - 8vw)) rotate(-5deg);
+	}
+
+	75% {
+		transform: translateX(calc(30vw - 4vw)) rotate(5deg);
+	}
+
+	100% {
+		transform: translateX(0) rotate(0deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: translateY(-50%) rotate(0deg);
+	}
+
+	100% {
+		transform: translateY(-50%) rotate(360deg);
+	}
+}
+
+@keyframes rise {
+	0% {
+		transform: translate3d(0, 0, 0) scale(0);
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: translate3d(0, -100vh, 0) scale(1);
+		opacity: 0;
+	}
+}
+
+@media (width <= 640px) {
+	.title {
+		font-size: 2rem;
+	}
+
+	.subtitle {
+		font-size: 1rem;
+	}
+
+	.submarine {
+		width: 150px;
+		height: 75px;
+	}
+}
