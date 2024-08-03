@@ -5,7 +5,6 @@ import { Select } from '../../exports';
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, THEME_OPTIONS } from '../constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
-import { getCurrentScreen } from '../routes/routesConfig';
 import { checkIsMobileViewPort } from '../utils';
 import { mixpanel } from '../utils/mixpanel';
 
@@ -50,7 +49,6 @@ export function StickyHeader({
 		window.addEventListener('resize', windowResizeEventListener);
 
 		mixpanel.track(MIXPANEL_EVENTS.STICKY_HEADER_RENDER, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
 			...(withThemeSelector && {
 				[MIXPANEL_EVENT_PROPERTIES.THEME]: THEME_OPTIONS.find((option) => option.value === codeStyleTheme)
 					?.label,
@@ -65,8 +63,7 @@ export function StickyHeader({
 	const onThemeChange = (theme: string) => {
 		setCodeStyleTheme(theme);
 		mixpanel.track(MIXPANEL_EVENTS.THEME_CHANGED, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE] : getCurrentScreen(),
-			[MIXPANEL_EVENT_PROPERTIES.THEME]        : THEME_OPTIONS.find((option) => option.value === theme)?.label,
+			[MIXPANEL_EVENT_PROPERTIES.THEME]: THEME_OPTIONS.find((option) => option.value === theme)?.label,
 		});
 	};
 

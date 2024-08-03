@@ -3,19 +3,16 @@ import React, { memo, useMemo } from 'react';
 import { CodeWrapper } from '../../exports';
 import { CODE_INITIALS_LENGTH } from '../constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
-import { getCurrentScreen } from '../routes/routesConfig';
 import { mixpanel } from '../utils/mixpanel';
 
 const trackCopySuccess = (code: string) => {
 	mixpanel.track(MIXPANEL_EVENTS.COPY_CODE_BUTTON_CLICKED, {
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
-		[MIXPANEL_EVENT_PROPERTIES.CODE_INITIALS] : code,
+		[MIXPANEL_EVENT_PROPERTIES.CODE_INITIALS]: code,
 	});
 };
 
 const trackCopyFail = (errorMsg: string, code: string) => {
 	mixpanel.track(MIXPANEL_EVENTS.COPY_CODE_BUTTON_CLICKED, {
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
 		[MIXPANEL_EVENT_PROPERTIES.CODE_INITIALS] : code,
 		[MIXPANEL_EVENT_PROPERTIES.ERROR_MESSAGE] : errorMsg,
 	});

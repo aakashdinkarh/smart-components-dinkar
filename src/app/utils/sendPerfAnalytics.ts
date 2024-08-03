@@ -1,7 +1,6 @@
 import type { Metric } from 'web-vitals';
 
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
-import { getCurrentScreen } from '../routes/routesConfig';
 
 import { mixpanel } from './mixpanel';
 
@@ -26,7 +25,6 @@ export function sendPerfAnalytics({ id, name, value, rating, navigationType } : 
 		[MIXPANEL_EVENT_PROPERTIES.EVENT_ID]        : id,
 		[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]       : userAgentData?.mobile,
 		[MIXPANEL_EVENT_PROPERTIES.CONNECTION_MODE] : connectionData?.effectiveType ?? 'unknown',
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]    : getCurrentScreen(),
 		[MIXPANEL_EVENT_PROPERTIES.RATING]          : rating,
 		[MIXPANEL_EVENT_PROPERTIES.NAVIGATION_TYPE] : navigationType,
 	});
