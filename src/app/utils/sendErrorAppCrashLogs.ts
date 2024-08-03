@@ -1,16 +1,13 @@
 import { APP_CRASH, UNCAUGHT_ERROR, UNHANDLED_PROMISE_REJECTION } from '../constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import type { AppCrashError } from '../ErrorBoundary';
-import { getCurrentScreen } from '../routes/routesConfig';
 
 import { mixpanel } from './mixpanel';
 
 import { getSafe } from '.';
 
 export function sendErrorAppCrashLogs(error: ErrorEvent | PromiseRejectionEvent | AppCrashError) {
-	const errorDetails = {
-		[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
-	};
+	const errorDetails = {};
 
 	if ('type' in error && error.type === APP_CRASH) {
 		errorDetails[MIXPANEL_EVENT_PROPERTIES.ERROR_TYPE] = APP_CRASH;

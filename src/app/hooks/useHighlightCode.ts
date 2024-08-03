@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from '../constants/mixpanel';
 import { highlightCode } from '../helpers/highlightCode';
-import { getCurrentScreen } from '../routes/routesConfig';
 import { mixpanel } from '../utils/mixpanel';
 
 export function useHighlightCode() {
@@ -13,15 +12,12 @@ export function useHighlightCode() {
 			try {
 				const res = await highlightCode();
 				setIsCodeHighlighted(res);
-				mixpanel.track(MIXPANEL_EVENTS.CODE_HIGHLIGHTED_SUCCESS, {
-					[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
-				});
+				mixpanel.track(MIXPANEL_EVENTS.CODE_HIGHLIGHTED_SUCCESS);
 			} catch (err) {
 				// eslint-disable-next-line no-console
 				console.error('Error highlighting code', err);
 				mixpanel.track(MIXPANEL_EVENTS.CODE_HIGHLIGHTED_ERROR, {
-					[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
-					[MIXPANEL_EVENT_PROPERTIES.ERROR_MESSAGE] : err instanceof Error ? err.message : 'Unknown error',
+					[MIXPANEL_EVENT_PROPERTIES.ERROR_MESSAGE]: err instanceof Error ? err.message : 'Unknown error',
 				});	
 				setIsCodeHighlighted(false);
 			}

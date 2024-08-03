@@ -10,10 +10,8 @@ import { getCombinedClass } from '../utils/getCombinedClass';
 
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, SOURCE_CODE } from './constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from './constants/mixpanel';
-import { getCurrentScreen } from './routes/routesConfig';
 import { SideBar } from './SideBar';
 import styles from './styles.module.css';
-import { checkIsMobileViewPort, checkIsMobile } from './utils';
 import { mixpanel } from './utils/mixpanel';
 
 function MenuIcon(props: ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -37,46 +35,36 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 	const [mobileSideNavShow, setMobileSideNavShow] = useState(false);
 
 	if (!mixpanel.isInitialized) {
-		void mixpanel.init();
+		setTimeout(() => {
+			void mixpanel.init();
+		}, 0);
 	}
 	useEffect(() => {
 		const appLoadEndTime = Date.now();
 		mixpanel.track(MIXPANEL_EVENTS.APP_OPENED, {
 			[MIXPANEL_EVENT_PROPERTIES.APP_LOAD_TIME] : appLoadEndTime - appLoadStartTime,
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
 			[MIXPANEL_EVENT_PROPERTIES.REFERRER]      : document.referrer,
 		});
 	}, []);
 
 	const showSideNav = useCallback(() => {
 		setMobileSideNavShow(true);
-		mixpanel.track(MIXPANEL_EVENTS.HAMBURGER_ICON_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
-		});	
+		mixpanel.track(MIXPANEL_EVENTS.HAMBURGER_ICON_CLICKED);	
 	}, []);
 
 	const hideSideNav = useCallback(() => {
 		setMobileSideNavShow(false);
-		mixpanel.track(MIXPANEL_EVENTS.SIDEBAR_CLOSE_ICON_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
-		});
+		mixpanel.track(MIXPANEL_EVENTS.SIDEBAR_CLOSE_ICON_CLICKED);
 	}, []);
 
 	const trackLogoClick = (logoDisplayContext: 'Main Page' | 'Side Bar') => {
 		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
-			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT]  : checkIsMobileViewPort(),
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]            : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT]: logoDisplayContext,
 		});
 	};
 
 	const trackSourceCodeClick = () => {
-		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT] : checkIsMobileViewPort(),
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
-		});
+		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED);
 	};
 
 	return (

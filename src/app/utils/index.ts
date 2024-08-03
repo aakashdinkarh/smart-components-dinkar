@@ -1,6 +1,14 @@
 import { MOBILE_BREAKPOINT } from '../constants';
 
-import type { ExtendedNavigator } from './sendPerfAnalytics';
+interface ExtendedNavigator {
+	connection?: {
+		effectiveType?: string;
+		downlink?: string;
+	};
+	userAgentData?: {
+		mobile?: boolean;
+	};
+}
 
 export const getSafe = <F, T>(func: () => F, defaultValue?: T) => {
 	try {
@@ -13,6 +21,7 @@ export const getSafe = <F, T>(func: () => F, defaultValue?: T) => {
 export function checkIsMobileViewPort() {
 	return document.body.clientWidth <= MOBILE_BREAKPOINT;
 }
+
 /**
  * Checks if the current device is a mobile device.
  * 
@@ -39,4 +48,12 @@ export function checkIsMobile(getBool = false) {
 		return Boolean(res);
 	}
 	return res;
+}
+
+export function getConnectionMode() {
+	return getSafe(() => (window.navigator as ExtendedNavigator).connection?.effectiveType, 'unknown');
+}
+
+export function getConnectionSpeed() {
+	return getSafe(() => (window.navigator as ExtendedNavigator).connection?.downlink, 'unknown');
 }
