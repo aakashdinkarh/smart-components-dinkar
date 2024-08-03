@@ -1,9 +1,11 @@
 import * as React from 'react';
 
-import { CodeWrapper, LazyImageWithLoader, SegmentedTabs } from '../../../exports';
+import { LazyImageWithLoader, SegmentedTabs } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { IMAGE_PREFIX, codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import usageData from './usage.json';
 
@@ -22,6 +24,8 @@ export function SegmentedTabsPage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Segmented Tabs' withThemeSelector />
 
 			<h3>Demon Slayer: Kimetsu no Yaiba</h3>
@@ -53,7 +57,7 @@ export function SegmentedTabsPage() {
 			</SegmentedTabs>
 
 			<div className='mt-2'>
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
 					{`interface usageDataItem {
 	id: number;
 	title: string;
@@ -85,7 +89,7 @@ export function SegmentedTabsPage() {
 		);
 	})}
 </SegmentedTabs>`}
-				</CodeWrapper>
+				</AppCodeWrapper>
 			</div>
 		</main>
 	);

@@ -21,9 +21,12 @@ export const routes = {
 	loader        : '/component/loader',
 	others        : '/component/others',
 	switch        :	'/components/switch',
-};
+} as const;
 
-export const sideBarItems = {
+interface SideBarItem { path: (typeof routes)[keyof typeof routes]; label: string }
+type SideBarItems = Record<'tutorials' | 'components', SideBarItem[]>;
+
+export const sideBarItems: SideBarItems = {
 	tutorials: [
 		{
 			path  : routes.npmPackage,
@@ -60,8 +63,28 @@ export const sideBarItems = {
 			label : 'Others',
 		}
 	]
-}
+} as const;
 
+
+const navTitleMap = {
+	[routes.home]: 'Home',
+};
+Object.keys(sideBarItems).forEach((key) => {
+	sideBarItems[key as keyof typeof sideBarItems].forEach((item) => {
+		navTitleMap[item.path] = item.label;
+	});
+});
+
+// Type assertion to inform TypeScript that all properties are now defined, Export if needed
+const navTitleMapping = navTitleMap as Readonly<Record<(typeof routes)[keyof typeof routes], string>>;
+
+export const getCurrentScreen = () => {
+	try {
+		return navTitleMapping[window.location.pathname as keyof typeof navTitleMapping];
+	} catch (error) {
+		return null;
+	}
+}
 
 export const nestedRoutes: RouteObject[] = [
 	{

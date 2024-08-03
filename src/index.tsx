@@ -5,8 +5,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { App } from './app/App';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { nestedRoutes } from './app/routes/routesConfig';
+import { sendErrorAppCrashLogs } from './app/utils/sendErrorAppCrashLogs';
+import { sendPerfAnalytics } from './app/utils/sendPerfAnalytics';
+import { reportWebVitals } from './reportWebVitals';
 
 const AppFallback = lazy(() => import('./app/common/AppFallback').then((module) => ({ default: module.AppFallback })));
+
+const appLoadStartTime = Date.now();
 
 const router = createBrowserRouter([
 	{
@@ -18,8 +23,9 @@ const router = createBrowserRouter([
 						<AppFallback />
 					</Suspense>
 				}
+				onError={sendErrorAppCrashLogs}
 			>
-				<App />
+				<App appLoadStartTime={appLoadStartTime} />
 			</ErrorBoundary>
 		),
 		errorElement: (
@@ -37,3 +43,5 @@ root.render(
 		<RouterProvider router={router} />
 	</React.StrictMode>
 );
+
+reportWebVitals(sendPerfAnalytics);

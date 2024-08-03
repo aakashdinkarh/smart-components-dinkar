@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { CodeWrapper, Loader } from '../../../exports';
+import { Loader } from '../../../exports';
 import { getCombinedClass } from '../../../utils/getCombinedClass';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import styles from './styles.module.css';
 import tutorialSteps from './tutorialSteps.json';
@@ -27,7 +29,7 @@ function InstructionWrapper({ title, subText, code, nestedSteps, isCodeHighlight
 			{nestedSteps ? (
 				nestedSteps.map((step) => <InstructionWrapper isCodeHighlighted={isCodeHighlighted} {...step} />)
 			) : (
-				<CodeWrapper isCodeHighlighted={isCodeHighlighted}>{code}</CodeWrapper>
+				<AppCodeWrapper isCodeHighlighted={isCodeHighlighted}>{code}</AppCodeWrapper>
 			)}
 		</div>
 	);
@@ -38,6 +40,8 @@ export function NpmPackagePage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='NPM Package Tutorial' withThemeSelector />
 
 			<p>

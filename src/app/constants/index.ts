@@ -19,3 +19,10 @@ export const IMAGE_PREFIX = 'https://aakashdinkarh.github.io/static_assets/image
 export const SOURCE_CODE = 'https://github.com/aakashdinkarh/smart-components-dinkar';
 
 export const APP_CRASH = 'App Crash';
+export const UNCAUGHT_ERROR = 'Uncaught Error';
+export const UNHANDLED_PROMISE_REJECTION = 'Unhandled Promise Rejection';
+
+export const STAGING = 'prod-int';
+export const PRODUCTION = 'production';
+
+export const CODE_INITIALS_LENGTH = 25;
