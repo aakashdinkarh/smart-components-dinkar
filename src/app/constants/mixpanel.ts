@@ -41,4 +41,5 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	COMPONENT_STACK      : 'Component Stack',
 	ERROR_REASON         : 'Error Reason',
 	ERROR_NAME           : 'Error Name',
+	ERROR_DIGEST         : 'Error Digest',
 } as const;
