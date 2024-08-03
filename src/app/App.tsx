@@ -12,7 +12,6 @@ import { MOBILE_ONLY_LOGO_AND_TITLE_ID, SOURCE_CODE } from './constants';
 import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from './constants/mixpanel';
 import { SideBar } from './SideBar';
 import styles from './styles.module.css';
-import { checkIsMobileViewPort, checkIsMobile } from './utils';
 import { mixpanel } from './utils/mixpanel';
 
 function MenuIcon(props: ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -60,17 +59,12 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 
 	const trackLogoClick = (logoDisplayContext: 'Main Page' | 'Side Bar') => {
 		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT]  : checkIsMobileViewPort(),
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]            : checkIsMobile(),
+			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT]: logoDisplayContext,
 		});
 	};
 
 	const trackSourceCodeClick = () => {
-		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED, {
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT] : checkIsMobileViewPort(),
-			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
-		});
+		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED);
 	};
 
 	return (
