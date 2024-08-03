@@ -37,7 +37,9 @@ export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 	const [mobileSideNavShow, setMobileSideNavShow] = useState(false);
 
 	if (!mixpanel.isInitialized) {
-		void mixpanel.init();
+		setTimeout(() => {
+			void mixpanel.init();
+		}, 0);
 	}
 	useEffect(() => {
 		const appLoadEndTime = Date.now();
