@@ -1,6 +1,10 @@
 import type { OverridedMixpanel } from 'mixpanel-browser';
 
 import { STAGING, PRODUCTION } from '../constants';
+import { MIXPANEL_EVENT_PROPERTIES } from '../constants/mixpanel';
+import { getCurrentScreen } from '../routes/routesConfig';
+
+import { checkIsMobile, checkIsMobileViewPort, getConnectionMode, getConnectionSpeed } from '.';
 
 class MixpanelService {
 	private mixpanel: OverridedMixpanel | null = null;
@@ -22,6 +26,13 @@ class MixpanelService {
 			this.mixpanel = await MixpanelService.getMixpanel();
 			if (MixpanelService.mixpanelToken !== '') {
 				this.mixpanel.init(MixpanelService.mixpanelToken);
+				this.mixpanel.register({
+					[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
+					[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
+					[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT] : checkIsMobileViewPort(),
+					[MIXPANEL_EVENT_PROPERTIES.CONNECTION_MODE]     : getConnectionMode(),
+					[MIXPANEL_EVENT_PROPERTIES.CONNECTION_SPEED]    : getConnectionSpeed(),
+				});
 				this.isInitialized = true;
 			}
 			this.queue.forEach((fn: () => void) => { fn(); });

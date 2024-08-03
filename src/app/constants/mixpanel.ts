@@ -30,6 +30,7 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	EVENT_VALUE          : 'Event Value',
 	EVENT_ID             : 'Event Id',
 	CONNECTION_MODE      : 'Connection Mode',
+	CONNECTION_SPEED     : 'Connection Speed',
 	RATING               : 'Rating',
 	NAVIGATION_TYPE      : 'Navigation Type',
 	REFERRER             : 'Referrer',
