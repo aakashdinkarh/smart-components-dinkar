@@ -12,8 +12,7 @@ interface ErrorBoundaryState {
 	hasError: boolean;
 }
 
-export interface AppCrashError extends Error {
-	componentStack: ErrorInfo['componentStack'];
+export interface AppCrashError extends Error, ErrorInfo {
 	type: typeof APP_CRASH;
 }
 
@@ -43,8 +42,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		});
 	}
 
-	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		this.handleError({ ...error, componentStack: errorInfo.componentStack, type: APP_CRASH });
+	componentDidCatch(error: Error, errorInfo: ErrorInfo = {}) {
+		this.handleError({ ...error, ...errorInfo, type: APP_CRASH });
 	}
 
 	render() {
