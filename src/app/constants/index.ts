@@ -22,7 +22,7 @@ export const APP_CRASH = 'App Crash';
 export const UNCAUGHT_ERROR = 'Uncaught Error';
 export const UNHANDLED_PROMISE_REJECTION = 'Unhandled Promise Rejection';
 
-export const DEVELOPMENT = 'development';
+export const STAGING = 'prod-int';
 export const PRODUCTION = 'production';
 
 export const CODE_INITIALS_LENGTH = 25;
