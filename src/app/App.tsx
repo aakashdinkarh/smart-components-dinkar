@@ -1,6 +1,6 @@
 import './app.css';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { ButtonHTMLAttributes } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
@@ -9,8 +9,12 @@ import { GitHubLogo } from '../icons';
 import { getCombinedClass } from '../utils/getCombinedClass';
 
 import { MOBILE_ONLY_LOGO_AND_TITLE_ID, SOURCE_CODE } from './constants';
+import { MIXPANEL_EVENT_PROPERTIES, MIXPANEL_EVENTS } from './constants/mixpanel';
+import { getCurrentScreen } from './routes/routesConfig';
 import { SideBar } from './SideBar';
 import styles from './styles.module.css';
+import { checkIsMobileViewPort, checkIsMobile } from './utils';
+import { mixpanel } from './utils/mixpanel';
 
 function MenuIcon(props: ButtonHTMLAttributes<HTMLButtonElement>) {
 	const { className, ...rest } = props;
@@ -29,16 +33,51 @@ function MenuIcon(props: ButtonHTMLAttributes<HTMLButtonElement>) {
 	);
 }
 
-export function App() {
+export function App({ appLoadStartTime }: { appLoadStartTime: number }) {
 	const [mobileSideNavShow, setMobileSideNavShow] = useState(false);
+
+	if (!mixpanel.isInitialized) {
+		void mixpanel.init();
+	}
+	useEffect(() => {
+		const appLoadEndTime = Date.now();
+		mixpanel.track(MIXPANEL_EVENTS.APP_OPENED, {
+			[MIXPANEL_EVENT_PROPERTIES.APP_LOAD_TIME] : appLoadEndTime - appLoadStartTime,
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]  : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.REFERRER]      : document.referrer,
+		});
+	}, []);
 
 	const showSideNav = useCallback(() => {
 		setMobileSideNavShow(true);
+		mixpanel.track(MIXPANEL_EVENTS.HAMBURGER_ICON_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
+		});	
 	}, []);
 
 	const hideSideNav = useCallback(() => {
 		setMobileSideNavShow(false);
+		mixpanel.track(MIXPANEL_EVENTS.SIDEBAR_CLOSE_ICON_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]: getCurrentScreen(),
+		});
 	}, []);
+
+	const trackLogoClick = (logoDisplayContext: 'Main Page' | 'Side Bar') => {
+		mixpanel.track(MIXPANEL_EVENTS.LOGO_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]         : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.LOGO_DISPLAY_CONTEXT] : logoDisplayContext,
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT]  : checkIsMobileViewPort(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]            : checkIsMobile(),
+		});
+	};
+
+	const trackSourceCodeClick = () => {
+		mixpanel.track(MIXPANEL_EVENTS.SOURCE_CODE_LINK_CLICKED, {
+			[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE_VIEW_PORT] : checkIsMobileViewPort(),
+			[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
+		});
+	};
 
 	return (
 		<main className={styles['app-container']}>
@@ -53,11 +92,16 @@ export function App() {
 						'bold-6'
 					)}
 				>
-					<Link to='/'>
+					<Link
+						to='/'
+						onClick={() => {
+							trackLogoClick('Side Bar');
+						}}
+						className='flex align-items-center'
+					>
 						<Logo width={20} height={20} className='mr-1' />
+						DevDinkar CodeBook
 					</Link>
-
-					<Link to='/'>DevDinkar CodeBook</Link>
 				</div>
 
 				{/* visible in mobile only */}
@@ -69,13 +113,16 @@ export function App() {
 					x
 				</Button>
 
-				<SideBar />
+				<SideBar hideSideNav={hideSideNav} />
 
-				<div
-					className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}
-				>
+				<div className={getCombinedClass(styles['github-logo-container'], 'border-t width-full-section pt-2')}>
 					<BorderAnimatedContainer borderPositioning='outset' animatedBorderColor='#79c0ff'>
-						<Link className='flex align-items-center p-1' to={SOURCE_CODE}>
+						<Link
+							onClick={trackSourceCodeClick}
+							className='flex align-items-center p-1'
+							to={SOURCE_CODE}
+							target='_blank'
+						>
 							<GitHubLogo style={{ marginRight: '0.25rem' }} /> Source Code
 						</Link>
 					</BorderAnimatedContainer>
@@ -94,7 +141,13 @@ export function App() {
 				>
 					<MenuIcon onClick={showSideNav} style={{ marginRight: '1rem' }} />
 
-					<Link to='/' className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}>
+					<Link
+						to='/'
+						onClick={() => {
+							trackLogoClick('Main Page');
+						}}
+						className={getCombinedClass('flex align-items-center', 'bg-inherit', 'bold-6')}
+					>
 						<Logo width={20} height={20} className='mr-1' />
 
 						<div>DevDinkar CodeBook</div>

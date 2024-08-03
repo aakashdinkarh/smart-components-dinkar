@@ -2,10 +2,12 @@ import React from 'react';
 
 import type { themeType } from '../../../components/Button';
 import type { placement } from '../../../components/Toast';
-import { Button, toast, CodeWrapper } from '../../../exports';
+import { Button, toast } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 import usageData from './usage.json';
 
@@ -22,6 +24,8 @@ export function ToastPage() {
 
 	return (
 		<main>
+			<HelmetComponent />
+
 			<StickyHeader heading='Toast' withThemeSelector />
 
 			{(usageData as usageDataItem[]).map((data) => {
@@ -41,7 +45,7 @@ export function ToastPage() {
 						</Button>
 
 						<div className='mb-4'>
-							<CodeWrapper
+							<AppCodeWrapper
 								isCodeHighlighted={Boolean(isCodeHighlighted)}
 								languageClass={codeHighlightClassHTML}
 							>
@@ -55,7 +59,7 @@ export function ToastPage() {
 >
 	${title}
 </button>`}
-							</CodeWrapper>
+							</AppCodeWrapper>
 						</div>
 					</React.Fragment>
 				);

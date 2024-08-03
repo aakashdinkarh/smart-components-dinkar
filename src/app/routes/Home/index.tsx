@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { CodeWrapper } from '../../../exports';
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassJS } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 const StyledH2 = ({ children }) => {
 	return <h2 style={{ marginBottom: '0.5rem' }} >{children}</h2>
@@ -14,6 +15,8 @@ export function HomePage() {
 
 	return (
 		<>
+			<HelmetComponent />
+
 			<header>
 				<StickyHeader heading='Smart Components Dinkar' subtitle='Building from scratch!' withThemeSelector />
 			</header>
@@ -37,14 +40,14 @@ export function HomePage() {
 
 				<div>
 				Instead of this
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
 					{`import { Select } from 'smart-components-dinkar';`}
-				</CodeWrapper>
+				</AppCodeWrapper>
 				<br />
 				Import like this
-				<CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
 					{`import { Select } from 'smart-components-dinkar/dist/components/Select';`}
-				</CodeWrapper>
+				</AppCodeWrapper>
 			</div>
 			</section>
 

@@ -2,7 +2,7 @@
 <p>
   Usage Demo -->
   <a href="https://devdinkar-codebook.vercel.app/" target="_blank" rel="noopener noreferrer">
-    [DevDinkar CodeBook]
+    DevDinkar CodeBook
   </a>
 </p>
 

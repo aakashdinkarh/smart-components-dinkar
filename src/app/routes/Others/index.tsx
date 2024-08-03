@@ -1,15 +1,19 @@
 import React from 'react';
 
-import { BorderAnimatedContainer, Button, CodeWrapper } from "../../../exports";
+import { BorderAnimatedContainer, Button } from "../../../exports";
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassHTML } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 export function OthersPage(){
 	const { isCodeHighlighted } = useHighlightCode();
 
 	return (
         <main>
+            <HelmetComponent />
+
             <StickyHeader heading='Animated Border Container' withThemeSelector />
             
             <BorderAnimatedContainer>
@@ -17,12 +21,12 @@ export function OthersPage(){
             </BorderAnimatedContainer>
 
             <div className='my-1 mb-4'>
-                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+                <AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
                     {`<BorderAnimatedContainer>
     <Button themeType='secondary'>Inset</Button>
 </BorderAnimatedContainer>
 `}
-                </CodeWrapper>
+                </AppCodeWrapper>
             </div>
 
 
@@ -34,7 +38,7 @@ export function OthersPage(){
             </BorderAnimatedContainer>
 
             <div className='my-1 mb-4'>
-                <CodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+                <AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
                     {`<BorderAnimatedContainer
     borderPositioning='outset'
     animationDelay='1s'
@@ -42,7 +46,7 @@ export function OthersPage(){
     <Button themeType='tertiary'>Outset 1s delay</Button>
 </BorderAnimatedContainer>
 `}
-                </CodeWrapper>
+                </AppCodeWrapper>
             </div>
         </main>
 	)
