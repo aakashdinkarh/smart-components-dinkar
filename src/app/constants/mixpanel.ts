@@ -11,6 +11,7 @@ export const MIXPANEL_EVENTS = {
 	COPY_CODE_BUTTON_CLICKED   : 'Copy Code Button Clicked',
 	CODE_HIGHLIGHTED_SUCCESS   : 'Code Highlighted Success',
 	CODE_HIGHLIGHTED_ERROR     : 'Code Highlighted Error',
+	APP_ERROR                  : 'App Error',
 } as const;
 
 export const MIXPANEL_EVENT_PROPERTIES = {
@@ -32,4 +33,12 @@ export const MIXPANEL_EVENT_PROPERTIES = {
 	RATING               : 'Rating',
 	NAVIGATION_TYPE      : 'Navigation Type',
 	REFERRER             : 'Referrer',
+	ERROR_STACK          : 'Error Stack',
+	ERROR_TYPE           : 'Error Type',
+	ERROR_FILENAME       : 'Error Filename',
+	ERROR_LINENO         : 'Error Line Number',
+	ERROR_COLNO          : 'Error Column Number',
+	COMPONENT_STACK      : 'Component Stack',
+	ERROR_REASON         : 'Error Reason',
+	ERROR_NAME           : 'Error Name',
 } as const;

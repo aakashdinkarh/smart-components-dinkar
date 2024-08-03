@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { App } from './app/App';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { nestedRoutes } from './app/routes/routesConfig';
+import { sendErrorAppCrashLogs } from './app/utils/sendErrorAppCrashLogs';
 import { sendPerfAnalytics } from './app/utils/sendPerfAnalytics';
 import { reportWebVitals } from './reportWebVitals';
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
 						<AppFallback />
 					</Suspense>
 				}
+				onError={sendErrorAppCrashLogs}
 			>
 				<App appLoadStartTime={appLoadStartTime} />
 			</ErrorBoundary>
