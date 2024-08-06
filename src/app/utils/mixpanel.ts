@@ -26,6 +26,9 @@ class MixpanelService {
 			this.mixpanel = await MixpanelService.getMixpanel();
 			if (MixpanelService.mixpanelToken !== '') {
 				this.mixpanel.init(MixpanelService.mixpanelToken);
+				const distinctId = this.mixpanel.get_distinct_id();
+				// identify user with distinct id only
+				(distinctId != null && distinctId !== '') && this.mixpanel.identify('Distinct ID');
 				this.mixpanel.register({
 					[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
 					[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),

@@ -65,7 +65,7 @@ export function HomePage() {
 			</section>
 
 			<footer>
-				<p>&copy; 2024 smart-components-dinkar. All rights reserved.</p>
+				<p>&copy; {(new Date()).getFullYear()} smart-components-dinkar. All rights reserved.</p>
 			</footer>
 		</>
 	);
