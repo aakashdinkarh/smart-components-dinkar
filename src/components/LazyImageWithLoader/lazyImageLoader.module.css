@@ -1,0 +1,16 @@
+.rel {
+    position: relative;
+}
+
+.abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (width <= 480px) {
+    .mobile-inline-block {
+        display: inline-block;
+    }
+}
