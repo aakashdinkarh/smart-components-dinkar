@@ -235,4 +235,8 @@
     .mobile-block {
         display: block;
     }
+    
+    .mobile-inline-block {
+        display: inline-block;
+    }
 }

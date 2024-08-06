@@ -55,7 +55,7 @@ export const LazyImageWithLoader = memo(function LazyImageWithLoader({
 
 	return (
 		<div
-			className={getCombinedClass('rel', imgContainerClass)}
+			className={getCombinedClass('rel mobile-inline-block', imgContainerClass)}
 			style={{ flex: `0 0 ${imgWidth}px`, height: imgHeight }}
 		>
 			{!isImgLoaded && (
