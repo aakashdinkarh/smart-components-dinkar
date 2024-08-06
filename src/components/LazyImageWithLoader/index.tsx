@@ -4,6 +4,8 @@ import { Loader } from '../../exports';
 import { getCombinedClass } from '../../utils/getCombinedClass';
 import type { loaderVariant } from '../Loader';
 
+import styles from './lazyImageLoader.module.css';
+
 interface LazyImageWithLoaderProps {
 	imgSrc: string;
 	alt?: string;
@@ -55,15 +57,20 @@ export const LazyImageWithLoader = memo(function LazyImageWithLoader({
 
 	return (
 		<div
-			className={getCombinedClass('rel mobile-inline-block', imgContainerClass)}
+			className={getCombinedClass(
+				styles.rel,
+				styles['mobile-inline-block'],
+				'__scd_loader_image_container',
+				imgContainerClass
+			)}
 			style={{ flex: `0 0 ${imgWidth}px`, height: imgHeight }}
 		>
 			{!isImgLoaded && (
-				<div className='abs-center'>
+				<div className={styles['abs-center']}>
 					<Loader variant='dots-bounce' />
 				</div>
 			)}
 			<img ref={imgRef} height={imgHeight} width={imgWidth} loading='lazy' src={imgSrc} alt={alt} />
 		</div>
 	);
-})
+});
