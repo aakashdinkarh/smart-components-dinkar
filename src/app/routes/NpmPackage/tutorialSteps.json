@@ -125,8 +125,51 @@
     {
         "title": "Now that we have tested out our package locally we should publish it",
         "subText": "Please note version in <code class=\"file\">package.json</code>, every time you actually publish your package you should increase the version number",
-        "code": "npm publish",
-        "key": "10"
+        "key": "10",
+        "nestedSteps": [
+            {
+                "title": "Create an account on npm",
+                "subText": "Go to <a href=\"https://www.npmjs.com/signup\" target=\"_blank\">https://www.npmjs.com/signup</a> and create an account if you don't have one",
+                "code": "https://www.npmjs.com/signup",
+                "key": "10.1"
+            },
+            {
+                "title": "Login to npm",
+                "subText": "Go to <a href=\"https://www.npmjs.com/login\" target=\"_blank\">https://www.npmjs.com/login</a> and login with your account",
+                "code": "https://www.npmjs.com/login",
+                "key": "10.2"
+            },
+            {
+                "title": "Login on your terminal",
+                "subText": "After creating the account, open your terminal and run the following command in the root of your package",
+                "code": "npm login",
+                "key": "10.3"
+            },
+            {
+                "title": "Login success",
+                "subText": "You will get a prompt to enter your username and password. If login is successful, you should see a message like this",
+                "code": "Logged in as <your-username> on https://registry.npmjs.org/",
+                "key": "10.4"
+            },
+            {
+                "title": "Publish the package",
+                "subText": "After Login success, run the following command to publish your package on the NPM registry",
+                "code": "npm publish",
+                "key": "10.5"
+            },
+            {
+                "title": "Publish success",
+                "subText": "You will get a message like this if your package is published successfully",
+                "code": "npm notice\n+ my-package@1.0.0\nupdated 1 package and audited 1 package in 1s\nfound 0 vulnerabilities",
+                "key": "10.6"
+            },
+            {
+                "title": "Search for your package on NPM",
+                "subText": "Go to <a href=\"https://www.npmjs.com\" target=\"_blank\">https://www.npmjs.com</a> and search for your package",
+                "code": "https://www.npmjs.com",
+                "key": "10.7"
+            }
+        ]
     },
     {
         "title": "Upgrading the package version",

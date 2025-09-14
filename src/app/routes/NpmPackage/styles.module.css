@@ -35,6 +35,13 @@
     margin: 8px 0;
 }
 
+.instruction-wrapper a,
+.instruction-wrapper a:visited {
+    color: #7000e2;
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+}
+
 /* timeline */
 
 .instruction-wrapper:not(:last-of-type)::before {
