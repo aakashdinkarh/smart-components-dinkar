@@ -1,12 +1,12 @@
 [
     {
-        "title": "Repo init with the help of below link for your requirement",
-        "code": "https://createapp.dev/webpack/react--babel--css-modules--react-hot-loader",
+        "title": "Inside your project folder, Create a git project",
+        "code": "git init",
         "key": "1"
     },
     {
-        "title": "Initiate Git",
-        "code": "git init",
+        "title": "Initiate the project",
+        "code": "npm init -y",
         "key": "2"
     },
     {
@@ -21,7 +21,7 @@
             {
                 "title": "Add a new script command",
                 "subText": "Add the following to <code class=\"file\">package.json > scripts</code>",
-                "code": "\"start\": \"npx react-scripts start\"",
+                "code": "\"start\": \"react-scripts start\",\n\"build\": \"react-scripts build\"",
                 "key": "3.2"
             },
             {
@@ -44,76 +44,83 @@
         ]
     },
     {
-        "title": "Add <code class=\"package\">react</code> <code class=\"package\">react-dom</code> to peerDependencies",
-        "subText": "In file <code class=\"file\">package.json</code> add the following and replace the version with the version you want the user to have and your components support",
-        "code": "\"peerDependencies\": {\n\t\"react\": \"^18.2.0\",\n\t\"react-dom\": \"^18.2.0\"\n}",
-        "key": "4"
-    },
-    {
         "title": "Create a reusable component say with the following content",
         "subText": "<code class=\"file\">src/components/ButtonWrapper.js</code>",
         "code": "import React from 'react';\n\nexport function ButtonWrapper({ children, ...rest }){\n\treturn (\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\tonMouseOut={() => {\n\t\t\t\talert('You left out of button');\n\t\t\t}}\n\t\t\t{...rest}\n\t\t>\n\t\t\t{children}\n\t\t</button>\n\t)\n}",
-        "key": "5"
+        "key": "4"
     },
     {
         "title": "Use and test this component",
         "subText": "Let's render this component in <code class=\"file\">src/index.js</code>",
         "code": "import React from 'react';\nimport { createRoot } from 'react-dom/client';\n\nimport { ButtonWrapper } from './components/ButtonWrapper';\n\nconst root = createRoot(document.getElementById('root'));\nroot.render(\n\t<React.StrictMode>\n\t\t<h1>Hello World!!</h1>\n\t\t<ButtonWrapper>Move mouse out of me and get alert</ButtonWrapper>\n\t</React.StrictMode>\n);",
-        "key": "6"
+        "key": "5"
     },
     {
         "title": "Create one common entry point to your package",
         "subText": "Export all your components that need to be exposed in one file, say <code class=\"file\">src/exports.js</code>",
         "code": "export { ButtonWrapper } from './components/ButtonWrapper'",
-        "key": "7"
+        "key": "6"
     },
     {
-        "title": "Changes required to build your package",
-        "subText": "Now that we have a component well tested, we can build our package, change the following in <code class=\"file\">webpack.config.js</code>",
-        "code": "const path = require('path')\n\nconst config = {\n\tentry  : './src/exports.js',\n\toutput : {\n\t\tpath           : path.resolve(__dirname, 'dist'),\n\t\tfilename       : 'index.js', // main build file\n\t\tlibraryTarget  : 'umd', // Universal Module Definition (UMD)\n\t\tumdNamedDefine : true // Use a named define when exporting as UMD\n\t},\n\t...\n\t...\n\t...\n\texternals: {\n\t\treact       : 'react', // Exclude React from the bundle (useful if it's a peer dependency)\n\t\t'react-dom' : 'react-dom' // Exclude React DOM from the bundle (useful if it's a peer dependency)\n\t},\n\tresolve: {\n\t\textensions: [\n\t\t\t'.tsx',\n\t\t\t'.ts',\n\t\t\t'.js'\n\t\t]\n\t}\n}",
-        "key": "8"
+        "title": "Setup your build system with rollup",
+        "key": "7",
+        "nestedSteps": [
+            {
+                "title": "Install the following packages",
+                "code": "npm install --save-dev rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @rollup/plugin-babel @rollup/plugin-json @babel/preset-react",
+                "key": "7.1"
+            },
+            {
+                "title": "Setup the build system, Create the config file <code class=\"file\">rollup.config.mjs</code> with the following content",
+                "code": "import path from \"path\";\nimport resolve from \"@rollup/plugin-node-resolve\";\nimport commonjs from \"@rollup/plugin-commonjs\";\nimport babel from \"@rollup/plugin-babel\";\nimport json from \"@rollup/plugin-json\";\n\nexport default {\n  input: \"src/exports.js\",\n  output: [\n    {\n      file: path.resolve(\"dist/index.cjs\"),\n      format: \"cjs\", // CommonJS (for Node)\n      exports: \"named\",\n    },\n    {\n      file: path.resolve(\"dist/index.js\"),\n      format: \"esm\", // ES Module (tree shakeable)\n      exports: \"named\",\n    },\n  ],\n  external: [\"react\", \"react-dom\"],\n  plugins: [\n    resolve(),\n    json(),\n    babel({\n      babelHelpers: \"bundled\",\n      exclude: \"node_modules/**\",\n      presets: [\"@babel/preset-react\"],\n      extensions: [\".js\", \".jsx\"],\n    }),\n    commonjs(),\n  ],\n};\n",
+                "key": "7.2"
+            },
+            {
+                "title": "Add the following script to <code class=\"file\">package.json > scripts</code>",
+                "code": "\"build\": \"rm -rf dist && rollup -c\",",
+                "key": "7.3"
+            },
+            {
+                "title": "Add the following to <code class=\"file\">package.json</code>",
+                "code": "  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.js\",\n  \"exports\": {\n    \".\": {\n      \"import\": \"./dist/index.js\",\n      \"require\": \"./dist/index.cjs\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"peerDependencies\": {\n    \"react\": \">=18.2.0\",\n    \"react-dom\": \">=18.2.0\"\n  },",
+                "key": "7.4"
+            }
+        ]
     },
     {
         "title": "Build locally and test before prod-build & publish",
-        "key": "9",
+        "key": "8",
         "nestedSteps": [
             {
-                "title": "Required script to build for dev mode",
-                "subText": "Make sure you've the following script in <code class=\"file\">package.json > scripts</code>",
-                "code": "\"build-dev\": \"npm run clean && webpack --mode development\"",
-                "key": "9.1"
-            },
-            {
-                "title": "Make sure you have updated entry point for your package",
-                "subText": "Based on above <code class=\"file\">webpack.config.js > output</code>, the path should be the following",
-                "code": "\"main\": \"dist/index.js\",\n\"module\": \"dist/index.js\"",
-                "key": "9.2"
-            },
-            {
-                "title": "Build the package for dev mode",
+                "title": "Build the package",
                 "subText": "Run the following command and it will create a build folder named <code class=\"file\">dist</code> at root",
-                "code": "npm run build-dev",
-                "key": "9.3"
+                "code": "npm run build",
+                "key": "8.1"
             },
             {
                 "title": "Create a pack file locally",
                 "subText": "Run the following command and it will create a <code class=\"file\">*.tgz</code> file at the root",
                 "code": "npm pack",
-                "key": "9.4"
+                "key": "8.2"
             },
             {
                 "title": "Try to install this local pack created and test if all good",
                 "subText": "Copy the absolute path of pack file created and run the following command to your other project where you want to install this package and test it out",
                 "code": "npm install <file_path_to_your_package>",
-                "key": "9.5"
+                "key": "8.3"
             },
             {
                 "title": "Import and use in other project",
                 "subText": "Since we exported our components named we should do named imports",
                 "code": "import { ButtonWrapper } from <your_package_name>",
-                "key": "9.6"
+                "key": "8.4"
             }
         ]
+    },
+    {
+        "title": "Here is the final copy of <code class=\"file\">package.json</code> file for reference",
+        "code": "{\n\t\"name\": \"my-package\",\n\t\"version\": \"1.0.0\",\n\t\"description\": \"\",\n\t\"main\": \"dist/index.js\",\n\t\"module\": \"dist/index.js\",\n\t\"exports\": {\n\t\t\".\": {\n\t\t\t\"import\": \"./dist/index.js\",\n\t\t\t\"require\": \"./dist/index.cjs\"\n\t\t}\n\t},\n\t\"files\": [\n\t\t\"dist\"\n\t],\n\t\"peerDependencies\": {\n\t\t\"react\": \">=18.2.0\",\n\t\t\"react-dom\": \">=18.2.0\"\n\t},\n\t\"sideEffects\": false,\n\t\"scripts\": {\n\t\t\"start\": \"npx react-scripts start\",\n\t\t\"build\": \"rm -rf dist && rollup -c\"\n\t},\n\t\"keywords\": [],\n\t\"author\": \"\",\n\t\"license\": \"ISC\",\n\t\"devDependencies\": {\n\t\t\"@babel/preset-react\": \"^7.27.1\",\n\t\t\"@rollup/plugin-babel\": \"^6.0.4\",\n\t\t\"@rollup/plugin-commonjs\": \"^28.0.6\",\n\t\t\"@rollup/plugin-json\": \"^6.1.0\",\n\t\t\"@rollup/plugin-node-resolve\": \"^16.0.1\",\n\t\t\"react\": \"^19.1.1\",\n\t\t\"react-dom\": \"^19.1.1\",\n\t\t\"react-script\": \"^2.0.5\",\n\t\t\"rollup\": \"^4.50.1\"\n\t},\n\t\"browserslist\": {\n\t\t\"production\": [\n\t\t\t\">0.2%\",\n\t\t\t\"not dead\",\n\t\t\t\"not op_mini all\"\n\t\t],\n\t\t\"development\": [\n\t\t\t\"last 1 chrome version\",\n\t\t\t\"last 1 firefox version\",\n\t\t\t\"last 1 safari version\"\n\t\t]\n\t}\n}",
+        "key": "9"
     },
     {
         "title": "Now that we have tested out our package locally we should publish it",
