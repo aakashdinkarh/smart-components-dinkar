@@ -1,0 +1,62 @@
+{
+    "name": "smart-components-dinkar",
+    "version": "2.0.0",
+    "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "watch": "rollup -c -w",
+        "build": "rm -rf dist && rollup -c",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "peerDependencies": {
+        "react": ">=18",
+        "react-dom": ">=18"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "7.27.1",
+        "@babel/preset-typescript": "7.27.1",
+        "@rollup/plugin-alias": "5.1.1",
+        "@rollup/plugin-babel": "6.0.4",
+        "@rollup/plugin-commonjs": "28.0.6",
+        "@rollup/plugin-json": "6.1.0",
+        "@rollup/plugin-node-resolve": "16.0.1",
+        "@rollup/plugin-terser": "0.4.4",
+        "@rollup/plugin-typescript": "12.1.4",
+        "rollup": "4.50.2",
+        "rollup-plugin-dts": "6.2.3",
+        "rollup-plugin-postcss": "4.0.2"
+    },
+    "keywords": [
+        "smart-components",
+        "dinkar",
+        "smart-components-dinkar",
+        "smart-dinkar"
+    ],
+    "author": "Aakash Dinkar aakashdinkarh@gmail.com",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aakashdinkarh/smart-components-dinkar"
+    },
+    "sideEffects": false,
+    "engines": {
+        "node": ">=16.0.0",
+        "npm": ">=8.0.0"
+    },
+    "homepage": "https://github.com/aakashdinkarh/smart-components-dinkar#readme",
+    "bugs": {
+        "url": "https://github.com/aakashdinkarh/smart-components-dinkar/issues"
+    }
+}

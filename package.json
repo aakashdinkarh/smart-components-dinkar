@@ -1,69 +1,18 @@
 {
-  "name": "smart-components-dinkar",
-  "version": "1.5.0",
-  "description": "This repository contains a collection of smart components designed to enhance your web application development by providing reusable and efficient solutions for common UI patterns.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
+  "name": "smart-components-dinkar-monorepo",
+  "workspaces": [
+    "packages/*"
   ],
-  "keywords": [
-    "smart-components",
-    "dinkar",
-    "smart-components-dinkar",
-    "smart-dinkar"
-  ],
-  "author": "Aakash Dinkar aakashdinkarh@gmail.com",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aakashdinkarh/smart-components-dinkar"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build-lib": "rm -rf dist && rollup -c",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "eslint_file": "eslint",
-    "stylelint": "stylelint \"**/*.css\"",
-    "stylelint:fix": "stylelint \"**/*.css\" --fix"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "bootstrap": "npm install",
+    "dev": "concurrently \"npm run watch --workspace=packages/library\" \"npm run start --workspace=packages/app\"",
+    "start": "npm run dev",
+    "build": "npm run build --workspaces",
+    "build:lib": "npm run build --workspace=packages/library",
+    "build:app": "npm run build --workspace=packages/app",
+    "lint": "npm run lint --workspaces"
   },
   "devDependencies": {
-    "@babel/preset-react": "7.27.1",
-    "@babel/preset-typescript": "7.27.1",
-    "@rollup/plugin-babel": "6.0.4",
-    "@rollup/plugin-commonjs": "28.0.6",
-    "@rollup/plugin-json": "6.1.0",
-    "@rollup/plugin-node-resolve": "16.0.1",
-    "@types/react": "18",
-    "react": "18",
-    "react-dom": "18",
-    "react-script": "2.0.5",
-    "rollup": "4.50.2",
-    "rollup-plugin-postcss": "4.0.2"
-  },
-  "sideEffects": false,
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "concurrently": "8.0.0"
   }
 }
