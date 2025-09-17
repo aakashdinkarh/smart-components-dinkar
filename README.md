@@ -1,59 +1,112 @@
-# smart-components-dinkar
+# Smart Components Dinkar
+
 <p>
-  Usage Demo -->
+  <strong>Live Demo:</strong>
   <a href="https://devdinkar-codebook.vercel.app/" target="_blank" rel="noopener noreferrer">
     DevDinkar CodeBook
   </a>
 </p>
 
-# Getting Started
-`smart-components-dinkar` repository contains the source code the npm package created for the web-components & playground for those components.
+A monorepo containing a collection of smart React components and their interactive playground. This repository provides reusable UI components designed to enhance web application development with a focus on modularity, flexibility, and ease of integration.
 
-This repository contains a collection of smart components designed to enhance your web application development 
-by providing reusable and efficient solutions for common UI patterns.
-These components are built with a focus on modularity, flexibility, and ease of integration into various projects.
-Also this repo only contains the code for playground for the components.
+## 📦 Repository Structure
 
-## Usage Documentation
-All the usage and description is available on https://devdinkar-codebook.vercel.app/
+This monorepo contains two main packages:
 
-# Installation
-Clone the repository
-```
+- **`packages/library`** - The npm package containing reusable React components
+- **`packages/app`** - The playground/demo application showcasing component usage
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js >= 16
+- npm >= 8
+
+### Installation
+
+1. Clone the repository:
+
+```bash
 git clone https://github.com/aakashdinkarh/smart-components-dinkar.git
-```
-Once the repository is clone, Please change the directory to `smart-components-dinkar` folder.
-```
 cd smart-components-dinkar
 ```
-Please run the repo with node version >= 18
-```
-nvm use 18
-```
-Run the below command to install the dependencies
-```
-npm run install
+
+2. Install dependencies for all packages:
+
+```bash
+npm run bootstrap
 ```
 
-Please use the node version >= 18
+## 🛠️ Development
 
-## Usage
+### Run Development Environment
 
-To run the application on development mode, Please make sure the port 3000 not used by any other application,
-you can view application at http://localhost:3000 after executing the following command.
+Start both the library watcher and playground app:
 
+```bash
+npm run dev
 ```
-npm run start
+
+This will:
+
+- Watch and rebuild the library package on changes
+- Start the playground app at http://localhost:3000
+
+### Individual Package Commands
+
+**Library Package:**
+
+```bash
+# Build the library
+npm run build:lib
+
+# Watch mode for library development
+npm run watch --workspace=packages/library
 ```
 
-To check the link errors
+**App Package:**
+
+```bash
+# Start the playground app
+npm run start --workspace=packages/app
+
+# Build the playground app
+npm run build:app
 ```
+
+### Linting
+
+```bash
+# Lint all packages
 npm run lint
+
+# Lint specific package
+npm run lint --workspace=packages/library
+npm run lint --workspace=packages/app
 ```
 
-## Build
-To build playground application on production mode, run the following command, it will create the build folder with all the bundled files.
+## 📚 Documentation
 
-```
+- **Component Documentation:** [DevDinkar CodeBook](https://devdinkar-codebook.vercel.app/)
+- **NPM Package:** [smart-components-dinkar](https://www.npmjs.com/package/smart-components-dinkar)
+
+## 🏗️ Build
+
+Build all packages:
+
+```bash
 npm run build
 ```
+
+## 📝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## 📄 License
+
+ISC License - see [LICENSE](LICENSE) file for details.
