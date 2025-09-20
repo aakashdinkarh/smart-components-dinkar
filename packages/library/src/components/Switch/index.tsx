@@ -1,5 +1,5 @@
 import type { NamedExoticComponent, PropsWithChildren, ReactElement } from 'react';
-import React, { isValidElement, memo } from 'react';
+import { Children, isValidElement, memo } from 'react';
 
 interface CaseProps extends PropsWithChildren {
 	condition: boolean;
@@ -54,7 +54,7 @@ export const Switch = memo(function Switch({ children }: SwitchProps): ReactElem
 	let matchChild: ReactElement | null = null;
 	let defaultCase: ReactElement | null = null;
 
-	React.Children.forEach(children, (child) => {
+	Children.forEach(children, (child) => {
 		if (!isValidElement(child)) {
 			return;
 		}

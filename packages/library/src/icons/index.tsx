@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { getCombinedClass } from '@utils/getCombinedClass';
 import type { SVGAttributes } from 'react';
-import React, { memo, forwardRef } from 'react';
+import { memo, forwardRef } from 'react';
 
 interface PropsType extends SVGAttributes<HTMLOrSVGElement> {
 	pathAttributes?: Record<string, any>;

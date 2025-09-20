@@ -1,6 +1,6 @@
 import { getCombinedClass } from '@utils/getCombinedClass';
 import type { JSX, PropsWithChildren } from 'react';
-import React, { memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 import styles from './borderAnimated.module.css';
 

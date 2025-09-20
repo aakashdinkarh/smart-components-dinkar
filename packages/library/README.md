@@ -3,7 +3,7 @@
 <p>
   <strong>Live Demo:</strong>
   <a href="https://devdinkar-codebook.vercel.app/" target="_blank" rel="noopener noreferrer">
-    DevDinkar CodeBook
+	DevDinkar CodeBook
   </a>
 </p>
 
@@ -18,7 +18,6 @@ npm install smart-components-dinkar
 ## 🚀 Quick Start
 
 ```tsx
-import React from 'react';
 import { Button, Loader, Select } from 'smart-components-dinkar';
 
 function App() {

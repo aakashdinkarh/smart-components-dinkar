@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { getVisibleOptions } from './helpers';
 import type { SelectedOptionProps } from './interfaces';
 import styles from './styles.module.css';

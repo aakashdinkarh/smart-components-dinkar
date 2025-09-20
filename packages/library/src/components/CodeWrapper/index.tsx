@@ -1,7 +1,7 @@
 import { CopyIcon } from '@icons/index';
 import { copyToClipboard } from '@utils/copyToClipboard';
 import { getCombinedClass } from '@utils/getCombinedClass';
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import type { PropsWithChildren } from 'react';
 
 import styles from './styles.module.css';

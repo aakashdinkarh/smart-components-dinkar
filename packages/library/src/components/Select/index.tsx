@@ -2,7 +2,7 @@ import { SelectedOptions } from '@components/Select/SelectedOptions';
 import { useCustomSelect } from '@components/Select/useCustomSelect';
 import { getCombinedClass } from '@utils/getCombinedClass';
 import { isEmpty } from '@utils/isEmpty';
-import React, { memo, useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 
 import { getDefaultValue, getDisplayValue, getVisibleOptions } from './helpers';
 import type { IuseCustomSelect, Option, SelectProps } from './interfaces';

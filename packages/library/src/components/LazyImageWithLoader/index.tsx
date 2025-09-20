@@ -1,7 +1,7 @@
 import { Loader } from '@components/Loader';
 import type { loaderVariant } from '@components/Loader';
 import { getCombinedClass } from '@utils/getCombinedClass';
-import React, { useEffect, useRef, useState, memo } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 
 import styles from './lazyImageLoader.module.css';
 

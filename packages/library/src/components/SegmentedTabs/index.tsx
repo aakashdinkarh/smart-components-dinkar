@@ -1,8 +1,9 @@
 import { getCombinedClass } from '@utils/getCombinedClass';
 import type { JSX, NamedExoticComponent, PropsWithChildren } from 'react';
-import React, {
+import {
 	Fragment,
 	memo,
+	Children,
 	isValidElement,
 	useState,
 	useRef,
@@ -56,7 +57,7 @@ export const SegmentedTabs = memo(function SegmentedTabs({
 	onTabChange = () => {},
 	children = null,
 }: Partial<SegmentedTabsProps>): JSX.Element {
-	const validChildren = React.Children.toArray(children).filter(
+	const validChildren = Children.toArray(children).filter(
 		(child) => isValidElement(child) && child.type === Tab
 	);
 

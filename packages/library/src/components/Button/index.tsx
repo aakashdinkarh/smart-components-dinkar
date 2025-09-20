@@ -1,6 +1,6 @@
 import { getCombinedClass } from '@utils/getCombinedClass';
 import type { LegacyRef, PropsWithChildren } from 'react';
-import React, { forwardRef, memo } from 'react';
+import { forwardRef, memo } from 'react';
 
 import styles from './styles.module.css';
 

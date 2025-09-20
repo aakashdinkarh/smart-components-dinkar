@@ -1,10 +1,10 @@
-import React from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import type { KeyboardEvent } from 'react';
 
 import { getVisibleOptions, setNewFocus } from './helpers';
 import type { IuseCustomSelect, Option, useCustomSelectArgs } from './interfaces';
 import styles from './styles.module.css';
 
-const { useState, useEffect, useCallback, useRef } = React;
 const initialCurrentListFocus = -1;
 
 export function useCustomSelect({
@@ -79,7 +79,7 @@ export function useCustomSelect({
 	// }, [multiple, options, selectedValue]);
 
 	const onOutsideClick = useCallback(
-		(e: MouseEvent | KeyboardEvent) => {
+		(e: PointerEvent) => {
 			const { target } = e;
 
 			if (
@@ -131,7 +131,7 @@ export function useCustomSelect({
 	);
 
 	const onKeyDown = useCallback(
-		(e: React.KeyboardEvent<HTMLDivElement>) => {
+		(e: KeyboardEvent<HTMLDivElement>) => {
 			e.preventDefault();
 
 			if ((document.activeElement as HTMLElement)?.classList.contains(styles.clear_icon)) {

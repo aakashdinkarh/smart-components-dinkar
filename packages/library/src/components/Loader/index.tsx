@@ -1,5 +1,5 @@
 import { Switch } from '@components/Switch';
-import React, { memo } from 'react';
+import { memo } from 'react';
 import type { JSX } from 'react';
 
 import styles from './loader.module.css';
