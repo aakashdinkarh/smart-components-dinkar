@@ -7,9 +7,9 @@
 		"bootstrap": "npm install",
 		"dev": "concurrently \"npm run watch --workspace=packages/library\" \"npm run start --workspace=packages/app\"",
 		"start": "npm run dev",
-		"build": "npm run build --workspaces",
-		"build:lib": "npm run build --workspace=packages/library",
+		"build": "npm run build:lib && npm run build:app",
 		"build:app": "npm run build --workspace=packages/app",
+		"build:lib": "npm run build --workspace=packages/library",
 		"lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mjs",
 		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.mjs --fix",
 		"lint:workspaces": "npm run lint --workspaces"
