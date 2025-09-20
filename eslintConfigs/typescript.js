@@ -43,6 +43,6 @@ const typescript = {
 		'error',
 		{ varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
 	],
-}
+};
 
 module.exports = typescript;

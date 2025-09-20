@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { getVisibleOptions, setNewFocus } from './helpers';
-import type { IuseCustomSelect, Option,useCustomSelectArgs } from './interfaces';
+import type { IuseCustomSelect, Option, useCustomSelectArgs } from './interfaces';
 import styles from './styles.module.css';
 
 const { useState, useEffect, useCallback, useRef } = React;
 const initialCurrentListFocus = -1;
 
-export function useCustomSelect ({
+export function useCustomSelect({
 	selectedValue = '',
 	setSelectedValue = () => {},
 	visibleOptions = [],
@@ -24,17 +24,25 @@ export function useCustomSelect ({
 	const listRef = useRef<any>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const toggleOptionList = useCallback(() => { setIsSelectOpen((p) => !p); }, []);
-	const hideOptionList = useCallback(() => { setIsSelectOpen(false); }, []);
-	const showOptionList = useCallback(() => { setIsSelectOpen(true); }, []);
+	const toggleOptionList = useCallback(() => {
+		setIsSelectOpen((p) => !p);
+	}, []);
+	const hideOptionList = useCallback(() => {
+		setIsSelectOpen(false);
+	}, []);
+	const showOptionList = useCallback(() => {
+		setIsSelectOpen(true);
+	}, []);
 
-	const resetCurrentFocus = useCallback(() => { setCurrentFocus(initialCurrentListFocus); }, []);
+	const resetCurrentFocus = useCallback(() => {
+		setCurrentFocus(initialCurrentListFocus);
+	}, []);
 
 	useEffect(() => {
-		if(!isSelectOpen){
+		if (!isSelectOpen) {
 			resetCurrentFocus();
 		}
-	}, [isSelectOpen])
+	}, [isSelectOpen, resetCurrentFocus]);
 
 	const clearSelectInput = useCallback(() => {
 		const newSelectedValue = multiple ? [] : '';
@@ -45,7 +53,7 @@ export function useCustomSelect ({
 		if (typeof onClear === 'function') {
 			onClear();
 		}
-	}, [multiple, onClear, options]);
+	}, [multiple, onClear, options, setSelectedValue, setVisibleOptions]);
 
 	// const onInput = useCallback((e: React.MouseEvent | React.KeyboardEvent<HTMLInputElement>) => {
 	// 	const val = (e.target as HTMLInputElement).value;
@@ -70,73 +78,87 @@ export function useCustomSelect ({
 	// 	setVisibleOptions(getVisibleOptions({ selectedValue, options, multiple }));
 	// }, [multiple, options, selectedValue]);
 
-	const onOutsideClick = useCallback((e: MouseEvent | KeyboardEvent) => {
-		const { target } = e;
-		
-		if ((containerRef.current as HTMLDivElement).contains(target as HTMLElement)
-			|| (multiple && (target as HTMLElement).dataset.isChild === 'true')) {
-			return;
-		}
-		
-		hideOptionList();
+	const onOutsideClick = useCallback(
+		(e: MouseEvent | KeyboardEvent) => {
+			const { target } = e;
 
-		// if ((inputRef.current as HTMLInputElement).value !== '' || isSelectOpen) {
-		// 	resetVisibleOptions();
-		// }
-	}, [multiple, isSelectOpen]);
-
-	const onListClick = useCallback((option: Option) => {
-		const { value } = option;
-
-		let newSelectedValue: string | string[] = value;
-
-		if (multiple) {
-			if (Array.isArray(selectedValue)) {
-				newSelectedValue = [...selectedValue, value];
-			} else {
-				newSelectedValue = [value];
+			if (
+				(containerRef.current as HTMLDivElement).contains(target as HTMLElement) ||
+				(multiple && (target as HTMLElement).dataset.isChild === 'true')
+			) {
+				return;
 			}
-		}
 
-		!multiple && hideOptionList();
-		setSelectedValue(newSelectedValue);
-		setVisibleOptions(getVisibleOptions({ selectedValue: newSelectedValue, options, multiple }));
-
-		if (typeof onChange === 'function') {
-			onChange(newSelectedValue, option);
-		}
-	}, [multiple, options, onChange, selectedValue]);
-
-	const onListHover = useCallback((optionIndex: number) => {
-		setCurrentFocus(optionIndex);
-	}, [setCurrentFocus]);
-
-	const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-		e.preventDefault();
-
-		if((document.activeElement as HTMLElement)?.classList.contains(styles.clear_icon)){
-			if (e.key === 'ArrowUp' || e.key === 'ArrowDown'){
-				(document.activeElement as HTMLElement).blur();
-				inputRef.current?.focus();
-			}
-		} else if(e.key === 'Enter'){
-			if(currentFocus < 0 || currentFocus >= visibleOptions.length){				
-				toggleOptionList();
-			} else {
-				onListClick(visibleOptions[currentFocus]);
-			}
-		} else if (e.key === 'Escape') {
 			hideOptionList();
-		} else if (e.key === 'ArrowDown') {
-			!isSelectOpen && showOptionList();
 
-			setNewFocus({ n: 1, func: setCurrentFocus, max: visibleOptions.length - 1 });
-		} else if (e.key === 'ArrowUp') {
-			!isSelectOpen && showOptionList();
+			// if ((inputRef.current as HTMLInputElement).value !== '' || isSelectOpen) {
+			// 	resetVisibleOptions();
+			// }
+		},
+		[multiple, hideOptionList]
+	);
 
-			setNewFocus({ n: -1, func: setCurrentFocus, max: visibleOptions.length - 1 });
-		}
-	}, [setCurrentFocus, visibleOptions, currentFocus, onListClick, isSelectOpen]);
+	const onListClick = useCallback(
+		(option: Option) => {
+			const { value } = option;
+
+			let newSelectedValue: string | string[] = value;
+
+			if (multiple) {
+				if (Array.isArray(selectedValue)) {
+					newSelectedValue = [...selectedValue, value];
+				} else {
+					newSelectedValue = [value];
+				}
+			}
+
+			!multiple && hideOptionList();
+			setSelectedValue(newSelectedValue);
+			setVisibleOptions(getVisibleOptions({ selectedValue: newSelectedValue, options, multiple }));
+
+			if (typeof onChange === 'function') {
+				onChange(newSelectedValue, option);
+			}
+		},
+		[multiple, hideOptionList, setSelectedValue, setVisibleOptions, options, onChange, selectedValue]
+	);
+
+	const onListHover = useCallback(
+		(optionIndex: number) => {
+			setCurrentFocus(optionIndex);
+		},
+		[setCurrentFocus]
+	);
+
+	const onKeyDown = useCallback(
+		(e: React.KeyboardEvent<HTMLDivElement>) => {
+			e.preventDefault();
+
+			if ((document.activeElement as HTMLElement)?.classList.contains(styles.clear_icon)) {
+				if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+					(document.activeElement as HTMLElement).blur();
+					inputRef.current?.focus();
+				}
+			} else if (e.key === 'Enter') {
+				if (currentFocus < 0 || currentFocus >= visibleOptions.length) {
+					toggleOptionList();
+				} else {
+					onListClick(visibleOptions[currentFocus]);
+				}
+			} else if (e.key === 'Escape') {
+				hideOptionList();
+			} else if (e.key === 'ArrowDown') {
+				!isSelectOpen && showOptionList();
+
+				setNewFocus({ n: 1, func: setCurrentFocus, max: visibleOptions.length - 1 });
+			} else if (e.key === 'ArrowUp') {
+				!isSelectOpen && showOptionList();
+
+				setNewFocus({ n: -1, func: setCurrentFocus, max: visibleOptions.length - 1 });
+			}
+		},
+		[currentFocus, visibleOptions, toggleOptionList, onListClick, hideOptionList, isSelectOpen, showOptionList]
+	);
 
 	useEffect(() => {
 		document.addEventListener('click', onOutsideClick);

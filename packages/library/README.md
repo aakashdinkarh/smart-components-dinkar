@@ -18,27 +18,27 @@ npm install smart-components-dinkar
 ## 🚀 Quick Start
 
 ```tsx
-import React from "react";
-import { Button, Loader, Select } from "smart-components-dinkar";
+import React from 'react';
+import { Button, Loader, Select } from 'smart-components-dinkar';
 
 function App() {
-  return (
-    <div>
-      <Button variant="primary" onClick={() => console.log("Clicked!")}>
-        Click me
-      </Button>
+	return (
+		<div>
+			<Button variant="primary" onClick={() => console.log('Clicked!')}>
+				Click me
+			</Button>
 
-      <Loader size="medium" />
+			<Loader size="medium" />
 
-      <Select
-        options={[
-          { value: "option1", label: "Option 1" },
-          { value: "option2", label: "Option 2" },
-        ]}
-        placeholder="Choose an option"
-      />
-    </div>
-  );
+			<Select
+				options={[
+					{ value: 'option1', label: 'Option 1' },
+					{ value: 'option2', label: 'Option 2' },
+				]}
+				placeholder="Choose an option"
+			/>
+		</div>
+	);
 }
 ```
 
@@ -86,20 +86,20 @@ import { Button } from 'smart-components-dinkar';
 ### Select Component
 
 ```tsx
-import { Select } from "smart-components-dinkar";
+import { Select } from 'smart-components-dinkar';
 
 const options = [
-  { value: "react", label: "React" },
-  { value: "vue", label: "Vue" },
-  { value: "angular", label: "Angular" },
+	{ value: 'react', label: 'React' },
+	{ value: 'vue', label: 'Vue' },
+	{ value: 'angular', label: 'Angular' },
 ];
 
 <Select
-  options={options}
-  placeholder="Select a framework"
-  searchable={true}
-  multiSelect={false}
-  onChange={(selected) => console.log(selected)}
+	options={options}
+	placeholder="Select a framework"
+	searchable={true}
+	multiSelect={false}
+	onChange={(selected) => console.log(selected)}
 />;
 ```
 

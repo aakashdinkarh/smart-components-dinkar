@@ -7,8 +7,8 @@ import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
 const StyledH2 = ({ children }) => {
-	return <h2 style={{ marginBottom: '0.5rem' }} >{children}</h2>
-}
+	return <h2 style={{ marginBottom: '0.5rem' }}>{children}</h2>;
+};
 
 export function HomePage() {
 	const { isCodeHighlighted } = useHighlightCode();
@@ -18,37 +18,52 @@ export function HomePage() {
 			<HelmetComponent />
 
 			<header>
-				<StickyHeader heading='Smart Components Dinkar' subtitle='Building from scratch!' withThemeSelector />
+				<StickyHeader
+					heading="Smart Components Dinkar"
+					subtitle="Building from scratch!"
+					withThemeSelector
+				/>
 			</header>
 
 			<section>
 				<StyledH2>About</StyledH2>
-				Welcome to <strong>DevDinkar CodeBook</strong> (smart-components-dinkar package)! This project
-				contains a collection of smart components designed to ease your web application development by
-				providing reusable and efficient solutions for common UI patterns. You can see the tutorials and
-				components usage here from the left navbar for your different requirements.
+				Welcome to <strong>DevDinkar CodeBook</strong> (smart-components-dinkar
+				package)! This project contains a collection of smart components
+				designed to ease your web application development by providing reusable
+				and efficient solutions for common UI patterns. You can see the
+				tutorials and components usage here from the left navbar for your
+				different requirements.
 			</section>
 
 			<section>
-				<StyledH2><span style={{ color: '#EC407A' }} >Note</span></StyledH2>
-				For optimal performance and minimal import size, import components from their individual folders rather
-				than from the package's common entry point. We are working on enabling tree-shaking, which will
-				eventually allow you to import all components directly from the common entry point without sacrificing
-				performance or increasing import size.
-
+				<StyledH2>
+					<span style={{ color: '#EC407A' }}>Note</span>
+				</StyledH2>
+				For optimal performance and minimal import size, import components from
+				their individual folders rather than from the package&apos;s common entry
+				point. We are working on enabling tree-shaking, which will eventually
+				allow you to import all components directly from the common entry point
+				without sacrificing performance or increasing import size.
 				<p>For example,</p>
-
 				<div>
-				Instead of this
-				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
-					{`import { Select } from 'smart-components-dinkar';`}
-				</AppCodeWrapper>
-				<br />
-				Import like this
-				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassJS}>
-					{`import { Select } from 'smart-components-dinkar/dist/components/Select';`}
-				</AppCodeWrapper>
-			</div>
+					Instead of this
+					<AppCodeWrapper
+						isCodeHighlighted={Boolean(isCodeHighlighted)}
+						languageClass={codeHighlightClassJS}
+					>
+						{"import { Select } from 'smart-components-dinkar';"}
+					</AppCodeWrapper>
+					<br />
+					Import like this
+					<AppCodeWrapper
+						isCodeHighlighted={Boolean(isCodeHighlighted)}
+						languageClass={codeHighlightClassJS}
+					>
+						{
+							"import { Select } from 'smart-components-dinkar/dist/components/Select';"
+						}
+					</AppCodeWrapper>
+				</div>
 			</section>
 
 			<section>
@@ -65,7 +80,10 @@ export function HomePage() {
 			</section>
 
 			<footer>
-				<p>&copy; {(new Date()).getFullYear()} smart-components-dinkar. All rights reserved.</p>
+				<p>
+					&copy; {new Date().getFullYear()} smart-components-dinkar. All rights
+					reserved.
+				</p>
 			</footer>
 		</>
 	);

@@ -1,17 +1,16 @@
-import type { PropsWithChildren } from "react";
-import React, { memo, useCallback } from "react";
+import { CopyIcon } from '@icons/index';
+import { copyToClipboard } from '@utils/copyToClipboard';
+import { getCombinedClass } from '@utils/getCombinedClass';
+import React, { memo, useCallback } from 'react';
+import type { PropsWithChildren } from 'react';
 
-import { CopyIcon } from "@icons/index";
-import { copyToClipboard } from "@utils/copyToClipboard";
-import { getCombinedClass } from "@utils/getCombinedClass";
-
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 interface CodeWrapperProps extends PropsWithChildren {
-  isCodeHighlighted: boolean;
-  languageClass?: string;
-  onCopy?: () => void;
-  onCopyFail?: (errorMsg: string) => void;
+	isCodeHighlighted: boolean;
+	languageClass?: string;
+	onCopy?: () => void;
+	onCopyFail?: (errorMsg: string) => void;
 }
 
 /**
@@ -34,49 +33,40 @@ interface CodeWrapperProps extends PropsWithChildren {
 	</CodeWrapper>
  */
 export const CodeWrapper = memo(function CodeWrapper({
-  children,
-  isCodeHighlighted,
-  onCopy,
-  onCopyFail,
-  languageClass = "",
+	children,
+	isCodeHighlighted,
+	onCopy,
+	onCopyFail,
+	languageClass = '',
 }: CodeWrapperProps) {
-  const handleCopy = useCallback(() => {
-    void (async function () {
-      const res = await copyToClipboard(children as string);
-      if (res.success && typeof onCopy === "function") {
-        onCopy();
-        return;
-      }
-      if (!res.success && typeof onCopyFail === "function") {
-        onCopyFail(res.error);
-      }
-    })();
-  }, [children, onCopy, onCopyFail]);
+	const handleCopy = useCallback(() => {
+		void (async function () {
+			const res = await copyToClipboard(children as string);
+			if (res.success && typeof onCopy === 'function') {
+				onCopy();
+				return;
+			}
+			if (!res.success && typeof onCopyFail === 'function') {
+				onCopyFail(res.error);
+			}
+		})();
+	}, [children, onCopy, onCopyFail]);
 
-  return (
-    <div
-      className={getCombinedClass(
-        styles["code-container"],
-        "__scd_code-container",
-        {
-          [styles["code-highlighted"]]: isCodeHighlighted,
-        }
-      )}
-    >
-      <CopyIcon
-        width={20}
-        height={20}
-        onClick={handleCopy}
-        className={styles["copy-button"]}
-      />
-      <pre
-        className={getCombinedClass({
-          hljs: isCodeHighlighted,
-        })}
-        style={{ paddingRight: 28 }}
-      >
-        <code className={languageClass}>{children}</code>
-      </pre>
-    </div>
-  );
+	return (
+		<div
+			className={getCombinedClass(styles['code-container'], '__scd_code-container', {
+				[styles['code-highlighted']]: isCodeHighlighted,
+			})}
+		>
+			<CopyIcon width={20} height={20} onClick={handleCopy} className={styles['copy-button']} />
+			<pre
+				className={getCombinedClass({
+					hljs: isCodeHighlighted,
+				})}
+				style={{ paddingRight: 28 }}
+			>
+				<code className={languageClass}>{children}</code>
+			</pre>
+		</div>
+	);
 });

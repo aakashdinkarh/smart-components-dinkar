@@ -18,7 +18,7 @@ export function useHighlightCode() {
 				console.error('Error highlighting code', err);
 				mixpanel.track(MIXPANEL_EVENTS.CODE_HIGHLIGHTED_ERROR, {
 					[MIXPANEL_EVENT_PROPERTIES.ERROR_MESSAGE]: err instanceof Error ? err.message : 'Unknown error',
-				});	
+				});
 				setIsCodeHighlighted(false);
 			}
 		})();

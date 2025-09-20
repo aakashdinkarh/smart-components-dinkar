@@ -3,6 +3,7 @@
 # Screenshots (If any)
 
 ## Type of change
+
 Please mark checked the options that are relevant.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)

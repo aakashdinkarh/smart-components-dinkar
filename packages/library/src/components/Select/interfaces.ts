@@ -1,8 +1,8 @@
 import type * as React from 'react';
 
 export interface Option {
-	label?: string,
-	value: string,
+	label?: string;
+	value: string;
 }
 
 type IFunction = (...ars: any[]) => void;
@@ -10,10 +10,10 @@ type IFunction = (...ars: any[]) => void;
 export type Options = Option[] | [];
 
 export interface helperFunctionsProps {
-	value: string | string[],
-	options: Options,
-	multiple: boolean,
-	selectedValue: string | string[],
+	value: string | string[];
+	options: Options;
+	multiple: boolean;
+	selectedValue: string | string[];
 }
 
 export interface IsetNewFocus {
@@ -54,12 +54,12 @@ export interface SyntheticClickEvent {
 		nodeName: string;
 		dataset: {
 			optionValue: string;
-		}
-	}
+		};
+	};
 }
 
 export interface useCustomSelectArgs {
-	selectedValue: string | string[],
+	selectedValue: string | string[];
 	setSelectedValue: IFunction;
 	visibleOptions: Option[];
 	setVisibleOptions: IFunction;

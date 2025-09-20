@@ -1,13 +1,13 @@
 import React from 'react';
 import type { RouteObject } from 'react-router-dom';
 
-import { ButtonPage } from './Button'
+import { ButtonPage } from './Button';
 import { HomePage } from './Home';
 import { LoaderPage } from './Loader';
 import { NpmPackagePage } from './NpmPackage';
 import { OthersPage } from './Others';
 import { SegmentedTabsPage } from './SegmentedTabs';
-import { SelectPage } from "./Select"
+import { SelectPage } from './Select';
 import { SwitchPage } from './Switch';
 import { ToastPage } from './Toast';
 
@@ -20,10 +20,13 @@ export const routes = {
 	button        : '/component/button',
 	loader        : '/component/loader',
 	others        : '/component/others',
-	switch        :	'/components/switch',
+	switch        : '/components/switch',
 } as const;
 
-interface SideBarItem { path: (typeof routes)[keyof typeof routes]; label: string }
+interface SideBarItem {
+	path: (typeof routes)[keyof typeof routes];
+	label: string;
+}
 type SideBarItems = Record<'tutorials' | 'components', SideBarItem[]>;
 
 export const sideBarItems: SideBarItems = {
@@ -61,10 +64,9 @@ export const sideBarItems: SideBarItems = {
 		{
 			path  : routes.others,
 			label : 'Others',
-		}
-	]
+		},
+	],
 } as const;
-
 
 const navTitleMap = {
 	[routes.home]: 'Home',
@@ -84,7 +86,7 @@ export const getCurrentScreen = () => {
 	} catch (error) {
 		return null;
 	}
-}
+};
 
 export const nestedRoutes: RouteObject[] = [
 	{
@@ -121,6 +123,6 @@ export const nestedRoutes: RouteObject[] = [
 	},
 	{
 		path    : routes.others,
-		element : <OthersPage />
-	}
-]
+		element : <OthersPage />,
+	},
+];

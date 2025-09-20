@@ -22,10 +22,7 @@
 	left: 0;
 	width: 100%;
 	height: var(--border-width);
-	background:
-		linear-gradient(to left,
-			rgb(43 8 8 / 0%),
-			var(--border-color));
+	background: linear-gradient(to left, rgb(43 8 8 / 0%), var(--border-color));
 	transform: translateX(100%);
 	animation: animate-top linear infinite;
 }
@@ -35,10 +32,7 @@
 	right: 0;
 	width: var(--border-width);
 	height: 100%;
-	background:
-		linear-gradient(to top,
-			rgb(43 8 8 / 0%),
-			var(--border-color));
+	background: linear-gradient(to top, rgb(43 8 8 / 0%), var(--border-color));
 	transform: translateY(100%);
 	animation: animate-right linear infinite;
 }
@@ -48,10 +42,7 @@
 	left: 0;
 	width: 100%;
 	height: var(--border-width);
-	background:
-		linear-gradient(to right,
-			rgb(43 8 8 / 0%),
-			var(--border-color));
+	background: linear-gradient(to right, rgb(43 8 8 / 0%), var(--border-color));
 	transform: translateX(-100%);
 	animation: animate-bottom linear infinite;
 }
@@ -61,10 +52,7 @@
 	left: 0;
 	width: var(--border-width);
 	height: 100%;
-	background:
-		linear-gradient(to bottom,
-			rgb(43 8 8 / 0%),
-			var(--border-color));
+	background: linear-gradient(to bottom, rgb(43 8 8 / 0%), var(--border-color));
 	transform: translateY(-100%);
 	animation: animate-left linear infinite;
 }

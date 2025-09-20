@@ -8,13 +8,13 @@ function getHljs() {
 	return window.hljs;
 }
 
-export async function loadHljs() : Promise<Record<string, any> | undefined> {
-	return new Promise(function(resolve, reject) {
+export async function loadHljs(): Promise<Record<string, any> | undefined> {
+	return new Promise(function (resolve, reject) {
 		const hljs = getHljs();
 
-		if(hljs) {
+		if (hljs) {
 			resolve(hljs);
-			return
+			return;
 		}
 
 		const script = document.createElement('script');
@@ -23,12 +23,12 @@ export async function loadHljs() : Promise<Record<string, any> | undefined> {
 		script.onload = () => {
 			const hljsFound = getHljs();
 			resolve(hljsFound);
-		}
+		};
 
 		script.onerror = () => {
 			reject(new Error('Failed to load highlight.js'));
 			script.remove();
-		}
+		};
 		document.body.appendChild(script);
-	})
+	});
 }

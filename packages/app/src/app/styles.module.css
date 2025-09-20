@@ -1,27 +1,26 @@
 :root {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
 
-    --color-primary: #297aff;
-    --color-secondary: #393b42;
-    --color-tertiary: #dde1e7;
-    --color-success: #41a14a;
-    --color-danger: #f54337;
-    --color-warn: #ffe320;
-    --color-black: #000;
-    --color-white: #fff;
-    --bg-color-disabled: #eeeeef;
-    --color-disabled: #9d9d9d;
+	--color-primary: #297aff;
+	--color-secondary: #393b42;
+	--color-tertiary: #dde1e7;
+	--color-success: #41a14a;
+	--color-danger: #f54337;
+	--color-warn: #ffe320;
+	--color-black: #000;
+	--color-white: #fff;
+	--bg-color-disabled: #eeeeef;
+	--color-disabled: #9d9d9d;
 
-    /* font-size variables */
-    --font-size-xxs: 0.625rem;
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-md: 1rem;
-    --font-size-md-lg: 1.17rem; /* h3 font-size */
-    --font-size-lg: 1.5rem; /* h2 font-size */
-    --font-size-xl: 2rem;
-
+	/* font-size variables */
+	--font-size-xxs: 0.625rem;
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-md: 1rem;
+	--font-size-md-lg: 1.17rem; /* h3 font-size */
+	--font-size-lg: 1.5rem; /* h2 font-size */
+	--font-size-xl: 2rem;
 }
 
 /* 
@@ -64,107 +63,108 @@ laptop-breakpoint : 1024px
 1px   -->  0.0625rem
 */
 
-
 body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a {
-    text-decoration: none;
-    color: initial;
+	text-decoration: none;
+	color: initial;
 }
 
 .app-container {
-    display: flex;
+	display: flex;
 }
 
 .side-menu {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: min(30%, 320px);
-    min-width: 20%;
-    overflow: auto;
-    background-color: #edeef1;
-    border-right: 1px solid #bababa;
-    padding: 0 16px 10px;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: min(30%, 320px);
+	min-width: 20%;
+	overflow: auto;
+	background-color: #edeef1;
+	border-right: 1px solid #bababa;
+	padding: 0 16px 10px;
 }
 
 .content {
-    padding: 0 16px 16px;
-    height: 100vh;
-    overflow: auto;
-    flex: 1;
+	padding: 0 16px 16px;
+	height: 100vh;
+	overflow: auto;
+	flex: 1;
 
-    /* todo: think about this linear gradient background */
+	/* todo: think about this linear gradient background */
 
-    /* background: linear-gradient(0deg, #9debffa6, transparent); */
+	/* background: linear-gradient(0deg, #9debffa6, transparent); */
 }
 
 .menu-icon {
-    width: 20px;
-    padding: 0;
-    flex-direction: column;
-    justify-content: stretch;
-    background-color: transparent;
+	width: 20px;
+	padding: 0;
+	flex-direction: column;
+	justify-content: stretch;
+	background-color: transparent;
 }
 
 .menu-icon[data-role='menu-icon']:hover {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .menu-icon .menu-icon-bar {
-    height: 3px;
-    width: 100%;
-    background-color: black;
-    border-radius: 4px;
+	height: 3px;
+	width: 100%;
+	background-color: black;
+	border-radius: 4px;
 }
 
 .menu-icon .menu-icon-bar:not(:first-of-type) {
-    margin-top: 2px;
+	margin-top: 2px;
 }
 
 .menu-icon .menu-icon-bar:not(:last-of-type) {
-    margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .github-logo-container {
-    background-color: #edeef1;
+	background-color: #edeef1;
 }
 
 @media (width <= 480px) {
-    .mobile-header {
-        position: fixed;
-        margin: 0;
-        width: 100%;
-    }
+	.mobile-header {
+		position: fixed;
+		margin: 0;
+		width: 100%;
+	}
 
-    .side-menu {
-        z-index: 2;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 0%;
-        min-width: initial;
-        overflow: hidden;
-        padding: 0;
-        transition: width 0.5s, padding 0.5s;
-    }
+	.side-menu {
+		z-index: 2;
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 0%;
+		min-width: initial;
+		overflow: hidden;
+		padding: 0;
+		transition:
+			width 0.5s,
+			padding 0.5s;
+	}
 
-    .side-menu.show-mobile-nav {
-        width: min(80%, 320px);
-        padding: 0 16px 10px;
-    }
+	.side-menu.show-mobile-nav {
+		width: min(80%, 320px);
+		padding: 0 16px 10px;
+	}
 
-    .close-icon {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        z-index: inherit;
-    }
+	.close-icon {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index: inherit;
+	}
 }

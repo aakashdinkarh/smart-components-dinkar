@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
+import { Switch } from 'smart-components-dinkar';
 
-import { Switch } from "smart-components-dinkar";
-import { AppCodeWrapper } from "../../common/AppCodeWrapper";
-import { StickyHeader } from "../../common/StickyHeader";
-import { codeHighlightClassHTML } from "../../constants";
-import { useHighlightCode } from "../../hooks/useHighlightCode";
-import { HelmetComponent } from "../HelmetComponent";
+import { AppCodeWrapper } from '../../common/AppCodeWrapper';
+import { StickyHeader } from '../../common/StickyHeader';
+import { codeHighlightClassHTML } from '../../constants';
+import { useHighlightCode } from '../../hooks/useHighlightCode';
+import { HelmetComponent } from '../HelmetComponent';
 
 export function SwitchPage() {
-  const { isCodeHighlighted } = useHighlightCode();
+	const { isCodeHighlighted } = useHighlightCode();
 
-  return (
+	return (
     <main>
       <HelmetComponent />
 
@@ -69,5 +69,5 @@ export function SwitchPage() {
         </AppCodeWrapper>
       </div>
     </main>
-  );
+	);
 }

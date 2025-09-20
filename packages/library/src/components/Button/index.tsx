@@ -1,29 +1,22 @@
-import type { LegacyRef, PropsWithChildren } from "react";
-import React, { forwardRef, memo } from "react";
+import { getCombinedClass } from '@utils/getCombinedClass';
+import type { LegacyRef, PropsWithChildren } from 'react';
+import React, { forwardRef, memo } from 'react';
 
-import { getCombinedClass } from "@utils/getCombinedClass";
-
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 type IFunction = (...arr: any[]) => void;
 
-type themeType =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "success"
-  | "danger"
-  | "warn";
+type themeType = 'primary' | 'secondary' | 'tertiary' | 'success' | 'danger' | 'warn';
 
 export interface IButton extends PropsWithChildren {
-  className: string;
-  type: "button" | "submit" | "reset" | undefined;
-  size: "xs" | "sm" | "md" | "lg" | "xl";
-  themeType: themeType;
-  onClick: IFunction;
-  outline: boolean;
-  disabled: boolean;
-  [key: string]: any;
+	className: string;
+	type: 'button' | 'submit' | 'reset' | undefined;
+	size: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+	themeType: themeType;
+	onClick: IFunction;
+	outline: boolean;
+	disabled: boolean;
+	[key: string]: any;
 }
 
 /**
@@ -42,37 +35,37 @@ export interface IButton extends PropsWithChildren {
  *	<Button themeType="primary" onClick={() => alert('Button clicked')}>Primary Button</Button>
  */
 export const Button = memo(
-  forwardRef(function Button(
-    {
-      children = null,
-      type = "button",
-      size = "md",
-      themeType = "primary",
-      className = "",
-      onClick = () => {},
-      outline = false,
-      disabled = false,
-      ...rest
-    }: Partial<IButton>,
-    ref: LegacyRef<HTMLButtonElement>
-  ) {
-    return (
-      <button
-        onClick={onClick}
-        type={type}
-        className={getCombinedClass(
-          styles.button,
-          styles[size],
-          styles[themeType],
-          { [styles.outline]: outline },
-          className
-        )}
-        disabled={disabled}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </button>
-    );
-  })
+	forwardRef(function Button(
+		{
+			children = null,
+			type = 'button',
+			size = 'md',
+			themeType = 'primary',
+			className = '',
+			onClick = () => {},
+			outline = false,
+			disabled = false,
+			...rest
+		}: Partial<IButton>,
+		ref: LegacyRef<HTMLButtonElement>
+	) {
+		return (
+			<button
+				onClick={onClick}
+				type={type}
+				className={getCombinedClass(
+					styles.button,
+					styles[size],
+					styles[themeType],
+					{ [styles.outline]: outline },
+					className
+				)}
+				disabled={disabled}
+				ref={ref}
+				{...rest}
+			>
+				{children}
+			</button>
+		);
+	})
 );

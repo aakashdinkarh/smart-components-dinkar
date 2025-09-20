@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState, memo } from "react";
+import { Loader } from '@components/Loader';
+import type { loaderVariant } from '@components/Loader';
+import { getCombinedClass } from '@utils/getCombinedClass';
+import React, { useEffect, useRef, useState, memo } from 'react';
 
-import { Loader } from "@components/Loader";
-import { getCombinedClass } from "@utils/getCombinedClass";
-import type { loaderVariant } from "@components/Loader";
-
-import styles from "./lazyImageLoader.module.css";
+import styles from './lazyImageLoader.module.css';
 
 interface LazyImageWithLoaderProps {
-  imgSrc: string;
-  alt?: string;
-  imgWidth?: number;
-  imgHeight?: number;
-  imgContainerClass?: string;
-  loaderVariant?: loaderVariant;
+	imgSrc: string;
+	alt?: string;
+	imgWidth?: number;
+	imgHeight?: number;
+	imgContainerClass?: string;
+	loaderVariant?: loaderVariant;
 }
 
 /**
@@ -38,46 +37,39 @@ interface LazyImageWithLoaderProps {
  * />
  */
 export const LazyImageWithLoader = memo(function LazyImageWithLoader({
-  imgSrc,
-  alt = "",
-  imgWidth,
-  imgHeight,
-  imgContainerClass = "",
+	imgSrc,
+	alt = '',
+	imgWidth,
+	imgHeight,
+	imgContainerClass = '',
 }: LazyImageWithLoaderProps) {
-  const imgRef = useRef<HTMLImageElement>(null);
-  const [isImgLoaded, setIsImgLoaded] = useState(false);
+	const imgRef = useRef<HTMLImageElement>(null);
+	const [isImgLoaded, setIsImgLoaded] = useState(false);
 
-  useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.onload = () => {
-        setIsImgLoaded(true);
-      };
-    }
-  }, []);
+	useEffect(() => {
+		if (imgRef.current) {
+			imgRef.current.onload = () => {
+				setIsImgLoaded(true);
+			};
+		}
+	}, []);
 
-  return (
-    <div
-      className={getCombinedClass(
-        styles.rel,
-        styles["mobile-inline-block"],
-        "__scd_loader_image_container",
-        imgContainerClass
-      )}
-      style={{ flex: `0 0 ${imgWidth}px`, height: imgHeight }}
-    >
-      {!isImgLoaded && (
-        <div className={styles["abs-center"]}>
-          <Loader variant="dots-bounce" />
-        </div>
-      )}
-      <img
-        ref={imgRef}
-        height={imgHeight}
-        width={imgWidth}
-        loading="lazy"
-        src={imgSrc}
-        alt={alt}
-      />
-    </div>
-  );
+	return (
+		<div
+			className={getCombinedClass(
+				styles.rel,
+				styles['mobile-inline-block'],
+				'__scd_loader_image_container',
+				imgContainerClass
+			)}
+			style={{ flex: `0 0 ${imgWidth}px`, height: imgHeight }}
+		>
+			{!isImgLoaded && (
+				<div className={styles['abs-center']}>
+					<Loader variant="dots-bounce" />
+				</div>
+			)}
+			<img ref={imgRef} height={imgHeight} width={imgWidth} loading="lazy" src={imgSrc} alt={alt} />
+		</div>
+	);
 });

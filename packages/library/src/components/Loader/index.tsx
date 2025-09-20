@@ -1,23 +1,22 @@
-import React, { memo } from "react";
-import type { JSX } from "react";
+import { Switch } from '@components/Switch';
+import React, { memo } from 'react';
+import type { JSX } from 'react';
 
-import { Switch } from "@components/Switch";
+import styles from './loader.module.css';
 
-import styles from "./loader.module.css";
-
-export type loaderVariant = "spin" | "lines" | "dots-bounce" | "dots-fade";
+export type loaderVariant = 'spin' | 'lines' | 'dots-bounce' | 'dots-fade';
 
 const defaultSizes = {
-  spin: "50px",
-  lines: "40px",
-  "dots-bounce": "1rem",
-  "dots-fade": "1rem",
+	spin          : '50px',
+	lines         : '40px',
+	'dots-bounce' : '1rem',
+	'dots-fade'   : '1rem',
 };
 
 export interface LoaderProps {
-  variant: loaderVariant;
-  color?: string;
-  size?: string;
+	variant: loaderVariant;
+	color?: string;
+	size?: string;
 }
 /**
  * A customizable loader component that displays different loading animations.
@@ -34,67 +33,67 @@ export interface LoaderProps {
  * <Loader variant="dots-fade" color="#ff5733" size="1rem" />
  */
 export const Loader = memo(function Loader({
-  variant = "spin",
-  color = "#3498db",
-  size = "",
+	variant = 'spin',
+	color = '#3498db',
+	size = '',
 }: LoaderProps): JSX.Element {
-  const cssVariable = variant === "lines" ? "--loader-height" : "--loader-size";
-  const defaultSize = size || defaultSizes[variant] || "1rem";
+	const cssVariable = variant === 'lines' ? '--loader-height' : '--loader-size';
+	const defaultSize = size || defaultSizes[variant] || '1rem';
 
-  return (
-    <div
-      className={styles[`loader-${variant}`]}
-      style={{
-        [cssVariable]: defaultSize,
-        borderTopColor: color,
-      }}
-    >
-      <Switch>
-        <Switch.Case condition={variant === "lines"}>
-          {Array(5)
-            .fill(null)
-            .map((_, i) => (
-              <div
-                key={i}
-                className={styles.line}
-                style={{
-                  animationDelay: `${i * 0.2}s`,
-                  backgroundColor: color,
-                }}
-              />
-            ))}
-        </Switch.Case>
+	return (
+		<div
+			className={styles[`loader-${variant}`]}
+			style={{
+				[cssVariable]  : defaultSize,
+				borderTopColor : color,
+			}}
+		>
+			<Switch>
+				<Switch.Case condition={variant === 'lines'}>
+					{Array(5)
+						.fill(null)
+						.map((_, i) => (
+							<div
+								key={i}
+								className={styles.line}
+								style={{
+									animationDelay  : `${i * 0.2}s`,
+									backgroundColor : color,
+								}}
+							/>
+						))}
+				</Switch.Case>
 
-        <Switch.Case condition={variant === "dots-bounce"}>
-          {Array(3)
-            .fill(null)
-            .map((_, i) => (
-              <div
-                key={i}
-                className={styles.bounce}
-                style={{
-                  animationDelay: `${i * 0.2}s`,
-                  backgroundColor: color,
-                }}
-              />
-            ))}
-        </Switch.Case>
+				<Switch.Case condition={variant === 'dots-bounce'}>
+					{Array(3)
+						.fill(null)
+						.map((_, i) => (
+							<div
+								key={i}
+								className={styles.bounce}
+								style={{
+									animationDelay  : `${i * 0.2}s`,
+									backgroundColor : color,
+								}}
+							/>
+						))}
+				</Switch.Case>
 
-        <Switch.Case condition={variant === "dots-fade"}>
-          {Array(3)
-            .fill(null)
-            .map((_, i) => (
-              <div
-                key={i}
-                className={styles.dot}
-                style={{
-                  animationDelay: `${i * 0.2}s`,
-                  backgroundColor: color,
-                }}
-              />
-            ))}
-        </Switch.Case>
-      </Switch>
-    </div>
-  );
+				<Switch.Case condition={variant === 'dots-fade'}>
+					{Array(3)
+						.fill(null)
+						.map((_, i) => (
+							<div
+								key={i}
+								className={styles.dot}
+								style={{
+									animationDelay  : `${i * 0.2}s`,
+									backgroundColor : color,
+								}}
+							/>
+						))}
+				</Switch.Case>
+			</Switch>
+		</div>
+	);
 });

@@ -28,7 +28,7 @@ class MixpanelService {
 				this.mixpanel.init(MixpanelService.mixpanelToken);
 				const distinctId = this.mixpanel.get_distinct_id();
 				// identify user with distinct id only
-				(distinctId != null && distinctId !== '') && this.mixpanel.identify('Distinct ID');
+				distinctId != null && distinctId !== '' && this.mixpanel.identify('Distinct ID');
 				this.mixpanel.register({
 					[MIXPANEL_EVENT_PROPERTIES.CURRENT_PAGE]        : getCurrentScreen(),
 					[MIXPANEL_EVENT_PROPERTIES.IS_MOBILE]           : checkIsMobile(),
@@ -38,7 +38,9 @@ class MixpanelService {
 				});
 				this.isInitialized = true;
 			}
-			this.queue.forEach((fn: () => void) => { fn(); });
+			this.queue.forEach((fn: () => void) => {
+				fn();
+			});
 			this.queue = [];
 		} catch (err) {
 			// eslint-disable-next-line no-console

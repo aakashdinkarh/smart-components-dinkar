@@ -24,18 +24,18 @@ export function checkIsMobileViewPort() {
 
 /**
  * Checks if the current device is a mobile device.
- * 
+ *
  * This function uses the `userAgentData.mobile` property if available.
  * If not available, it falls back to `null`.
- * 
+ *
  * @param {boolean} [getBool=false] - If true, always returns a boolean value.
  * @returns {boolean | null | undefined} Returns `true` for mobile devices, `false` for non-mobile devices.
  * If the mobile status can't be determined and `getBool` is false, returns `null` or `undefined`.
- * 
+ *
  * @example
  * // To get a nullable result
  * const isMobile = checkIsMobile();
- * 
+ *
  * @example
  * // To always get a boolean result
  * const isMobileBoolean = checkIsMobile(true);

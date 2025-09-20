@@ -1,18 +1,17 @@
-import type { JSX, PropsWithChildren } from "react";
-import React, { memo, useMemo } from "react";
+import { getCombinedClass } from '@utils/getCombinedClass';
+import type { JSX, PropsWithChildren } from 'react';
+import React, { memo, useMemo } from 'react';
 
-import { getCombinedClass } from "@utils/getCombinedClass";
+import styles from './borderAnimated.module.css';
 
-import styles from "./borderAnimated.module.css";
-
-export type borderPositioningTypes = "outset" | "inset";
+export type borderPositioningTypes = 'outset' | 'inset';
 
 interface BorderAnimatedContainerProps extends PropsWithChildren {
-  className?: string;
-  animatedBorderColor?: string;
-  animationDuration?: string;
-  animationDelay?: string;
-  borderPositioning?: borderPositioningTypes;
+	className?: string;
+	animatedBorderColor?: string;
+	animationDuration?: string;
+	animationDelay?: string;
+	borderPositioning?: borderPositioningTypes;
 }
 
 /**
@@ -40,68 +39,63 @@ interface BorderAnimatedContainerProps extends PropsWithChildren {
  *	</BorderAnimatedContainer>
  */
 export const BorderAnimatedContainer = memo(function BorderAnimatedContainer({
-  className = "",
-  animatedBorderColor = "#f68b21",
-  animationDuration = "2s",
-  animationDelay = "0s",
-  borderPositioning = "inset",
-  children,
+	className = '',
+	animatedBorderColor = '#f68b21',
+	animationDuration = '2s',
+	animationDelay = '0s',
+	borderPositioning = 'inset',
+	children,
 }: BorderAnimatedContainerProps): JSX.Element {
-  const parsedAnimationDelay: number = useMemo(() => {
-    const parsedDelay = parseFloat(animationDelay);
+	const parsedAnimationDelay: number = useMemo(() => {
+		const parsedDelay = parseFloat(animationDelay);
 
-    return typeof parsedDelay === "number" && !Number.isNaN(parsedDelay)
-      ? parsedDelay
-      : 0;
-  }, []);
+		return typeof parsedDelay === 'number' && !Number.isNaN(parsedDelay) ? parsedDelay : 0;
+	}, [animationDelay]);
 
-  const animationDelayExtra: number = useMemo(() => {
-    let parsedDuration = parseFloat(animationDuration);
+	const animationDelayExtra: number = useMemo(() => {
+		let parsedDuration = parseFloat(animationDuration);
 
-    parsedDuration =
-      typeof parsedDuration === "number" && !Number.isNaN(parsedDuration)
-        ? parsedDuration
-        : 2;
+		parsedDuration = typeof parsedDuration === 'number' && !Number.isNaN(parsedDuration) ? parsedDuration : 2;
 
-    return parsedDuration / 2;
-  }, []);
+		return parsedDuration / 2;
+	}, [animationDuration]);
 
-  return (
-    <section
-      style={{ ["--border-color" as string]: animatedBorderColor }}
-      className={getCombinedClass(styles.container, className, {
-        [styles["border-position-outset"]]: borderPositioning === "outset",
-      })}
-    >
-      <span
-        className={styles["internal-span"]}
-        style={{
-          animationDuration,
-          animationDelay: `${parsedAnimationDelay}s`,
-        }}
-      />
-      <span
-        className={styles["internal-span"]}
-        style={{
-          animationDuration,
-          animationDelay: `${parsedAnimationDelay + animationDelayExtra}s`,
-        }}
-      />
-      <span
-        className={styles["internal-span"]}
-        style={{
-          animationDuration,
-          animationDelay: `${parsedAnimationDelay}s`,
-        }}
-      />
-      <span
-        className={styles["internal-span"]}
-        style={{
-          animationDuration,
-          animationDelay: `${parsedAnimationDelay + animationDelayExtra}s`,
-        }}
-      />
-      {children}
-    </section>
-  );
+	return (
+		<section
+			style={{ ['--border-color' as string]: animatedBorderColor }}
+			className={getCombinedClass(styles.container, className, {
+				[styles['border-position-outset']]: borderPositioning === 'outset',
+			})}
+		>
+			<span
+				className={styles['internal-span']}
+				style={{
+					animationDuration,
+					animationDelay: `${parsedAnimationDelay}s`,
+				}}
+			/>
+			<span
+				className={styles['internal-span']}
+				style={{
+					animationDuration,
+					animationDelay: `${parsedAnimationDelay + animationDelayExtra}s`,
+				}}
+			/>
+			<span
+				className={styles['internal-span']}
+				style={{
+					animationDuration,
+					animationDelay: `${parsedAnimationDelay}s`,
+				}}
+			/>
+			<span
+				className={styles['internal-span']}
+				style={{
+					animationDuration,
+					animationDelay: `${parsedAnimationDelay + animationDelayExtra}s`,
+				}}
+			/>
+			{children}
+		</section>
+	);
 });

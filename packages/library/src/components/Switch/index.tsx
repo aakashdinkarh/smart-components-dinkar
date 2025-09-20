@@ -4,7 +4,8 @@ import React, { isValidElement, memo } from 'react';
 interface CaseProps extends PropsWithChildren {
 	condition: boolean;
 }
-type DefaultProps = PropsWithChildren;7
+type DefaultProps = PropsWithChildren;
+
 type SwitchProps = PropsWithChildren;
 
 /**
@@ -54,7 +55,9 @@ export const Switch = memo(function Switch({ children }: SwitchProps): ReactElem
 	let defaultCase: ReactElement | null = null;
 
 	React.Children.forEach(children, (child) => {
-		if(!isValidElement(child)) { return }
+		if (!isValidElement(child)) {
+			return;
+		}
 
 		if (matchChild == null && child.type === Case) {
 			const { condition }: { condition?: boolean } = child.props as Record<string, any>;
