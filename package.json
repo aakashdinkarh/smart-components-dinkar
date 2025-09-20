@@ -12,10 +12,7 @@
 		"build:app": "npm run build --workspace=packages/app",
 		"lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mjs",
 		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.mjs --fix",
-		"lint:workspaces": "npm run lint --workspaces",
-		"format": "prettier --write .",
-		"format:check": "prettier --check .",
-		"format:workspaces": "npm run format --workspaces"
+		"lint:workspaces": "npm run lint --workspaces"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "5.62.0",

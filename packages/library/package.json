@@ -25,6 +25,8 @@
 		"react-dom": ">=18"
 	},
 	"devDependencies": {
+		"react": "18",
+		"react-dom": "18",
 		"@babel/preset-react": "7.27.1",
 		"@babel/preset-typescript": "7.27.1",
 		"@rollup/plugin-alias": "5.1.1",

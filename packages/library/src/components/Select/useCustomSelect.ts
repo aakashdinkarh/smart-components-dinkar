@@ -79,7 +79,7 @@ export function useCustomSelect({
 	// }, [multiple, options, selectedValue]);
 
 	const onOutsideClick = useCallback(
-		(e: PointerEvent) => {
+		(e: globalThis.MouseEvent) => {
 			const { target } = e;
 
 			if (

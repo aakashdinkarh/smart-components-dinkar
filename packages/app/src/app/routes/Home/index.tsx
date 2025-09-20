@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
 import { codeHighlightClassJS } from '../../constants';

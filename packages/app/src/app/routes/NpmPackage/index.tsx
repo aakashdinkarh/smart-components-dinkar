@@ -1,4 +1,3 @@
-import React from 'react';
 import { Loader, getCombinedClass } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';

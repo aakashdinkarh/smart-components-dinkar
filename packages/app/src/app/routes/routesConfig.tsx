@@ -1,4 +1,3 @@
-import React from 'react';
 import type { RouteObject } from 'react-router-dom';
 
 import { ButtonPage } from './Button';
@@ -27,7 +26,7 @@ interface SideBarItem {
 	path: (typeof routes)[keyof typeof routes];
 	label: string;
 }
-type SideBarItems = Record<'tutorials' | 'components', SideBarItem[]>;
+type SideBarItems = Record<'tutorials' | 'components', readonly SideBarItem[]>;
 
 export const sideBarItems: SideBarItems = {
 	tutorials: [

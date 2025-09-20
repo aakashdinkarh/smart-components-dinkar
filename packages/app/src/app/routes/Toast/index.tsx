@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import {
 	Button,
 	toast,
@@ -35,7 +35,7 @@ export function ToastPage() {
 				const { id, title, toastMessage, buttonThemeType, placement } = data;
 
 				return (
-					<React.Fragment key={id}>
+					<Fragment key={id}>
 						<Button
 							className="my-1"
 							themeType={buttonThemeType}
@@ -64,7 +64,7 @@ export function ToastPage() {
 </button>`}
 							</AppCodeWrapper>
 						</div>
-					</React.Fragment>
+					</Fragment>
 				);
 			})}
 		</main>
