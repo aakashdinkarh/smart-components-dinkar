@@ -2,7 +2,7 @@ import { BorderAnimatedContainer, Button } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { codeHighlightClassHTML } from '../../constants';
+import { codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -20,7 +20,7 @@ export function OthersPage() {
 			</BorderAnimatedContainer>
 
 			<div className="my-1 mb-4">
-				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassTSX}>
 					{`<BorderAnimatedContainer>
     <Button themeType='secondary'>Inset</Button>
 </BorderAnimatedContainer>
@@ -33,7 +33,7 @@ export function OthersPage() {
 			</BorderAnimatedContainer>
 
 			<div className="my-1 mb-4">
-				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+				<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassTSX}>
 					{`<BorderAnimatedContainer
     borderPositioning='outset'
     animationDelay='1s'

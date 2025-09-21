@@ -22,6 +22,7 @@
 				"title": "Add a new script command",
 				"subText": "Add the following to <code class=\"file\">package.json > scripts</code>",
 				"code": "\"start\": \"react-scripts start\",\n\"build\": \"react-scripts build\"",
+				"languageClass": "language-json",
 				"key": "3.2"
 			},
 			{
@@ -73,6 +74,7 @@
 			{
 				"title": "Setup the build system, Create the config file <code class=\"file\">rollup.config.mjs</code> with the following content",
 				"code": "import path from \"path\";\nimport resolve from \"@rollup/plugin-node-resolve\";\nimport commonjs from \"@rollup/plugin-commonjs\";\nimport babel from \"@rollup/plugin-babel\";\nimport json from \"@rollup/plugin-json\";\n\nexport default {\n  input: \"src/exports.js\",\n  output: [\n    {\n      file: path.resolve(\"dist/index.cjs\"),\n      format: \"cjs\", // CommonJS (for Node)\n      exports: \"named\",\n    },\n    {\n      file: path.resolve(\"dist/index.js\"),\n      format: \"esm\", // ES Module (tree shakeable)\n      exports: \"named\",\n    },\n  ],\n  external: [\"react\", \"react-dom\"],\n  plugins: [\n    resolve(),\n    json(),\n    babel({\n      babelHelpers: \"bundled\",\n      exclude: \"node_modules/**\",\n      presets: [\"@babel/preset-react\"],\n      extensions: [\".js\", \".jsx\"],\n    }),\n    commonjs(),\n  ],\n};\n",
+				"languageClass": "language-js",
 				"key": "7.2"
 			},
 			{
@@ -83,6 +85,7 @@
 			{
 				"title": "Add the following to <code class=\"file\">package.json</code>",
 				"code": "  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.js\",\n  \"exports\": {\n    \".\": {\n      \"import\": \"./dist/index.js\",\n      \"require\": \"./dist/index.cjs\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"peerDependencies\": {\n    \"react\": \">=18.2.0\",\n    \"react-dom\": \">=18.2.0\"\n  },",
+				"languageClass": "language-json",
 				"key": "7.4"
 			}
 		]
@@ -120,6 +123,7 @@
 	{
 		"title": "Here is the final copy of <code class=\"file\">package.json</code> file for reference",
 		"code": "{\n\t\"name\": \"my-package\",\n\t\"version\": \"1.0.0\",\n\t\"description\": \"\",\n\t\"main\": \"dist/index.js\",\n\t\"module\": \"dist/index.js\",\n\t\"exports\": {\n\t\t\".\": {\n\t\t\t\"import\": \"./dist/index.js\",\n\t\t\t\"require\": \"./dist/index.cjs\"\n\t\t}\n\t},\n\t\"files\": [\n\t\t\"dist\"\n\t],\n\t\"peerDependencies\": {\n\t\t\"react\": \">=18.2.0\",\n\t\t\"react-dom\": \">=18.2.0\"\n\t},\n\t\"sideEffects\": false,\n\t\"scripts\": {\n\t\t\"start\": \"npx react-scripts start\",\n\t\t\"build\": \"rm -rf dist && rollup -c\"\n\t},\n\t\"keywords\": [],\n\t\"author\": \"\",\n\t\"license\": \"ISC\",\n\t\"devDependencies\": {\n\t\t\"@babel/preset-react\": \"7.27.1\",\n\t\t\"@rollup/plugin-babel\": \"6.0.4\",\n\t\t\"@rollup/plugin-commonjs\": \"28.0.6\",\n\t\t\"@rollup/plugin-json\": \"6.1.0\",\n\t\t\"@rollup/plugin-node-resolve\": \"16.0.1\",\n\t\t\"react\": \"19.1.1\",\n\t\t\"react-dom\": \"19.1.1\",\n\t\t\"react-script\": \"2.0.5\",\n\t\t\"rollup\": \"4.50.1\"\n\t},\n\t\"browserslist\": {\n\t\t\"production\": [\n\t\t\t\">0.2%\",\n\t\t\t\"not dead\",\n\t\t\t\"not op_mini all\"\n\t\t],\n\t\t\"development\": [\n\t\t\t\"last 1 chrome version\",\n\t\t\t\"last 1 firefox version\",\n\t\t\t\"last 1 safari version\"\n\t\t]\n\t}\n}",
+		"languageClass": "language-json",
 		"key": "9"
 	},
 	{

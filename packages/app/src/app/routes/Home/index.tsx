@@ -1,6 +1,6 @@
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { codeHighlightClassJS } from '../../constants';
+import { codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -34,34 +34,20 @@ export function HomePage() {
 			</section>
 
 			<section>
-				<StyledH2>
-					<span style={{ color: '#EC407A' }}>Note</span>
-				</StyledH2>
-				For optimal performance and minimal import size, import components from
-				their individual folders rather than from the package&apos;s common entry
-				point. We are working on enabling tree-shaking, which will eventually
-				allow you to import all components directly from the common entry point
-				without sacrificing performance or increasing import size.
-				<p>For example,</p>
-				<div>
-					Instead of this
-					<AppCodeWrapper
-						isCodeHighlighted={Boolean(isCodeHighlighted)}
-						languageClass={codeHighlightClassJS}
-					>
-						{"import { Select } from 'smart-components-dinkar';"}
-					</AppCodeWrapper>
-					<br />
-					Import like this
-					<AppCodeWrapper
-						isCodeHighlighted={Boolean(isCodeHighlighted)}
-						languageClass={codeHighlightClassJS}
-					>
-						{
-							"import { Select } from 'smart-components-dinkar/dist/components/Select';"
-						}
-					</AppCodeWrapper>
-				</div>
+				<StyledH2>Quick Start</StyledH2>
+				<p>Get started with smart-components-dinkar in just a few steps:</p>
+				<AppCodeWrapper
+					isCodeHighlighted={Boolean(isCodeHighlighted)}
+				>
+					{'npm install smart-components-dinkar'}
+				</AppCodeWrapper>
+				<p>Then import and use any component:</p>
+				<AppCodeWrapper
+					isCodeHighlighted={Boolean(isCodeHighlighted)}
+					languageClass={codeHighlightClassTSX}
+				>
+					{'import { Select, Button, Toast } from \'smart-components-dinkar\';'}
+				</AppCodeWrapper>
 			</section>
 
 			<section>

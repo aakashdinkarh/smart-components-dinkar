@@ -14,7 +14,7 @@ interface tutorialStep {
 	code?: string;
 	key: string;
 	nestedSteps?: tutorialStep[];
-	isCodeHighlighted?: boolean;
+	languageClass?: string;
 }
 
 function InstructionWrapper({
@@ -22,8 +22,9 @@ function InstructionWrapper({
 	subText,
 	code,
 	nestedSteps,
+	languageClass,
 	isCodeHighlighted = false,
-}: tutorialStep) {
+}: tutorialStep & { isCodeHighlighted: boolean }) {
 	return (
 		<div className={getCombinedClass(styles['instruction-wrapper'])}>
 			<h3 dangerouslySetInnerHTML={{ __html: title }} />
@@ -37,7 +38,7 @@ function InstructionWrapper({
 					<InstructionWrapper isCodeHighlighted={isCodeHighlighted} {...step} key={step.key} />
 				))
 			) : (
-				<AppCodeWrapper isCodeHighlighted={isCodeHighlighted}>
+				<AppCodeWrapper isCodeHighlighted={isCodeHighlighted} languageClass={languageClass}>
 					{code}
 				</AppCodeWrapper>
 			)}

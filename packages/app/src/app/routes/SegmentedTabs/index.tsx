@@ -3,7 +3,7 @@ import { LazyImageWithLoader, SegmentedTabs } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { IMAGE_PREFIX, codeHighlightClassHTML } from '../../constants';
+import { IMAGE_PREFIX, codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -59,7 +59,7 @@ export function SegmentedTabsPage() {
 			<div className="mt-2">
 				<AppCodeWrapper
 					isCodeHighlighted={Boolean(isCodeHighlighted)}
-					languageClass={codeHighlightClassHTML}
+					languageClass={codeHighlightClassTSX}
 				>
 					{`interface usageDataItem {
 	id: number;

@@ -3,7 +3,7 @@ import { Button, toast, type IButton } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { codeHighlightClassHTML } from '../../constants';
+import { codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -50,10 +50,13 @@ export function ButtonPage() {
 				);
 			})}
 
-			<AppCodeWrapper isCodeHighlighted={Boolean(isCodeHighlighted)} languageClass={codeHighlightClassHTML}>
+			<AppCodeWrapper
+				isCodeHighlighted={Boolean(isCodeHighlighted)}
+				languageClass={codeHighlightClassTSX}
+			>
 				{`<Button themeType="primary" onClick={onClick}>Primary</Button>
 
-Group Usage -->
+// Group Usage
 				
 interface usageDataItem {
 	id: number;
@@ -67,7 +70,7 @@ type usageDataGroup = usageDataItem[];
 
 {(usageData as usageDataGroup[]).map((dataGroup, index) => {
 	return <React.Fragment key={index}>
-		<div className={styles['button-group']} >
+		<div className={styles['button-group']}>
 			{(dataGroup as usageDataItem[]).map((data) => {
 				const { id, title, ...restParams } = data;
 				return (

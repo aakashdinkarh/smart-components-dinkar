@@ -1,7 +1,7 @@
 {
 	"name": "smart-components-dinkar-app",
 	"version": "0.1.0",
-	"private": true,
+	"description": "Demo application showcasing smart-components-dinkar library",
 	"dependencies": {
 		"mixpanel-browser": "2.70.0",
 		"react": "18",

@@ -2,7 +2,7 @@ import { Switch } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { codeHighlightClassHTML } from '../../constants';
+import { codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -31,7 +31,7 @@ export function SwitchPage() {
       <div>
         <AppCodeWrapper
           isCodeHighlighted={Boolean(isCodeHighlighted)}
-          languageClass={codeHighlightClassHTML}
+          languageClass={codeHighlightClassTSX}
         >
           {`<Switch>
     <Switch.Case condition={false}>Case 1</Switch.Case>
@@ -56,7 +56,7 @@ export function SwitchPage() {
       <div>
         <AppCodeWrapper
           isCodeHighlighted={Boolean(isCodeHighlighted)}
-          languageClass={codeHighlightClassHTML}
+          languageClass={codeHighlightClassTSX}
         >
           {`<Switch>
     <Switch.Case condition={false}>Case 1</Switch.Case>

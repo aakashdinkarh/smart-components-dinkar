@@ -3,7 +3,7 @@ import { Loader, type LoaderProps } from 'smart-components-dinkar';
 
 import { AppCodeWrapper } from '../../common/AppCodeWrapper';
 import { StickyHeader } from '../../common/StickyHeader';
-import { codeHighlightClassHTML } from '../../constants';
+import { codeHighlightClassTSX } from '../../constants';
 import { useHighlightCode } from '../../hooks/useHighlightCode';
 import { HelmetComponent } from '../HelmetComponent';
 
@@ -37,7 +37,7 @@ export function LoaderPage() {
 						<div className="mt-2">
 							<AppCodeWrapper
 								isCodeHighlighted={Boolean(isCodeHighlighted)}
-								languageClass={codeHighlightClassHTML}
+								languageClass={codeHighlightClassTSX}
 							>
 								{`<Loader variant="${variant}" />`}
 							</AppCodeWrapper>
