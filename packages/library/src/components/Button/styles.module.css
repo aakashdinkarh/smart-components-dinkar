@@ -1,0 +1,154 @@
+.button {
+	background-color: transparent;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.2s;
+	font-weight: 500;
+	color: #fff;
+}
+
+.xs {
+	font-size: 0.625rem;
+	padding: 2px 4px;
+}
+
+.sm {
+	font-size: 0.875rem;
+	padding: 4px 6px;
+}
+
+.md {
+	font-size: 1rem;
+	padding: 6px 8px;
+}
+
+.lg {
+	font-size: 1.5rem;
+	padding: 8px 10px;
+}
+
+.xl {
+	font-size: 2rem;
+	padding: 10px 12px;
+}
+
+.primary {
+	background-color: #297aff;
+}
+
+.secondary {
+	background-color: #393b42;
+}
+
+.tertiary {
+	background-color: #dde1e7;
+	color: #000;
+}
+
+.success {
+	background-color: #41a14a;
+}
+
+.danger {
+	background-color: #f54337;
+}
+
+.warn {
+	background-color: #ffe320;
+	color: #000;
+}
+
+.outline {
+	background-color: #fff;
+	color: #000;
+}
+
+.primary.outline {
+	border: 1px solid #297aff;
+	color: #297aff;
+}
+
+.secondary.outline {
+	border: 1px solid #393b42;
+	color: #393b42;
+}
+
+.tertiary.outline {
+	border: 1px solid #dde1e7;
+	color: #000;
+}
+
+.success.outline {
+	border: 1px solid #41a14a;
+	color: #41a14a;
+}
+
+.danger.outline {
+	border: 1px solid #f54337;
+	color: #f54337;
+}
+
+.warn.outline {
+	border: 1px solid #f8efb2;
+	color: #000;
+}
+
+.button:disabled {
+	border: none;
+	background-color: #eeeeef;
+	color: #9d9d9d;
+}
+
+.button.outline:disabled {
+	border: 1px solid #9d9d9d;
+	background-color: #fff;
+}
+
+.primary:not(:disabled):hover {
+	background-color: rgb(41 122 255 / 80%);
+}
+
+.secondary:not(:disabled):hover {
+	background-color: rgb(57 59 66 / 80%);
+}
+
+.tertiary:not(:disabled):hover {
+	background-color: rgb(221 225 231 / 80%);
+}
+
+.success:not(:disabled):hover {
+	background-color: rgb(65 161 74 / 80%);
+}
+
+.danger:not(:disabled):hover {
+	background-color: rgb(245 67 55 / 80%);
+}
+
+.warn:not(:disabled):hover {
+	background-color: rgb(255 227 32 / 80%);
+}
+
+.outline.primary:not(:disabled):hover {
+	background-color: rgb(41 123 255 / 10%);
+}
+
+.outline.secondary:not(:disabled):hover {
+	background-color: rgb(57 59 66 / 10%);
+}
+
+.outline.tertiary:not(:disabled):hover {
+	background-color: rgb(221 225 231 / 30%);
+}
+
+.outline.success:not(:disabled):hover {
+	background-color: rgb(65 161 75 / 10%);
+}
+
+.outline.danger:not(:disabled):hover {
+	background-color: rgb(245 68 55 / 10%);
+}
+
+.outline.warn:not(:disabled):hover {
+	background-color: rgb(255 225 32 / 10%);
+}

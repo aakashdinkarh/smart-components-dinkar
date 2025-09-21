@@ -1,0 +1,31 @@
+.code-container {
+	position: relative;
+	min-height: 28px;
+	border-radius: 4px;
+	overflow: auto;
+	tab-size: 4;
+}
+
+.code-container:not(.code-highlighted) {
+	padding: 4px;
+}
+
+.copy-button {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 2px;
+}
+
+.code-container > pre {
+	margin: 0;
+	overflow: auto;
+}
+
+.code-container > pre code {
+	font-size: 0.75rem;
+	line-height: 1.2rem;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}

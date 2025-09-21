@@ -30,6 +30,6 @@ const importRules = {
 	'import/no-named-default'     : 'error',
 	'import/no-named-export'      : 'off',
 	'import/no-self-import'       : 'error',
-}
+};
 
 module.exports = importRules;

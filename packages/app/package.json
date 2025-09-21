@@ -1,0 +1,38 @@
+{
+	"name": "smart-components-dinkar-app",
+	"version": "0.1.0",
+	"description": "Demo application showcasing smart-components-dinkar library",
+	"dependencies": {
+		"mixpanel-browser": "2.70.0",
+		"react": "18",
+		"react-dom": "18",
+		"react-helmet": "6.1.0",
+		"react-router-dom": "7.9.1",
+		"smart-components-dinkar": "file:../library",
+		"web-vitals": "5.1.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"devDependencies": {
+		"@types/react": "18",
+		"@types/react-dom": "18",
+		"@types/react-helmet": "6.1.11",
+		"react-scripts": "5.0.1"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
+}
