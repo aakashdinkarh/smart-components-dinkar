@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file. The format 
 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[2.0.0] – 2025-09-17
+
+### 🚀 Breaking Changes
+
+- **TypeScript declarations improved**
+
+  - Components now ship with accurate prop types (`ComponentProps`, `RefAttributes`) instead of generic `unknown`.
+  - Consumers relying on implicit `any` may need type fixes.
+
+- **React import cleanup**
+
+  - Migrated to the new JSX transform (`"jsx": "react-jsx"`).
+  - Removed unused `import React from "react"` in component files (TS users may need to adjust configs if still on old JSX runtime).
+
+- **Build output structure**
+
+  - Library now ships only `dist/` with proper ESM, CJS, and `.d.ts` files.
+  - Removed duplicate `index.d.ts` in favor of component-level declarations.
+
+### ✨ Features
+
+- Added stronger support for **typed utility functions** (e.g. `getCombinedClass`).
+- Package now have tree shaking enabled.
+
+### 🛠 Internal Improvements
+
+- Converted repo to **monorepo structure** with npm workspaces:
+
+  - `packages/library` → publishable package.
+  - `packages/app` → demo/documentation app.
+
+- Rollup build upgraded to generate minified output.
+- Clear separation of peer dependencies (`react`, `react-dom`) vs dev dependencies.
+
+### Deployment
+
+- Demo/Playground React app, deployed on [Vercel](https://devdinkar-codebook.vercel.app/).
+
 ## [1.5.0] - 2024-05-25
 
 ### Added
@@ -22,6 +60,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Deployment
 
+- Demo/Playground React app, deployed on [Vercel](https://devdinkar-codebook.vercel.app/).
+
 ## [1.4.2] - 2024-05-18
 
 ### Added
@@ -36,6 +76,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Deployment
 
+- Demo/Playground React app, deployed on [Vercel](https://devdinkar-codebook.vercel.app/).
+
 ## [1.4.1] - 2024-05-18
 
 ### Added
@@ -49,6 +91,8 @@ All notable changes to this project will be documented in this file. The format 
 ### Documentation
 
 ### Deployment
+
+- Demo/Playground React app, deployed on [Vercel](https://devdinkar-codebook.vercel.app/).
 
 ## [1.4.0] - 2024-05-09
 
